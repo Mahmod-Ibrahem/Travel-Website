@@ -1,0 +1,216 @@
+@extends('layouts')
+@section('content')
+@vite('resources/js/Home.js')
+<div class="bg-cover bg-center h-[100vh] w-full"
+         style="background-image: url({{asset('Images/Home-Bg.avif')}});">
+         @component('components.navbar')
+         @endcomponent
+         <header class="h-[95vh] md:w-full">
+            <div
+             class="flex flex-col justify-center items-center md:h-[30rem] text-center text-white h-[50rem]
+          ">
+            <h1 id="home_title"
+             class=" text-4xl font-bold leading-[3.5rem] md:text-7xl  md:leading-[7rem] select-none animate-ToDown">
+             Explore The Wonders<br> Of Egypt
+            </h1>
+            <a href="{{route('Daytours.index')}}">
+            <button type="button" id="title_button"
+             class="text-white px-6 py-2 mt-3  font-bold md:text-2xl md:px-10 md:py-4 md:mb-2 md:mt-4 bg-gradient-to-r
+              from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none
+              focus:ring-cyan-300 rounded-lg   text-center me-2  animate-ToUp">
+              Check Our Offers !
+            </button>
+        </a>
+            </div>
+         </header>
+        </div>
+        <section id="facilites">
+            <div class="parent_container">
+                <header>
+                <h1
+                 class="text-center text-gray-950 text-3xl font-bold md:text-5xl  my-7 select-none leading-[3rem]"
+                 >
+                 Why Booking With <span class="text-red-600 font-Logo">H Tour</span> ?
+                </h1>
+                </header>
+                <div class="flex flex-col space-y-10 md:flex-row mb-5 md:space-x-10 md:space-y-0">
+                    <div class="ServiceCard">
+                        <div class="w-[5rem] md:w-[5rem]">
+                            <img src="{{asset('Images/icons/service.png')}}" alt="Service">
+                        </div>
+                          <h1 class="text-lg font-semibold select-none">High Quality Service</h1>
+                    </div>
+                    <div class="ServiceCard">
+                        <div class="w-[5rem] md:w-[4.5rem]">
+                            <img src="{{asset('Images/icons/Expert.png')}}" alt="Service">
+                        </div>
+                          <h1 class="text-lg font-semibold select-none">Travel with the Experts</h1>
+                    </div>
+                    <div class="ServiceCard">
+                        <div class="w-[5rem] md:w-[4.5rem]">
+                            <img src="{{asset('Images/icons/Security.png')}}" alt="Service">
+                      </div>
+                          <h1 class="text-lg font-semibold select-none">Your Safety and Security</h1>
+                    </div>
+                    <div class="ServiceCard">
+                        <div class="w-[5rem] md:w-[4.5rem]">
+                            <img src="{{asset('Images/icons/Comfort.png')}}" alt="Service">
+                  </div>
+                          <h1 class="text-lg font-semibold select-none">Hassle-Free and Flexibility</h1>
+                    </div>
+                    <div class="ServiceCard">
+                        <div class="w-[5rem] md:w-[4.5rem]">
+                            <img src="{{asset('Images/icons/Support.png')}}" alt="Service">
+               </div>
+                          <h1 class="text-lg font-semibold select-none">24/7 Customer Service</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <!-- Poular Destination-->
+         <section id="popularDestination">
+            <div class="w-fit mx-auto md:w-[80rem] ">
+                <div class="parent_container">
+                    <header>
+                    <h1
+                     class="homeSecHeader hidden"
+                     id="Popular_Dest_header">
+                     Popular Destination
+                    </h1>
+                    </header>
+                    <div class="flex flex-col space-y-10 md:flex-row mb-5 md:space-x-10 md:space-y-0">
+                        <div id="card_1" class="hidden">
+                        @component('components.PouplarDestinationCard',['city'=>'Giza'])
+                        @endcomponent
+                        </div>
+                        <div id="card_2" class="hidden">
+                        @component('components.PouplarDestinationCard',['city'=>'Cairo'])
+                        @endcomponent
+                        </div>
+                        <div id="card_3" class="hidden">
+                        @component('components.PouplarDestinationCard',['city'=>'Alexandria'])
+                        @endcomponent
+                       </div>
+                        <div id="card_4" class="hidden">
+                        @component('components.PouplarDestinationCard',['city'=>'Sharm El-Skeikh'])
+                        @endcomponent
+                    </div>
+                </div>
+            </div>
+
+     </section>
+     <section>
+        <header>
+            <h1 id="CategoryHeader"
+             class="homeSecHeader hidden">
+             Book Your Tour By Cateogry !</h1>
+        </header>
+        <div class="w-fit mx-auto">
+            <div class="flex flex-col space-y-6 md:flex-row justify-between  mb-5 md:space-x-10 md:space-y-0">
+              @component('components.CategoryCard',
+              ['id'=>'Toupackages','Category'=>'TourPackages','route'=>'Daytours.index'])
+              @endcomponent
+
+              @component('components.CategoryCard',
+              ['id'=>'Daytours','Category'=>'Daytours','route'=>'Daytours.index'])
+              @endcomponent
+        </div>
+     </section>
+        <section id="Hot-Offer" class="mx-auto w-fit md:w-[80rem]">
+                <div class="parent_container">
+                    <header>
+                        <h1
+                        id="popularToursHeader"
+                         class="homeSecHeader md:hidden">
+                         Popular Tours
+                        </h1>
+                        </header>
+                    <div
+                     class="child_container">
+                     @for($i=0; $i<4; $i++)
+                     @forelse ($PopularTours as $Dtour )
+                     @component('components.TourCard',
+                     ['tour'=>$Dtour,'date'=>$Dtour->created_at,'id'=>'TourCard_'.$Dtour->id,'home'=>false])
+                     @slot('Offer')
+                     {{$Dtour->OffetType}}
+                     @endslot
+                     @slot('city')
+                     {{$Dtour->city}}
+                     @endslot
+                     @slot('image')
+                     {{$Dtour->url()}}
+                     @endslot
+                     @slot('title')
+                     {{$Dtour->title}}
+                     @endslot
+                     @slot('places')
+                     {{$Dtour->places}}
+                     @endslot
+                     @slot('price')
+                     {{$Dtour->price}}
+                     @endslot
+                     @slot('Duration')
+                     {{$Dtour->Duration}}
+                     @endslot
+                     @slot('MaxPeople')
+                     {{$Dtour->MaxPeople}}
+                     @endslot
+                     @endcomponent
+                     @empty
+                     Coming Soon
+                         @endforelse
+                         @endfor
+                        </div>
+                    </div>
+        </section>
+
+        <section>
+            <section id="Hot-Offer" class="mx-auto w-fit md:w-[80rem]">
+                <div class="parent_container">
+                    <header>
+                        <h1
+                        id="HotOfferHeader"
+                         class="homeSecHeader md:hidden">
+                         Our Hot Offers
+                        </h1>
+                        </header>
+                    <div
+                     class="child_container">
+                     @for($i=0; $i<4; $i++)
+                     @forelse ($HotOfferTours as $Dtour )
+                     @component('components.TourCard',
+                     ['tour'=>$Dtour,'date'=>$Dtour->created_at,'id'=>'TourCard_'.$Dtour->id,'home'=>false])
+                     @slot('Offer')
+                     {{$Dtour->OffetType}}
+                     @endslot
+                     @slot('city')
+                     {{$Dtour->city}}
+                     @endslot
+                     @slot('image')
+                     {{$Dtour->url()}}
+                     @endslot
+                     @slot('title')
+                     {{$Dtour->title}}
+                     @endslot
+                     @slot('places')
+                     {{$Dtour->places}}
+                     @endslot
+                     @slot('price')
+                     {{$Dtour->price}}
+                     @endslot
+                     @slot('Duration')
+                     {{$Dtour->Duration}}
+                     @endslot
+                     @slot('MaxPeople')
+                     {{$Dtour->MaxPeople}}
+                     @endslot
+                     @endcomponent
+                     @empty
+                     Coming Soon
+                         @endforelse
+                         @endfor
+                        </div>
+                    </div>
+        </section>
+        </section>
+@endsection

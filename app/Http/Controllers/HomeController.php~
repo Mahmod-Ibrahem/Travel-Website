@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Models\Tour;
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    public function home()
+    {
+        $PopularTours=Tour::where('Popular','Yes')->get();
+        $HotOfferTours=Tour::where('OfferType','hot')->get();
+        return view('HomeView.home',['PopularTours'=>$PopularTours,'HotOfferTours'=>$HotOfferTours]);
+    }
+}

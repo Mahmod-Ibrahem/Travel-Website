@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    .nav_anch_p{
+       @apply text-white  hover:text-orange-500 tracking-wide text-base
+    }
+    /* Hamburger Button*/
+    .hamburger {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        transition: all 0.25s;
+        position: relative;
+      }
+
+      .hamburger-top,
+      .hamburger-middle,
+      .hamburger-bottom {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        top: 0;
+        left: 0;
+        background: #fff;
+        transform: rotate(0);
+        transition: all 0.5s;
+      }
+
+      .hamburger-middle {
+        transform: translateY(7px);
+      }
+
+      .hamburger-bottom {
+        transform: translateY(14px);
+      }
+
+      .open {
+        transform: rotate(90deg);
+      }
+
+      .open .hamburger-top {
+        transform: rotate(45deg) translateY(6px) translateX(6px);
+      }
+
+      .open .hamburger-middle {
+        display: none;
+      }
+
+      .open .hamburger-bottom {
+        transform: rotate(-45deg) translateY(6px) translateX(-6px);
+      }
+      .parent_container
+      {
+        @apply flex flex-col items-center justify-center
+      }
+      .child_container{
+        @apply flex flex-col mb-5 space-y-2 md:flex-row md:space-y-0 md:flex-wrap
+      }
+      .homeSecHeader{
+        @apply text-[1.75rem] font-bold text-center my-2 md:text-3xl text-gray-950  md:my-5 animate-ToUp  select-none
+      }
+      .CategoryCard{
+        @apply flex flex-col justify-center items-center space-y-2 rounded-xl  hover:shadow-lg hover:shadow-red-100
+        cursor-pointer md:transition-all md:duration-[0.3s] md:hover:-translate-y-2
+      }
+      .CategoryButton{
+        @apply px-8 py-2 text-white bg-red-600 hover:bg-red-700 font-bold rounded-lg text-base md:text-lg  md:px-16 md:py-3
+        text-center inline-flex items-center leading-5 tracking-wide
+      }
+      .ServiceCard{
+        @apply flex flex-col justify-center items-center space-y-1
+      }
+      .TourCard {
+        @apply flex flex-col w-[18rem] h-fit my-4 pb-2 md:mb-2 md:my-0 md:mr-3 overflow-hidden rounded-2xl   bg-white text-gray-900
+        transition-all duration-[0.2s]  hover:shadow-lg hover:shadow-red-100 border border-gray-200/80
+    }
+    .footer_anchor{
+        @apply border-b-2 border-white/50 mb-2 md:mb-5 pb-1 hover:text-orange-500 transition duration-200
+    }
+    .sandwitch_border
+    {
+        @apply border-t-2 border-b-2 border-black/40 mx-3 md:mx-16  my-5
+    }
+    .image-gallery{
+        @apply md:h-28 md:w-[8rem] h-16  hover:opacity-100 transition-opacity
+    }
+    .numbertext{
+        @apply absolute top-2 left-2 select-none;
+    }
+    .text{
+        @apply hidden bottom-[128px] text-center w-full h-8 bg-slate-200/50 select-none;
+    }
+    .mySlides{
+        @apply hidden
+    }
+    .dot{
+        @apply cursor-pointer w-24 h-4 my-1 bg-black/50 rounded-full inline-block;
+    }
+    .previous{
+        @apply absolute top-[42%] pl-4 select-none cursor-pointer
+        text-2xl text-white text-center  hover:bg-black/50 transition duration-200
+    }
+    .next
+    {
+        @apply absolute top-[42%] right-0 pr-4 select-none cursor-pointer
+        text-2xl text-white  transition duration-200 hover:bg-black/50
+    }
+    .LightBox_Slides{
+        @apply hidden
+    }
+    .LightBox_image-gallery{
+        @apply w-[22%] h-20 md:w-[6rem] m-[2px] md:h-20 box-border hover:opacity-100 transition-opacity border
+        rounded-md border-solid border-slate-400
+    }
+    .lightbox_image_display
+    {
+        @apply flex flex-col relative overflow-hidden md:mx-auto mb-1 border shadow-lg border-black/20
+    }
+    .price_label{
+        @apply text-lg font-semibold
+    }
+    .input_style{
+        @apply h-12 w-80
+        rounded-lg text-black bg-white bg-transparent placeholder-transparent ring-2 px-2 ring-gray-500
+        focus:ring-black focus:outline-none;
+      }
+
+      .input_label_style{
+        @apply absolute cursor-text left-0 -top-4 text-sm
+        text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base
+         peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2
+         peer-focus:-top-4 peer-focus:text-black peer-focus:text-sm transition-all;
+      }
+
+}
