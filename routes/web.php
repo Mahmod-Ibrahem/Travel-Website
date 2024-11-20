@@ -7,5 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'home'])->name('home');
 Route::resource('/Daytours', DaytoursController::class);
+Route::resource('/TourPackages', \App\Http\Controllers\TourPackageController::class);
 Route::get('Tours/{tour}', [DaytoursController::class, 'Tour'])->name('Tour');
 Route::get('/PoularDestinationTours/{Dest}',[PopularDestController::class,'popDest'])->name('PopularDest');

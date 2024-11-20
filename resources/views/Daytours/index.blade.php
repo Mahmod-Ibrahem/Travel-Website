@@ -1,51 +1,28 @@
 @extends('layouts')
 @section('content')
-@component('components.navbar',['home'=>false])
-@endcomponent
-<section id="intro">
-<div class="md:w-[94rem] bg-slate-100/80">
-<header>
-    <pre class="p-6 text-5xl font-bold font-Logo text-gray-950 text-center select-none"><span class="text-orange-500">H   Day Tours</span></pre>
-</header>
-</div>
-</section>
-<section id="Tours-Separation" class="mx-auto w-fit md:w-[85rem]">
-    <div class="parent_container">
-        <header>
-            <h1
-            id="DayTourSeparation"
-             class="homeSecHeader md:text-[2.5rem] ">
-             Check Your H Day Tour & Excursion By Your Destination
-            </h1>
-            </header>
+    <div class="h-[20rem] md:h-screen w-full ">
         <div
-         class="child_container">
-            @component('components.DestinationCard',
-            ['route'=>route('Daytours.show',['Daytour'=>'Cairo']),'url'=>asset('Images/TourPackage.avif'),
-            'city'=>'Cairo Day Tours'
-            ,'descr'=>'Cairo Day Tours & ExcursionsAllow Cairo Day Tours to immerse you into the pulsating centers of Egypt, and be rewarded with an unending curiosity that arises with each passing moment.'])
+            class="md:bg-fixed h-full w-full "
+            style="background-image: url('{{ asset('Images/DayToyrBg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+            @component('components.navbar')
             @endcomponent
-            @component('components.DestinationCard',
-            ['route'=>route('Daytours.show',['Daytour'=>'Luxor']),'url'=>asset('Images/TourPackage.avif'),
-            'city'=>'Luxor Day Tours'
-            ,'descr'=>'your gateway to enchanting Luxor Day Tours that promise to transport you through the annals of history.H Day Tour is dedicated to curating exceptional Luxor Tours that seamlessly blend cultural richness and awe-inspiring landscapes'])
-            @endcomponent
-            @component('components.DestinationCard',
-            ['route'=>route('Daytours.show',['Daytour'=>'SharmElSheikh']),'url'=>asset('Images/TourPackage.avif'),
-            'city'=>'Sharm El Sheikh Day Tours'
-            ,'descr'=>'Cairo Day Tours & ExcursionsAllow Cairo Day Tours to immerse you into the pulsating centers of Egypt, and be rewarded with an unending curiosity that arises with each passing moment.'])
-            @endcomponent
-            @component('components.DestinationCard',
-            ['route'=>route('Daytours.show',['Daytour'=>'Aswan']),'url'=>asset('Images/TourPackage.avif'),
-            'city'=>'Aswan Day Tours'
-            ,'descr'=>'Cairo Day Tours & ExcursionsAllow Cairo Day Tours to immerse you into the pulsating centers of Egypt, and be rewarded with an unending curiosity that arises with each passing moment.'])
-            @endcomponent
-            @component('components.DestinationCard',
-            ['route'=>route('Daytours.show',['Daytour'=>'Hurghada']),'url'=>asset('Images/TourPackage.avif'),
-            'city'=>'Hurghada Day Tours'
-            ,'descr'=>'Cairo Day Tours & ExcursionsAllow Cairo Day Tours to immerse you into the pulsating centers of Egypt, and be rewarded with an unending curiosity that arises with each passing moment.'])
-            @endcomponent
-            </div>
+
+                <div
+                    class="flex flex-col items-center justify-center md:items-center   h-full
+                  ">
+
+                    <div class=" h-fit overflow-hidden  box-border text-center ">
+                        <h1 id="home_title"
+                            class="text-[26px] font-bold md:text-[40px] select-none animate-ToDown  text-white leading-tight ">
+                            Exclusive Egypt Day Tours for Unforgettable Experiences
+                        </h1>
+                    </div>
+                </div>
         </div>
-</section>
-@endsection
+    </div>
+
+    @component('components.Sections.DayToursCategory')@endcomponent
+
+    @endsection
+
+

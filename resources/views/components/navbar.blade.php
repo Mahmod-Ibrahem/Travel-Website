@@ -1,5 +1,5 @@
-<div id='navbar' class="{{ $home ?? true ? '' : 'bg-800-900'}}">
-<div class="mx-auto flex justify-between py-6 items-center md:ml-16 px-5 ">
+<div id='navbar' class="{{ $home ?? true ? 'bg-black/10' : 'bg-orange-800'}} absolute top-0 z-10 w-full">
+<div class="mx-auto flex justify-between py-6 items-center md:ml-16 px-5  ">
     <!-- Start Of NavBar For Both-->
     <!--Language icon-->
     <div class="md:order-2 flex space-x-4  relative pt-2 {{ $home ?? true ? 'animate-ToDown' : ''}} z-20">
@@ -15,10 +15,10 @@
             </a>
         </div>
         <div class="md:hidden z-20">
-            <H1 class="text-orange-400 font-Logo text-2xl border-b border-double select-none animate-ToDown">H Tours</H1>
+            <H1 class="text-orange-400 font-Logo text-2xl border-b border-double select-none animate-ToDown">Logo</H1>
         </div>
     <!--PC NavBar Or Menu-->
-    <div class="hidden md:flex md:space-x-14 font-semibold mt-3 text-lg {{ $home ?? true ? 'animate-ToDown' : ''}} ">
+    <div class="hidden md:flex md:space-x-14 font-medium mt-3 text-lg {{ $home ?? true ? 'animate-ToDown' : ''}} ">
         <div>
             <H1 class="text-orange-400 font-Logo text-2xl border-b border-double select-none">H Tours</H1>
         </div>
@@ -29,15 +29,18 @@
             <a href="{{route('Daytours.index')}}" class="nav_anch_p"><p >Day Tours</p></a>
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
-            <a href="#" class="nav_anch_p "><p >Tour Packages</p></a>
+            <a href="{{route('TourPackages.index')}}" class="nav_anch_p "><p >Tour Packages</p></a>
 
+        </div>
+        <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
+            <a href="#" class="nav_anch_p "><p >AirPort Transfer</p></a>
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
             <a href="#" class="nav_anch_p"><p >Gallery</p></a>
 
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
-            <a href="#" class="nav_anch_p"><p >About Us</p></a>
+            <a href="#" class="nav_anch_p"><p >About</p></a>
 
         </div>
         {{-- <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
@@ -62,7 +65,8 @@
       space-y-12 text-2xl mt-36 ml-4">
     <li><a href="{{route('home')}}" class=" py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Homepage</a></li>
     <li><a href="{{route('Daytours.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Day Tours</a></li>
-    <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Tourpackages</a></li>
+    <li><a href="{{route('TourPackages.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Tour Packages</a></li>
+    <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">AirPort Transfer</a></li>
     <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400">Gallery</a></li>
     <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400">About Us</a></li>
     {{-- <li><a href="#" class="py-1 hover:text-black/90">Transfer Services</a></li> --}}

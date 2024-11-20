@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Your original scroll function
     function scrollfunction()
      {
-        console.log(window.scrollY)
         if(window.innerWidth >= 768)
         {
         if(window.scrollY>=250)
