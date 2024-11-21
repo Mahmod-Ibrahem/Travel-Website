@@ -1,0 +1,72 @@
+import { createRouter, createWebHistory } from "vue-router";
+import AppLayout from "../components/core/AppLayout.vue";
+import Dashboard from "../components/core/Dashboard.vue";
+import Login from "../components/Login.vue";
+import store from "../store";
+
+import ProductForm   from "../components/views/Products/ProductForm.vue";
+import Products from "../components/views/Products/products.vue";
+
+const routes = [
+  {
+    path: "/",
+    name: "default",
+    component: Login,
+  },
+,
+        children: [
+            {
+                path: "dashboard",
+                name: "app.dashboard",
+                component: Dashboard,
+            },
+            {
+              path: "products",
+              name: "app.products",
+              component: Products ,
+          },
+            {
+                path: "products/create",
+                name: "app.products.create",
+                component: ProductForm,
+            },
+            {
+              path: "products/:id",
+              name: "app.products.edit",
+              component: ProductForm,
+              props:{
+                id:(value)=> /^\d+$/.test(value)
+              }
+              ///^\d+$/: This pattern matches a string that contains only digits (\d), from the start (^) to the end ($) of the string.
+          },
+        ],
+    },
+
+    {
+        path: "/login",
+        name: "login",
+        component: Login,
+        meta: {
+            requireGuest: true,
+        },
+    },
+
+
+];
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth && !store.state.user.token) {
+        next({ name: "login" });
+    } else if (to.meta.requireGuest && store.state.user.token) {
+        next({ name: "app.dashboard" });
+    } else {
+        next();
+    }
+});
+
+export default router;

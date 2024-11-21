@@ -84,7 +84,7 @@ export default {
             },
               },
         animation:{
-            imageScale: 'imageScale 2s linear infinite',
+            imageScale: 'imageScale 8s linear infinite',
             ToUp:'ToUp 1s linear',
             ToDown:'ToDown 0.7s  ease-out',
             P_ToUp:'P_ToUp 1s  linear',

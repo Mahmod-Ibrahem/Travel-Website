@@ -1,0 +1,138 @@
+<template>
+  <div v-if="order">
+
+    <!--  Order Details-->
+      <div class="" v-if="!loading">
+    <div>
+      <h2 class="flex justify-between items-center text-xl font-semibold pb-2 border-b border-gray-300">
+        Order Details
+<!--        <OrderStatus :order="order" />-->
+      </h2>
+      <table>
+        <tbody>
+        <tr>
+          <td class="font-bold py-1 px-2">Order #</td>
+          <td>{{ order.id }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold py-1 px-2">Order Date</td>
+          <td>{{ order.created_at }}</td>
+        </tr>
+        <!-- <tr>
+          <td class="font-bold py-1 px-2">Order Status</td>
+          <td>
+            <select v-model="order.status" @change="onStatusChange">
+              <option v-for="status of orderStatuses" :value="status">{{status}}</option>
+            </select>
+          </td>
+        </tr> -->
+        <tr>
+          <td class="font-bold py-1 px-2">SubTotal</td>
+          <td>${{ order.total_price }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--/  Order Details-->
+
+    <!--  Customer Details-->
+    <div>
+      <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">Customer Details</h2>
+      <table>
+        <tbody>
+        <tr>
+          <td class="font-bold py-1 px-2">Full Name</td>
+          <td>{{ order.customer.name }} </td>
+        </tr>
+        <tr>
+          <td class="font-bold py-1 px-2">Email</td>
+          <td>{{ order.customer.email }}</td>
+        </tr>
+        <tr>
+          <td class="font-bold py-1 px-2">Room</td>
+          <td>{{ order.customer.room }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--/  Customer Details-->
+
+
+    <!--/  Customer Details-->
+
+    <!--    Order Items-->
+    <div>
+      <h2 class="text-xl font-semibold mt-6 pb-2 border-b border-gray-300">Order Items</h2>
+      <div v-for="item of order.items">
+        <!-- Order Item -->
+        <div class="flex flex-col sm:flex-row items-center  gap-4">
+          <!-- <a
+             class="w-36 h-32 flex items-center justify-center overflow-hidden">
+            <img :src="item.product.image" class="object-cover" alt=""/>
+          </a> -->
+          <div class="flex flex-col justify-between flex-1 mt-2">
+            <div class="flex justify-between mb-3">
+              <h3>
+                {{ item.product.title }}
+              </h3>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="flex items-center">Qty: {{ item.quantity }}
+              </div>
+
+                <div v-if="item.discount_percentage" class="flex gap-3 items-center">
+
+                    <del class="text-lg font-semibold"> ${{ item.product.unit_price }} </del>
+                    <span class="bg-green-500 rounded-md p-1 text-white"> {{ item.discount_percentage}}%</span>
+                    <span class="text-lg font-semibold"> ${{ item.product.unit_price*(1-item.discount_percentage/100)}} </span>
+                </div>
+                <div v-else>
+                    <span class="text-lg font-semibold"> ${{ item.product.unit_price }} </span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Order Item -->
+        <hr class="my-3"/>
+      </div>
+    </div>
+    <!--/    Order Items-->
+</div>
+  </div>
+
+  <div class="" v-else>
+    <Spinner></Spinner>
+  </div>
+</template>
+
+<script setup>
+import { onMounted, ref} from "vue";
+import store from "../../../store";
+import { useRoute } from "vue-router";
+import Spinner from "../../core/Spinner.vue";
+const route = useRoute()
+
+const order = ref(null);
+const loading=ref(true)
+// const orderStatuses = ref([]);
+
+onMounted(() => {
+  store.dispatch('getOrder', route.params.id)
+    .then(({data}) => {
+        loading.value=false
+        order.value = data
+    })
+})
+
+// function onStatusChange() {
+//   axiosClient.post(`/orders/change-status/${order.value.id}/${order.value.status}`)
+//     .then(({data}) => {
+//       store.commit('showToast', `Order status was successfully changed into "${order.value.status}"`)
+//     })
+//   }
+
+</script>
+
+<style scoped>
+
+</style>

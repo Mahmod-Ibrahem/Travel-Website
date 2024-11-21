@@ -10,8 +10,6 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $PopularTours=Tour::where('Popular','Yes')->get();
-        $HotOfferTours=Tour::where('OfferType','hot')->get();
-        return view('HomeView.HomePage',['PopularTours'=>$PopularTours,'HotOfferTours'=>$HotOfferTours]);
+        return view('HomeView.HomePage');
     }
 }

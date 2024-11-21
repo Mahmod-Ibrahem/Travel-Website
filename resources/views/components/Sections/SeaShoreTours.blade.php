@@ -1,0 +1,21 @@
+<section id="RecommendedTours" class="bg-[#f9f9f9] py-6 select-none">
+    <div class="parent_container gap-8">
+        <div
+            class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-4">
+            <h1 class="text-Primary font-semibold text-xl md:text-2xl">Explore what Egypt has for you with the best
+                Egypt shore excursions that you can ever find today
+            </h1>
+            <p class="font-medium text-Primary/75">Dive into the wonders of Egypt’s mesmerizing coastline with Dr Boogie Egypt Tours.
+                Each sea shore excursion is a blend of relaxation and exploration, offering breathtaking views,
+                crystal-clear waters, and a touch of ancient charm. Let our dedicated team guide you through
+                unforgettable moments, creating memories that will linger long after the waves have kissed the
+                shore.</p>
+        </div>
+
+
+        <div class="child_container gap-4 mx-auto">
+
+
+        </div>
+    </div>
+</section>

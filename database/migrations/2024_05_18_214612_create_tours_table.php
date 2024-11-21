@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,20 +13,20 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('city')->nullable();
-            $table->string('title')->nullable();
-            $table->text('places')->nullable();
-            $table->text('OfferType')->default('normal');
-            $table->text('Tourtype')->default('Daytour');
-            $table->text('itenary_title')->default('');
-            $table->text('itenary_section')->default('');
-            $table->text('included')->default('');
-            $table->text('excluded')->default('');
-            $table->text('Duration')->default('');
-            $table->text('MaxPeople')->default('');
-            $table->text('Popular')->default('Yes');
-            $table->unsignedBigInteger('price')->nullable();
-            $table->string('path')->nullable();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('group');
+            $table->text('preference')->nullable();
+            $table->text('title');
+            $table->text('description');
+            $table->string('tour_cover');
+            $table->text('itenary_title')->nullable();
+            $table->text('itenary_section')->nullable();
+            $table->text('included')->nullable();
+            $table->text('excluded')->nullable();
+            $table->text('duration')->nullable();
+            $table->unsignedBigInteger('price_per_person');
+            $table->json('price_plane');//storage 2 bytes
         });
     }
 

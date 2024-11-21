@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\DaytoursController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PopularDestController;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'home'])->name('home');
 Route::resource('/Daytours', DaytoursController::class);

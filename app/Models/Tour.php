@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class Tour extends Model
 {
     use HasFactory;
-    protected $fillable = ['Tourtype','OfferType','city','title','places','price','path','itenary_title',
-    'itenary_section','included','excluded','Duration','MaxPeople'];
+    protected $fillable = ['category_id','group','preference','title','description','tour_cover','itenary_title',
+    'itenary_section','included','excluded','duration','price_per_person','price_plane'];
 
     public function url()
     {

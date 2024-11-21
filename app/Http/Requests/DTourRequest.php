@@ -11,7 +11,7 @@ class DTourRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,21 +22,21 @@ class DTourRequest extends FormRequest
     public function rules(): array
     {
         return
-        [
-            'Tourtype'=>'bail|required',
-            'OfferType'=>"bail|required",
-            'city'=>'bail|required',
-            'title'=>'bail|min:5|max:100|required',
-            'places'=>'bail|required|min:5|max:100',
-            'price'=>'bail|required|gt:0',
-            'path'=>'bail|image|mimes:jpg,jpeg,png',
-            'itenary_title'=>'bail|required',
-            'itenary_section'=>'bail|required',
-            'included'=>'bail|required',
-            'excluded'=>'bail|required',
-            'Duration'=>'bail|required|string',
-            'MaxPeople'=>'bail|required|numeric',
-            'Popular'=>'bail|required'
-        ];
+            [
+                'category_id' => 'bail|required',
+                'group' => "bail|required",
+                'preference' => 'bail|required',
+                'title' => 'bail|min:5|max:100|required',
+                'places' => 'bail|required|min:5|max:100',
+                'description' => 'bail|required|gt:0',
+                'tour_cover' => 'bail|image|mimes:jpg,jpeg,png',
+                'itenary_title' => 'bail|required',
+                'itenary_section' => 'bail|required',
+                'included' => 'bail|required',
+                'excluded' => 'bail|required',
+                'Duration' => 'bail|required|string',
+                'price_per_person' => 'bail|required|numeric',
+                'price_plane' => 'bail|required'
+            ];
     }
 }
