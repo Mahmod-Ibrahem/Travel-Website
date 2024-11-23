@@ -26,15 +26,6 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        if($user->status==false)
-        {
-            Auth::logout();
-
-            return response([
-                'message' => 'Your Account Is Locked'
-            ], 403);        }
-
-
         $token = $user->createToken('main')->plainTextToken;
         return response([
             'user' => new UserResource($user),

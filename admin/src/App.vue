@@ -1,8 +1,5 @@
 <template>
-    <AppLayout></AppLayout>
-<!--    <Toast />-->
+<RouterView></RouterView>
 </template>
 <script setup>
-import AppLayout from './components/core/AppLayout.vue';
-
 </script>

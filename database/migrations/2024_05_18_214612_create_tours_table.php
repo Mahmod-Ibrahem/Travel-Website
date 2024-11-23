@@ -24,9 +24,10 @@ return new class extends Migration {
             $table->text('itenary_section')->nullable();
             $table->text('included')->nullable();
             $table->text('excluded')->nullable();
-            $table->text('duration')->nullable();
+                    $table->text('duration')->nullable();
             $table->unsignedBigInteger('price_per_person');
-            $table->json('price_plane');//storage 2 bytes
+            $table->unsignedBigInteger('price_two_five');
+            $table->unsignedBigInteger('price_six_twenty');
         });
     }
 

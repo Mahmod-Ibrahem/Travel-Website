@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class ProductResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public static $wrap=false;
+    public function toArray(Request $request): array
+    {
+        return[
+            'id' => $this->id,
+            'group'=> $this->group,
+            'category_id'=> $this->category->id,
+            'preference'=> $this->preference,
+            'title'=> $this->title,
+            'description' => $this->description,
+            'included' => $this->included,
+            'excluded' => $this->excluded,
+            'itenary_title'=> $this->itenary_title,
+            'itenary_section'=> $this->itenary_section,
+            'price_per_person' => $this->price_per_person,
+            'tourCover' => $this->tour_cover,
+            'price_two_five' => $this->price_two_five,
+            'price_six_twenty'=> $this->price_six_twenty,
+            'duration'=> $this->duration,
+            'tourImages' =>$this->images,
+        ];
+    }
+}

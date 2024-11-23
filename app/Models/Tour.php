@@ -9,8 +9,19 @@ use Illuminate\Support\Facades\Storage;
 class Tour extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_id','group','preference','title','description','tour_cover','itenary_title',
-    'itenary_section','included','excluded','duration','price_per_person','price_plane'];
+
+    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title',
+        'itenary_section', 'included', 'excluded', 'duration', 'price_per_person', 'price_two_five', 'price_six_twenty'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(TourImage::class, 'tours_id', 'id');
+    }
 
     public function url()
     {

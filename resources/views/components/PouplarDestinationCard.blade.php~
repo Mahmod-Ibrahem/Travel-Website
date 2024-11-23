@@ -9,6 +9,6 @@
     {{-- </a> --}}
     </div>
     <h1
-     class="absolute text-lg font-semibold text-center py-2 right-[22%%] -bottom-4 rounded text-black bg-white md:w-52 w-40  md:right-[9%] md:-bottom-4
+     class="absolute text-lg font-semibold text-center py-2 right-[22%] -bottom-4 rounded text-black bg-white md:w-52 w-40  md:right-[9%] md:-bottom-4
       select-none shadow-md md:text-base">{{$city}}</h1>
 </div>

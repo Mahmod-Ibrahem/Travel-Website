@@ -22,8 +22,9 @@ class CategoryRequeust extends FormRequest
     public function rules(): array
     {
         return [
-            'category_name' => 'bail|required',
-            'category_image' => 'bail|required|image|mimes:jpeg,png,jpg,webp',
+            'type' => 'bail|required',
+            'name' => 'bail|required',
+            'image' => 'bail|required|image|mimes:jpeg,png,jpg,webp',
         ];
     }
 }

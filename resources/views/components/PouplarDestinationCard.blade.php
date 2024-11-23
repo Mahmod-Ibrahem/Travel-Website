@@ -2,7 +2,7 @@
  class="relative flex-col rounded-b-2xl flex-shrink-0">
     <div class="overflow-hidden group w-[17rem] h-[17rem] md:w-[16rem] md:h-[16rem] rounded-3xl ">
     {{-- <a href="{{route('PopularDest',['Dest'=>null])}}"> --}}
-        <a href="{{route('PopularDest',['Dest'=>$city])}}" >
+        <a >
             <img src="{{$url}}"
             class="w-full h-full  object-cover group-hover:scale-110 transition-all duration-300">
             </a>

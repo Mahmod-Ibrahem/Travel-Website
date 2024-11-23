@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
-import AppLayout from "../components/core/AppLayout.vue";
-import Dashboard from "../components/core/Dashboard.vue";
-import Login from "../components/Login.vue";
 import store from "../store";
-
-import ProductForm   from "../components/views/Products/ProductForm.vue";
-import Products from "../components/views/Products/products.vue";
+import AppLayout from "../components/AppLayout.vue";
+import Login from "../views/Login.vue";
+import ProductForm from "../views/Products/ProductForm.vue";
+import Products from "../views/Products/products.vue";
+import Categories from "../views/Category/Categories.vue";
+import CategoryForm from "../views/Category/CategoryForm.vue";
+import ProductImages from "../views/Products/ProductImages.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "default",
-    component: Login,
-  },
-  {
+    {
+        path: "/",
+        name: "default",
+        component: Login,
+    },
+    {
         path: "/app",
         name: "app",
         component: AppLayout,
@@ -22,29 +23,41 @@ const routes = [
         },
         children: [
             {
-                path: "dashboard",
-                name: "app.dashboard",
-                component: Dashboard,
+                path: "products",
+                name: "app.products",
+                component: Products,
             },
-            {
-              path: "products",
-              name: "app.products",
-              component: Products ,
-          },
             {
                 path: "products/create",
                 name: "app.products.create",
                 component: ProductForm,
             },
             {
-              path: "products/:id",
-              name: "app.products.edit",
-              component: ProductForm,
-              props:{
-                id:(value)=> /^\d+$/.test(value)
-              }
-              ///^\d+$/: This pattern matches a string that contains only digits (\d), from the start (^) to the end ($) of the string.
-          },
+                path: "products/:id",
+                name: "app.products.edit",
+                component: ProductForm,
+            },
+            {
+                path: "products/Images/:id",
+                name: "app.products.view",
+                component: ProductImages,
+            },
+            {
+                path: "categories",
+                name: "app.categories",
+                component: Categories,
+            },
+            {
+                path: "categories/create",
+                name: "app.categories.create",
+                component: CategoryForm,
+            },
+            {
+                path: "categories/:id",
+                name: "app.categories.edit",
+                component: CategoryForm,
+
+            },
         ],
     },
 
@@ -56,8 +69,6 @@ const routes = [
             requireGuest: true,
         },
     },
-
-
 ];
 
 const router = createRouter({
