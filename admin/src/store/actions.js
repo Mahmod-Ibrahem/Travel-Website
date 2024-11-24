@@ -93,12 +93,32 @@ export function updateProduct({commit}, product) {
     return axiosClient.post(`/products/${id}`, product);
 }
 
+
 export function deleteProduct({commit}, id) {
     return axiosClient.delete(`/products/${id}`)
 }
 
 export function getProduct({}, product) {
     return axiosClient.get(`/products/${product}`)
+}
+
+
+export function deleteProductImage({commit},id) {
+    //Images hena hya kol al product with image ana 8lt fi al def bta3ha
+    return axiosClient.delete(`/products/deleteImage/${id}`)
+}
+
+export function addProductImages({commit}, images) {
+    const id = images.id
+    const form=new FormData();
+    images.tour_images.forEach((file, index) => {
+        form.append(`tour_images[${index}]`, file); // Add each file to FormData
+    });
+    form.append('group', images.group);
+    form.append('title', images.title);
+    form.append('_method', 'PUT');
+    images=form
+    return axiosClient.post(`/addImageToTour/${id}`, images)
 }
 
 

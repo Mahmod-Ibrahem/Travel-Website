@@ -13,10 +13,11 @@ return new class extends Migration {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsignedBigInteger('category_id');
+            $table->string('slug');
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('group');
-            $table->text('preference')->nullable();
+            $table->text('preference')->default('')->nullable();
             $table->text('title');
             $table->text('description');
             $table->string('tour_cover');

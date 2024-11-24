@@ -34,7 +34,7 @@
 
                 <select name="type" v-model="product.preference"
                         class="<customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
-                    <option value="" disabled selected>Select Tour Preference (Optional)</option>
+                    <option value=""  selected>Select Tour Preference (Optional)</option>
                     <option value="recommended">Recommended</option>
                     <option value="hidden_gems">Hidden Gems</option>
                     <option value="limited_offers">Limited offers</option>

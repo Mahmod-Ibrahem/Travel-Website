@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    @component('components.Sections.DayToursCategory')@endcomponent
+    @component('components.Sections.DayToursCategory',['categories'=>$category])@endcomponent
 
     @endsection
 

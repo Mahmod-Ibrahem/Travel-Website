@@ -19,36 +19,40 @@
 
         </div>
         <div class="child_container gap-4 mx-auto">
-            @component('components.CategoryCard' , ['city'=>'Egypt Classic Tours',])
+            @forelse($categories as $cat)
+            @component('components.CategoryCard' , ['Category'=>$cat['name'],])
                 @slot('url')
-                    {{asset('Images/TourPackageCategory/EgyptClassicTours.jpg')}}
+                   {{$cat['image']}}
                 @endslot
             @endcomponent
-                @component('components.CategoryCard' , ['city'=>'Egypt Nile Cruise',])
-                    @slot('url')
-                        {{asset('Images/TourPackageCategory/EgyptNileCruise.jpg')}}
-                    @endslot
-                @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Egypt Luxury Tours',])
-                @slot('url')
-                    {{asset('Images/TourPackageCategory/EgyptLuxuryTours.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Egypt Family Tours'])
-                @slot('url')
-                    {{asset('Images/TourPackageCategory/EgyptFamilyTours.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Egypt Christmas Tours',])
-                @slot('url')
-                    {{asset('Images/TourPackageCategory/ChristmasEgyptTours.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Egypt Honeymoon Holiday',])
-                @slot('url')
-                    {{asset('Images/TourPackageCategory/EgyptHoneyMoon.jpg')}}
-                @endslot
-            @endcomponent
+            @empty
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining This Section  </p>
+            @endforelse
+{{--                @component('components.CategoryCard' , ['city'=>'Egypt Nile Cruise',])--}}
+{{--                    @slot('url')--}}
+{{--                        {{asset('Images/TourPackageCategory/EgyptNileCruise.jpg')}}--}}
+{{--                    @endslot--}}
+{{--                @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Egypt Luxury Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/TourPackageCategory/EgyptLuxuryTours.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Egypt Family Tours'])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/TourPackageCategory/EgyptFamilyTours.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Egypt Christmas Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/TourPackageCategory/ChristmasEgyptTours.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Egypt Honeymoon Holiday',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/TourPackageCategory/EgyptHoneyMoon.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
 
         </div>
     </div>

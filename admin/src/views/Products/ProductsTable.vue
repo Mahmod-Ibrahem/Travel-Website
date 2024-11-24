@@ -32,17 +32,17 @@
 
                     Group
                 </TableHeadingCell>
-                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="group"
+                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="Category"
                                   :sort-field="sortField" :sort-direction="sortDirection">
 
                     Category
                 </TableHeadingCell>
-                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="group"
+                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="Preference"
                                   :sort-field="sortField" :sort-direction="sortDirection">
 
                     Preference
                 </TableHeadingCell>
-                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="group"
+                <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="title"
                                   :sort-field="sortField" :sort-direction="sortDirection">
 
                     Title
@@ -82,9 +82,10 @@
                 <td class="border-b p-2 ">{{ product.group }}</td>
 
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.category.name }}
-                </td>                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.preference }}
+                    {{ product.category?.name ||  product.group }}
+                </td>
+                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
+                    {{ product.preference ?? 'Not Exist' }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
                     {{ product.title }}

@@ -102,20 +102,30 @@ class ProductController extends Controller
         //
     }
 
-    public function updateImages(Request $request, string $id)
+    public function addImages(Request $request, string $id)
     {
         $data = $request->all();
         $tour = Tour::find($id);
-        if ($data['tour_images'] ?? false) {
-            foreach ($data['tour_images'] as $key => $image) {
+        $tourImages=$data['tour_images'];
+
+        foreach ($tourImages as $key => $image) {
                 $image = $image->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
                 $image = URL::to(Storage::url($image));
                 TourImage::create([
                     'tours_id' => $tour->id,
                     'image_url' => $image,
                 ]);
-            }
         }
-        return response()->json(['message' => 'Images updated successfully'], 200);
+        return response()->json(['message' => 'Images Added successfully'], 200);
+
+
+    }
+
+    public function deleteImage(string $id)
+    {
+        $tourImage = TourImage::find($id);
+        Storage::delete($tourImage->image_url);
+        $tourImage->delete();
+        return response()->json(['message' => 'Image deleted successfully'], 200);
     }
 }

@@ -18,36 +18,41 @@
 
         </div>
         <div class="child_container gap-4 mx-auto">
-            @component('components.CategoryCard' , ['city'=>'Giza  Day Tours',])
-                @slot('url')
-                    {{asset('Images/DayTourCategory/Giza.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Cairo  Day Tours',])
-                @slot('url')
-                    {{asset('Images/DayTourCategory/Cairo.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Alexandria  Day Tours',])
-                @slot('url')
-                    {{asset('Images/DayTourCategory/Alexandria.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Hurghada  Day Tours',])
-                @slot('url')
-                    {{asset('Images/DayTourCategory/Hurghada.jpg')}}
-                @endslot
-            @endcomponent
-            @component('components.CategoryCard' , ['city'=>'Luxor  Day Tours',])
-                @slot('url')
-                    {{asset('Images/DayTourCategory/Luxor.webp')}}
-                @endslot
-            @endcomponent
-                @component('components.CategoryCard' , ['city'=>'Aswan  Day Tours',])
+        @forelse ($categories as $Category)
+                @component('components.CategoryCard' , ['Category'=>$Category])
                     @slot('url')
-                        {{asset('Images/DayTourCategory/Aswan.jpg')}}
+                        {{$Category['image']}}
                     @endslot
                 @endcomponent
+            @empty
+        not found
+        @endforelse
+
+{{--            @component('components.CategoryCard' , ['city'=>'Cairo  Day Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/DayTourCategory/Cairo.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Alexandria  Day Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/DayTourCategory/Alexandria.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Hurghada  Day Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/DayTourCategory/Hurghada.jpg')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--            @component('components.CategoryCard' , ['city'=>'Luxor  Day Tours',])--}}
+{{--                @slot('url')--}}
+{{--                    {{asset('Images/DayTourCategory/Luxor.webp')}}--}}
+{{--                @endslot--}}
+{{--            @endcomponent--}}
+{{--                @component('components.CategoryCard' , ['city'=>'Aswan  Day Tours',])--}}
+{{--                    @slot('url')--}}
+{{--                        {{asset('Images/DayTourCategory/Aswan.jpg')}}--}}
+{{--                    @endslot--}}
+{{--                @endcomponent--}}
         </div>
     </div>
 </section>

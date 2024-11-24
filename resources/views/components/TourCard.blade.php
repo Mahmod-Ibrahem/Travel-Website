@@ -1,10 +1,10 @@
 <article
-    class="TourCard relative select-none">
-    <a class="h-56 overflow-hidden cursor-pointer">
+    class="TourCard relative select-none h-[50rem]">
+    <a class="overflow-hidden cursor-pointer">
         <img src="{{asset($image)}}"
              class="h-full w-full object-cover hover:scale-110 transition-all duration-300" alt=""/>
     </a>
-    <div class="flex flex-col p-4 md:px-3 md:py-4 gap-2 md:min-w-[350px]">
+    <div class="flex flex-col p-4 md:px-3 md:py-4 gap-2">
         {{--    @if($Offer=='hot')--}}
         {{--    <a href="{{route('Tour',['Daytour'=>'Cairo','tour'=>'asd'])}}">--}}
         {{--        <div--}}
@@ -22,12 +22,11 @@
             </a>
         @endif
         <a href="{{route('Tour',['Daytour'=>'Cairo','tour'=>'asd'])}}">
-            <h3 class="text-[#ff6700] font-semibold ">Private experience to Giza pyramids Saqqara and Memphis
+            <h3 class="text-[#ff6700] font-semibold ">{{$tour['title']}}
             </h3>
         </a>
-        <p class="text-[14px] font-medium text-Primary">
-            Join Respect Egypt Tours for an amazing Giza to Alexandria one-day trip that you will remember for years to
-            come.
+        <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5  ">
+            {{$tour['description']}}
         </p>
         <div class="flex md:flex-row items-center  justify-between">
             <div class="flex md:flex-row  items-center gap-1  pb-2">
@@ -40,7 +39,7 @@
                             stroke="#ff6700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </g>
                 </svg>
-                <p class="font-semibold text-sm">{{$Duration}}</p>
+                <p class="font-semibold text-sm">{{$tour['duration']}}</p>
             </div>
 
             <div class="flex md:flex-row justify-start items-center gap-1 mb-1">
@@ -55,7 +54,7 @@
                         </g>
                     </g>
                 </svg>
-                <p class="font-medium text-sm">{{$price}}/Pax</p>
+                <p class="font-medium text-sm">{{$tour['price_per_person']}}/Pax</p>
             </div>
 
             <div class="flex md:flex-row justify-start items-center gap-1 mb-1">
@@ -71,7 +70,7 @@
                               fill="#ff6700"></path>
                     </g>
                 </svg>
-                <p class="font-medium text-sm">{{$price}}/Pax</p>
+                <p class="font-medium text-sm">Maint</p>
             </div>
         </div>
         <a class="flex items-center justify-center">

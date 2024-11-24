@@ -5,6 +5,14 @@
 
 @layer components {
     /*SideBar*/
+    .parent_container {
+        @apply flex flex-col items-center justify-center
+    }
+
+    .child_container {
+        @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap
+    }
+
     .sidebar_router{
         @apply flex items-center p-2 rounded transition-colors hover:bg-black/30 hover:cursor-pointer
     }

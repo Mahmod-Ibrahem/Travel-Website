@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    @component('components.Sections.SafariTours')@endcomponent
+    @component('components.Sections.SafariTours',['tours'=>$tours])@endcomponent
 @endsection
 
 

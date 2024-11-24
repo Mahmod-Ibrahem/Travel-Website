@@ -15,6 +15,16 @@
 
         <div class="child_container gap-4 mx-auto">
 
+            @forelse($tours as $tour)
+            @component('components.TourCard', ['tour' => $tour])
+                @slot('image')
+                        {{ asset($tour['tour_cover']) }}
+                    @endslot
+                @endcomponent
+            @empty
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining This Section  </p>
+            @endforelse
+
 
         </div>
     </div>

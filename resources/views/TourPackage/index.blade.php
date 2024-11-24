@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    @component('components.Sections.TourPackagesCategory')@endcomponent
+    @component('components.Sections.TourPackagesCategory',['categories'=>$category])@endcomponent
 @endsection
 
 

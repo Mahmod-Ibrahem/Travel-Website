@@ -8,7 +8,9 @@ use App\Http\Controllers\PopularDestController;
 
 Route::get('/', [HomeController::class,'home'])->name('home');
 Route::resource('/SeaShore', \App\Http\Controllers\SeaShoreTours::class);
-Route::resource('/Daytours', DaytoursController::class);
+Route::get('/Daytours', [DaytoursController::class, 'index'])->name('Daytours.index');
+Route::get('/Daytours/{Category:slug}', [DaytoursController::class, 'view'])->name('Daytours.view');
+//Route::resource('/Daytours', DaytoursController::class);
 Route::resource('/TourPackages', \App\Http\Controllers\TourPackageController::class);
 Route::resource('/SafariAdventures', \App\Http\Controllers\SafariAdventures::class);
 Route::get('Tours/{tour}', [DaytoursController::class, 'Tour'])->name('Tour');

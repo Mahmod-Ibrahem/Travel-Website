@@ -11,6 +11,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/user', [AuthController::class, 'getUser']);
     Route::apiResource('/categories', CategoryController::class);
     Route::apiResource('/products', ProductController::class);
-    Route::put('/Products/Images/{id}', [ProductController::class, 'updateImages']);
-});
+    Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
+});    Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
+
 Route::post('/login', [AuthController::class, 'login']);
