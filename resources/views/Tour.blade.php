@@ -2,7 +2,7 @@
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div
-            class="md:bg-fixed h-full w-full object-cover bg-center bg-cover"
+            class="md:bg-fixed h-[75%] w-full object-cover bg-top bg-cover"
             style="background-image: url('{{ $tour->tour_cover }}');">
             @component('components.navbar')
             @endcomponent
@@ -38,38 +38,55 @@
                 </svg>
             </div>
         </div>
-        <div class="flex flex-col md:flex-row
+        <div class="flex flex-col md:flex-row md:justify-around md:items-center
              md:p-1  space-y-3 md:space-y-0  w-full mx-auto ">
-            <div class="flex flex-col w-[25rem] md:w-[45rem]">
+
+            <div class="flex flex-col w-[25rem] md:w-[55rem]">
                 <div
-                    class="flex flex-col relative
-                      md:border md:rounded-xl overflow-hidden  shadow-md shadow-blue-200 rounded-r-lg  rounded-l-lg border-red-100">
+                    class="flex flex-row  md:rounded-t-xl  rounded-l-lg
+                    overflow-y-hidden overflow-x-auto scroll-smooth hide-scrollbar touch-none  w-full h-[35rem] relative">
+
                     @forelse ($tour->images as $index=>$img)
-                        <div class="mySlides animate-fade relative ">
-                            <div class="numberText">{{ $index + 1 }} / {{ count($tour->Images) }}</div>
+                        {{--                        <p class="numberText">{{ $index + 1 }} / {{ count($tour->Images) }}</p>--}}
+                        <div class="w-full h-full flex-shrink-0">
                             <img id="img_{{ $index + 1 }}"
-                                 class="cursor-pointer object-fill  w-full h-[30rem] md:h-[35rem]"
+                                 class="cursor-pointer object-cover bg-center bg-cover w-full h-full"
                                  src="{{$img->image_url}}" alt="{{$tour->title}}">
-                            <div class="text">Caption Two</div>
                         </div>
+                        {{--                        <p class="text">Caption Two</p>--}}
                     @empty
                         No Images Yet
                     @endforelse
 
-                    <a id="prev" class="previous">❮</a>
-                    <a id="next" class="next">❯</a>
+                    <svg id="prev" class="text-[#ff6700] hover:text-white  previous w-9 h-9 text-center rounded-full"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline
+                            points="12 8 8 12 12 16"/>
+                        <line x1="16" y1="12" x2="8" y2="12"/>
+                    </svg>
 
-                    <div id="Image_bar"
-                         class="flex justify-start items-start cursor-pointer overflow-auto hide-scrollbar">
+                    <svg d="next" class="next w-9 h-9 text-[#ff6700] hover:text-white text-center rounded-full"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline
+                            points="12 16 16 12 12 8"/>
+                        <line x1="8" y1="12" x2="16" y2="12"/>
+                    </svg>
+                </div>
+                <div id="Image_bar"
+                     class="flex justify-start items-start cursor-pointer  hide-scrollbar w-full flex-shrink-0 overflow-x-auto">
 
-                        @forelse ($tour->images as $index=>$img)
-                            <img id="dot{{ $index }}" class="image-gallery" src="{{$img->image_url}}"
-                                 alt="{{$tour->title}}">
-                        @empty
-                            No Images Yet
-                        @endforelse
-                    </div>
-
+                    @forelse ($tour->images as $index=>$img)
+                        <img id="dot{{ $index }}" class="image-gallery flex flex-shrink-0" src="{{$img->image_url}}"
+                             alt="{{$tour->title}}">
+                    @empty
+                        No Images Yet
+                    @endforelse
                 </div>
                 <!--Tap Collapse (itenary..etc)-->
                 <div class="w-full p-1 font-Riot ">
@@ -159,7 +176,7 @@
                 </div>
             </div>
 
-            <div class="mx-auto border h-fit text-gray-800 rounded-3xl shadow-md shadow-blue-200 ">
+            <div class="border h-fit text-gray-800 rounded-3xl shadow-md shadow-blue-200 ">
                 @component('components.forms.Booking_Form', ['price' => $tour->price,'tour'=>$tour])
                 @endcomponent
             </div>
@@ -189,7 +206,6 @@
             const tabContents = document.querySelectorAll('[id^="tabContent"]');
 
             const tabContentIds = Array.from(tabContents, tabContent => tabContent.id);
-
 
 
             tabContents.forEach(function (tabContent) {

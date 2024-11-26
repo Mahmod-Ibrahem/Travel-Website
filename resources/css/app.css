@@ -110,19 +110,17 @@
     .text{
         @apply hidden bottom-[128px] text-center w-full h-8 bg-slate-200/50 select-none;
     }
-    .mySlides{
-        @apply hidden
-    }
+
     .dot{
         @apply cursor-pointer w-24 h-4 my-1 bg-black/50 rounded-full inline-block;
     }
     .previous{
-        @apply absolute top-[42%] pl-4 select-none cursor-pointer
+        @apply absolute top-[50%] ml-3 select-none cursor-pointer
         text-2xl text-white text-center  hover:bg-black/50 transition duration-200
     }
     .next
     {
-        @apply absolute top-[42%] right-0 pr-4 select-none cursor-pointer
+        @apply absolute top-[50%] right-0 mr-3 select-none cursor-pointer
         text-2xl text-white  transition duration-200 hover:bg-black/50
     }
     .LightBox_Slides{
