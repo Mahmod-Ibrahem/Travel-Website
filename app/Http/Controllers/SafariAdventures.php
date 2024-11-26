@@ -10,6 +10,13 @@ class SafariAdventures extends Controller
 {
     public function index()
     {
-        $tours=Tour::where('group', '=', 'Safari Adventures')->get()->toArray();
-        return view('SafariAdventures.index' ,compact('tours'));}
+        $tours=Tour::where('group', '=', 'SafariAdventures')->get()->toArray();
+        return view('SafariAdventures.index' ,compact('tours'));
+    }
+
+    public function Tour($Tour)
+    {
+        $tour=Tour::where('slug', $Tour)->get()->toArray();
+        return view('Tour' ,compact('tour'));
+    }
 }

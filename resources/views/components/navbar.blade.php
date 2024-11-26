@@ -26,14 +26,14 @@
             <a href="{{route('home')}}" class="nav_anch_p "><p >Homepage</p></a>
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
-            <a href="{{route('Daytours.index')}}" class="nav_anch_p"><p >Day Tours</p></a>
+            <a href="{{route('DayTours.index')}}" class="nav_anch_p"><p >Day Tours</p></a>
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
             <a href="{{route('TourPackages.index')}}" class="nav_anch_p "><p >Tour Packages</p></a>
 
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
-            <a href="{{route('SeaShore.index')}}" class="nav_anch_p "><p >Sea Shore Tours </p></a>
+            <a href="{{route('SeaShoreTours.index')}}" class="nav_anch_p "><p >Sea Shore Tours </p></a>
 
         </div>
         <div class="group hover:-translate-y-2 transition-all duration-200 h-6 hover:scale-105">
@@ -75,9 +75,9 @@
     class="flex flex-col justify-start items-start font-semibold tracking-widest
       space-y-12 text-2xl mt-36 ml-4">
     <li><a href="{{route('home')}}" class=" py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Homepage</a></li>
-    <li><a href="{{route('Daytours.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Day Tours</a></li>
+    <li><a href="{{route('DayTours.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Day Tours</a></li>
     <li><a href="{{route('TourPackages.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Tour Packages</a></li>
-    <li><a href="{{route('SeaShore.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Sea Shore Tours</a></li>
+    <li><a href="{{route('SeaShoreTours.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Sea Shore Tours</a></li>
     <li><a href="{{route('SafariAdventures.index')}}" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Safari Adventures</a></li>
     <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400 ">Transfers Service</a></li>
     <li><a href="#" class="py-1 hover:text-orange-500 border-b-2 pb-3 border-orange-400">Blog</a></li>

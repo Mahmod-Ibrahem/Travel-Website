@@ -14,14 +14,14 @@
                 <select name="type" v-model="product.group"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
                     <option value="" disabled selected>Select Tour Group</option>
-                    <option value="Day Tours">Day Tours</option>
-                    <option value="Tour Packages">Tour Packages</option>
-                    <option value="Sea Shore Tours">Sea Shore Tours</option>
-                    <option value="Safari adventures">Safari  adventures</option>
+                    <option value="DayTours">Day Tours</option>
+                    <option value="TourPackages">Tour Packages</option>
+                    <option value="SeaShoreTours">Sea Shore Tours</option>
+                    <option value="SafariAdventures">Safari Adventures</option>
                 </select>
                 <!-- Categories Types Depending on Tour Group -->
 
-                <select v-if="product.group==='Day Tours' || product.group==='Tour Packages'"
+                <select v-if="product.group==='DayTours' || product.group==='TourPackages'"
                     name="type" v-model="product.category_id"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
                     <option value="">Select Category</option>
@@ -44,12 +44,12 @@
                 <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.included" label="Tour Included"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.excluded" label="Tour Excluded"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_title" label="Itenary Title"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section" label="Itenary Section"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_title" label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_description" label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
+                <CustomInput class="mb-2" v-model="product.locations" label="Tour Location (2fsl ben kol location we al tany b sla4 /"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration"/>
 
                 <!-- Tour Cover -->
-
                 <CustomInput type="file" class="mb-2" label="Product Image"
                              @change="file => product.tour_cover = file"/>
 
@@ -121,6 +121,9 @@ const product = ref({
     duration: null,
     tour_cover: null,
     tour_images: null,
+    locations:'',
+    itenary_section: null,
+    itenary_title: null,
     price_per_person: null,
     price_two_five: null,
     price_six_twenty: null,

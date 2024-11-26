@@ -1,5 +1,5 @@
 <div class="flex-shrink-0 group  w-[400px] h-[280px]  overflow-hidden relative rounded-2xl  transition-all duration-200 cursor-pointer border border-white">
-    <a href="{{route('Daytours.view',$Category['slug'])}}">
+    <a href="{{ route($Category['type'].'.view', $Category['slug']) }}">
         <img class="group-hover:scale-110 transition-all duration-300 w-full h-full object-cover" src="{{$url}}" alt="{{$Category['name']}}">
              alt="Product Image">
     </a>

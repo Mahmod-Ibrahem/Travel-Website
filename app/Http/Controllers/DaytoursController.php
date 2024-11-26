@@ -13,49 +13,29 @@ class DaytoursController extends Controller
 {
     public function index()
     {
-        $category = Category::where('type', '=', 'Day Tours')->withCount('tours')->get()->toArray();
+        $category = Category::where('type', '=', 'DayTours')->withCount('tours')->get()->toArray();
         return view('Daytours.index', compact('category'));
     }
-    public function create()
-    {
-        return view('Daytours.create');
-    }
+
 
     public function store(DTourRequest $request)
     {
 
     }
 
-    public function view($Daytour,Request $request)
+    public function view($Category)
     {
 
-        $ip= $request->ip();
-//        if($Daytour=='Cairo')
-//        {
-//            $tours = Tour::where('Tourtype','daytour')->where('city','Cairo')->get();
-//        }
-//        else if($Daytour=='Luxor')
-//        {
-//            $tours = Tour::where('Tourtype','daytour')->where('city','Luxor')->get();
-//
-//        }
-//        else if($Daytour=='Aswan')
-//        {
-//            $tours = Tour::where('Tourtype','daytour')->where('city','Aswan')->get();
-//        }
-//        else if($Daytour=='Hurghada')
-//        {
-//            $tours = Tour::where('Tourtype','daytour')->where('city','Hurghada')->get();
-//        }
-//        else if($Daytour=='SharmElSheikh')
-//        {
-//            $tours = Tour::where('Tourtype','daytour')->where('city','SharmElSheikh')->get();
-//        }
-//        return view('Daytours.show',['tours'=>$tours]);
+        $tours=Tour::whereHas('category', function ($query) use ($Category) {
+            $query->where('slug', $Category);
+        })->with('category')->get()->toArray();
+        return view('view', compact('tours'));
     }
-        public function Tour($tour)
-        {
-            $CurrentTour=Tour::where('title',$tour)->first();
-                return view('tour',['currentTour'=>$CurrentTour]);
-        }
+
+    public function Tour($Cateogry, $Tour)
+    {
+        dd($Tour);
+        $CurrentTour = Tour::where('title', $tour)->first();
+        return view('Daytours.tours', ['currentTour' => $CurrentTour]);
     }
+}

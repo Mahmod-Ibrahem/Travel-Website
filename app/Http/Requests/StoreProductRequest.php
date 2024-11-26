@@ -29,9 +29,10 @@ class StoreProductRequest extends FormRequest
             'description' => 'required',
             'tour_cover' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
             'tour_images' => 'required|array', // Ensure tour_images is an array
-            'tour_images.*' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048', // Validate each file in the array
+            'tour_images.*' => 'required|image|', // Validate each file in the array
             'itenary_title' => 'required',
             'itenary_section' => 'required',
+            'locations'=>'required|json',
             'included' => 'required',
             'excluded' => 'required',
             'duration' => 'required',
@@ -39,5 +40,16 @@ class StoreProductRequest extends FormRequest
             'price_two_five' => 'required',
             'price_six_twenty'=> 'required'
         ];
+
+    }
+
+    protected function prepareForValidation() //runs before Validation
+    {
+        // Safely handle `locations` to ensure it's properly transformed if present
+        $locations = $this->locations;
+
+        $this->merge([
+            'locations' => json_encode(array_map('trim', explode(',', $locations))),
+        ]);
     }
 }

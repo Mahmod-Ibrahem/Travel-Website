@@ -20,7 +20,7 @@
                 offering a perfect balance of adventure and relaxation. Let us create unforgettable memories
                 that honor your time and individuality.
             </p>
-            <a href="{{route('Daytours.index')}}" class="h-fit overflow-hidden">
+            <a href="{{route('DayTours.index')}}" class="h-fit overflow-hidden">
                 <button type="button" id="title_button"
                         class="inline-block font-medium text-white text-[16px] tracking-widest px-10 py-3 rounded-full transition-all duration-500 animate-Button_ToUp
                                  border-2 hover:bg-[#c1121f] hover:text-white hover:border-[#c1121f] border-[#ffffff]">
@@ -40,9 +40,15 @@
     @component('components.Sections.Services')@endcomponent
     @component('components.Sections.TailorMade')@endcomponent
     @component('components.Sections.Testimonials')@endcomponent
-    @component('components.Sections.RecommendedTours')@endcomponent
-    @component('components.Sections.HiddenGemsTours') @endcomponent
-    @component('components.Sections.LimitedOffers')@endcomponent
+    @if($recommendedTours ?? false)
+    @component('components.Sections.RecommendedTours',['tours'=>$recommendedTours])@endcomponent
+    @endif
+    @if($hiddenGemsTours ?? false)
+    @component('components.Sections.HiddenGemsTours',['tours'=>$hiddenGemsTours]) @endcomponent
+    @endif
+    @if($limitedOffersTorus ?? false)
+    @component('components.Sections.LimitedOffers',['tours'=>$limitedOffersTorus])@endcomponent
+    @endif
     <section id="YoutubeVideos" class="pt-6 select-none">
         <div class="parent_container">
             <h1 class=" text-Primary font-bold text-2xl md:text-4xl text-center">Experience Egypt Through Our Happy Customers'

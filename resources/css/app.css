@@ -91,7 +91,7 @@
 
 
       .TourCard {
-        @apply flex flex-col w-[22rem] md:w-[370px]  my-4  md:mb-2 md:my-0 md:mr-3 overflow-hidden rounded-2xl   bg-white shadow-sm
+        @apply flex flex-col w-[22rem] md:w-[400px]  my-4  md:mb-2 md:my-0 md:mr-3 overflow-hidden rounded-2xl   bg-white shadow-sm
         transition-all duration-[0.2s]
     }
     .footer_anchor{

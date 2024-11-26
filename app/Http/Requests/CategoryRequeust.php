@@ -23,6 +23,9 @@ class CategoryRequeust extends FormRequest
     {
         return [
             'type' => 'bail|required',
+            'header' => 'bail|required',
+            'bg_header' => 'bail|required',
+            'description' => 'bail|required',
             'name' => 'bail|required',
             'image' => 'bail|required|image|mimes:jpeg,png,jpg,webp',
         ];

@@ -14,6 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('slug');
             $table->string('type');
+            $table->string('header');
+            $table->text('description');
             $table->string('name');
             $table->string('image');
             $table->timestamps();

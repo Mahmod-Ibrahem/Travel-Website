@@ -13,10 +13,12 @@
                 <select name="type" v-model="category.type"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="" disabled selected>Select Tour Section</option>
-                    <option value="Day Tours">Day Tours</option>
-                    <option value="Tour Packages">Tour Packages</option>
+                    <option value="DayTours">Day Tours</option>
+                    <option value="TourPackages">Tour Packages</option>
                 </select>
-
+                <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header"/>
+                <CustomInput class="mb-2" v-model="category.header" label="Category Header"/>
+                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description"/>
                 <CustomInput class="mb-2" v-model="category.name" label="Category Name"/>
                 <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file"/>
             </div>
@@ -53,6 +55,9 @@ const router = useRouter()
 const loading = ref(false)
 const category = ref({
     id: null,
+    header: '',
+    description: '',
+    bg_header: '',
     type: '',
     name: '',
     image: '',

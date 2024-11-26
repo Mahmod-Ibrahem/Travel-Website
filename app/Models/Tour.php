@@ -11,7 +11,7 @@ class Tour extends Model
 {
     use HasFactory , Sluggable;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title',
+    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title','locations',
         'itenary_section', 'included', 'excluded', 'duration', 'price_per_person', 'price_two_five', 'price_six_twenty'];
 
     public function category()
@@ -33,9 +33,16 @@ class Tour extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'title',
+                'onUpdate'=>true, //To Change Slug WhenEver Title Field Is Changed
             ]
         ];
+    }
+
+    public function shouldUpdateSlug(): bool
+    {
+        return $this->isDirty('title'); // Update slug only when the title is changed
+
     }
 }
 

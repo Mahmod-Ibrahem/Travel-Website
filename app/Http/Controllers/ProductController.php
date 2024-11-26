@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         //handling image cover make it stored in Imaged/Group of Image/TitleCover.extension
-        $data['tour_cover'] = $data['tour_cover']->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension());
+        $data['tour_cover'] = $data['tour_cover']->storeAs("Images/{$data['group']}", $data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension());
         $data['tour_cover'] = URL::to(Storage::url($data['tour_cover']));
 
         //Store Tour to get its id and assign to it images model
@@ -52,7 +52,7 @@ class ProductController extends Controller
         $tourImages = $data['tour_images'];
 
         foreach ($tourImages as $key => $image) {
-            $image = $image->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
+            $image = $image->storeAs("Images/{$data['group']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
             $image = URL::to(Storage::url($image));
             TourImage::create([
                 'tours_id' => $CreatedTour->id,
@@ -90,6 +90,10 @@ class ProductController extends Controller
         } else {
             $data['tour_cover'] = $tour->tour_cover;
         }
+        //handle location to be  a json before uddating
+
+        $data['locations'] = json_encode(array_map('trim', explode(',', $data['locations'])));
+
         $tour->update($data);
         return response()->json(['message' => 'Tour updated successfully'], 200);
     }

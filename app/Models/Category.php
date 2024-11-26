@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory, Sluggable;
-    protected $fillable=['type','name','image'];
+    protected $fillable=['type','bg_header','header','description','name','image'];
 
     public function tours()
     {

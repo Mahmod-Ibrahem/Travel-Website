@@ -51,6 +51,7 @@ export function createProduct({commit}, product) {
         form.append('description', product.description);
         form.append('itenary_title', product.itenary_title);
         form.append('itenary_section', product.itenary_section);
+        form.append('locations', product.locations);
         form.append('included', product.included);
         form.append('excluded', product.excluded);
         form.append('duration', product.duration);
@@ -136,6 +137,9 @@ export function createCategory({commit}, category) {
     if (category.image instanceof File) {
         const form = new FormData();
         form.append('type', category.type);
+        form.append('header', category.header);
+        form.append('bg_header', category.bg_header);
+        form.append('description', category.description);
         form.append('name', category.name);
         form.append('image', category.image);
         category = form;

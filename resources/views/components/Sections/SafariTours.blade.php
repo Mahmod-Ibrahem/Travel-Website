@@ -16,7 +16,7 @@
         <div class="child_container gap-4 mx-auto">
 
             @forelse($tours as $tour)
-            @component('components.TourCard', ['tour' => $tour])
+            @component('components.SafariSeaTourCard', ['tour' => $tour])
                 @slot('image')
                         {{ asset($tour['tour_cover']) }}
                     @endslot

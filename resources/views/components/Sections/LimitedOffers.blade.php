@@ -40,144 +40,29 @@
 
         </div>
         <div class="child_container gap-9">
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
-            @component('components.TourCard')
-                @slot('tour')
-                    asdasdsadasd
-                @endslot
-                @slot('image')
-                    {{asset('Images/Test.jpg')}}
-                @endslot
-                @slot('price')
-                    1000
-                @endslot
-                @slot('days')
-                    5
-                @endslot
-                @slot('offer')
-                    Limited
-                @endslot
-                @slot('MaxPeople')
-                    11
-                @endslot
-                @slot('Duration')
-                    5 Days
-                @endslot
-            @endcomponent
+            @forelse($tours as $tour)
+                @forelse($tours as $tour)
+                    @if($tour['group'] != 'SafariAdventures' && $tour['group'] != 'SeaShoreTours')
+                        @component('components.TourCard', ['tour' => $tour])
+                            @slot('image')
+                                {{ asset($tour['tour_cover']) }}
+                            @endslot
+                        @endcomponent
+                    @else
+                        @component('components.SafariSeaTourCard', ['tour' => $tour])
+                            @slot('image')
+                                {{ asset($tour['tour_cover']) }}
+                            @endslot
+                        @endcomponent
+                    @endif
+                @empty
+                    <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are
+                        Maintaining This Section </p>
+                @endforelse
+            @empty
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining
+                    This Section </p>
+            @endforelse
         </div>
     </div>
 </section>

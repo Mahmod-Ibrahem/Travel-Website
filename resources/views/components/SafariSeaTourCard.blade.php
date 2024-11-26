@@ -1,6 +1,6 @@
 <article
     class="TourCard relative select-none">
-    <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}" class="h-72 overflow-hidden cursor-pointer">
+    <a href="{{ route($tour["group"].'.Tour', ['Tour' => $tour['slug']]) }}" class="h-72 overflow-hidden cursor-pointer">
         <img src="{{asset($image)}}"
              class="h-full w-full object-cover hover:scale-110 transition-all duration-300" alt=""/>
     </a>
