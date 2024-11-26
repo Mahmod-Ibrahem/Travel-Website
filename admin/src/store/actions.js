@@ -78,6 +78,7 @@ export function updateProduct({commit}, product) {
         form.append('title', product.title);
         form.append('description', product.description);
         form.append('itenary_title', product.itenary_title);
+        form.append('locations', product.locations);
         form.append('itenary_section', product.itenary_section);
         form.append('included', product.included);
         form.append('excluded', product.excluded);

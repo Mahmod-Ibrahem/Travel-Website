@@ -1,199 +1,225 @@
 @extends('layouts')
 @section('content')
-@vite('resources/js/Tour.js')
-<div id="navbar">
-@component('components.navbar',['home'=>false])
-@endcomponent
-</div>
-<section id="intro">
-@component('components.Intro',
-['header'=>$currentTour->title,'route'=>'HomePage | DayTours | Cairo','TourType'=>'DayTours'])
-@endcomponent
-</section>
-
-<section id="Tours" class="md:p-3 md:w-[94rem]">
-    <div class="md:w-full flex flex-col md:flex-row md:justify-center md:px-6 md:space-x-32">
-        <div class="flex flex-col">
+    <div class="h-[20rem] md:h-screen w-full ">
         <div
-        class="flex flex-col relative
-          md:border md:rounded-xl overflow-hidden border-black/20 shadow-md md:w-[50rem]  ">
-        <div class="mySlides animate-fade relative">
-            <div class="numbertext"></div>
-            <img id="img_1"  class="cursor-pointer object-fill  w-full md:w-[50rem] h-[30rem] md:h-auto  md:max-h-[35rem]" src="{{asset('Images/Test.jpg')}}">
-            <div class="text">Caption Two</div>
-            {{-- @can('update',$tour)
-            <form method="POST"
-            action="{{ route('Daytours.image.destroy', ['Daytour' => $tour->id, 'image' => $img->id]) }}"
-            class="absolute bg-transparent top-0 right-0 p-3">
-          @method('DELETE')
-          @csrf
-
-          <button class="border-2 editbtn p-1" type="submit">
-              Delete
-          </button>
-      </form>
-      @endcan
-    @empty
-        No Images Yet
-    @endforelse --}}
-    </div>
-
-        <a id="prev" class="previous">❮</a>
-        <a id="next" class="next">❯</a>
-
-        <div class="flex w-full  cursor-pointer overflow-auto hide-scrollbar mt-[2px] md:space-x-[1px]">
-
-            {{-- @forelse ($tour->Images as $index=>$img) --}}
-                <img id="dot1"  class="image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-            {{-- @empty --}}
-                {{-- No Images Yet --}}
-            {{-- @endforelse --}}
-        </div>
-    </div>
-    <div
-     class="flex justify-around mt-3 mb-2  md:space-x-12 md:mt-6  border-black/20   text-black shadow-lg md:mb-2
-     bg-gray-500 rounded-lg py-2 px-2 md:h-14 ">
-        @component('components.Tap_button', ['id' => '1', 'text' => 'Itinerary'])
-        @endcomponent
-        @component('components.Tap_button', ['id' => '2', 'text' => 'Places'])
-        @endcomponent
-        @component('components.Tap_button', ['id' => '3', 'text' => "Tour Include"])
-        @endcomponent
-        @component('components.Tap_button', ['id' => '4', 'text' => "Tour Excluded"])
-        @endcomponent
-        @component('components.Tap_button', ['id' => '5', 'text' => "Price Plane"])
-        @endcomponent
-    </div>
-    @php
-    $itenary_title = explode('/', $currentTour->itenary_title);
-    $itenary_section = explode('/', $currentTour->itenary_section);
-    $Places=explode('/',$currentTour->places);
-    $Includes=explode('/',$currentTour->included);
-    $Excludes=explode('/',$currentTour->excluded)
-    @endphp
-    <div id="tabContent_itenary"
-    class="flex flex-col space-y-1 ">
-    @forelse ($itenary_title as $itenary)
-    @component('components.itenary_button', ['id' => '1', 'text' => 'Day 1','itenary'=>$itenary])
-    @endcomponent
-    @empty
-    Coming Soon!
-    @endforelse
-   </div>
-
-   <div id="tabContent_Places"
-   class="flex flex-col space-y-1 ">
-   @forelse ($Places as $place )
-   @component('components.PIX',['text'=>$place])
-   @endcomponent
-   @empty
-   Coming Soon
-   @endforelse
-  </div>
-
-  <div id="tabContent_Include"
-  class="flex flex-col space-y-1 ">
-  @forelse ($Includes as $include )
-  @component('components.PIX',['text'=>$include])
-  @endcomponent
-  @empty
-  Coming SOON
-  @endforelse
-
- </div>
-
- <div id="tabContent_Exclude"
- class="flex flex-col space-y-1 ">
- @forelse ($Excludes as $exclude )
- @component('components.exclude',['text'=>$exclude])
- @endcomponent
- @empty
- Coming Soon
- @endforelse
-</div>
-<div id="tabContent_PricePlane"
-class="flex flex-col space-y-1 ">
-@component('components.PricePlane',['text'=>'1 Person','price'=>600])
-@endcomponent
-@component('components.PricePlane',['text'=>'2-3 Person','price'=>400])
-@endcomponent
-@component('components.PricePlane',['text'=>'4-6 Person','price'=>400])
-@endcomponent
-<div class="border shadow-inner md:mt-1 bg-slate-50">
-    <article>
-        <h1 class="md:text-xl text-center font-bold pt-2 text-orange-600">Notes
-             <svg class="h-4 w-4 md:h-8 md:w-8 text-orange-600 inline-block text-center"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"
-             stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">
-             <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-             <line x1="12" y1="9" x2="12" y2="13" />  <line x1="12" y1="17" x2="12.01" y2="17" /></svg>
-
-        </h1>
-        <div class="text-sm space-y-1 md:text-base">
-
-        <p class="font-semibold pl-3">Children from 1-5 years are free of charge </p>
-        <p class=" font-semibold pl-3">Children between 6-11 years get 50% off</p>
-        </div>
-    </article>
-</div>
-</div>
-
-</div>
+            class="md:bg-fixed h-full w-full object-cover bg-center bg-cover"
+            style="background-image: url('{{ $tour->tour_cover }}');">
+            @component('components.navbar')
+            @endcomponent
 
             <div
-             class="flex flex-col justify-center items-center md:justify-start md:items-start  md:space-y-8
-             my-3 md:my-0">
-                @component('components.Price_Form')
+                class="flex flex-col items-center justify-center md:items-center h-full
+                  ">
+
+                <div class=" h-fit overflow-hidden  box-border text-center md:max-w-[75%]   ">
+                    <h1 id="home_title"
+                        class="text-[26px] font-bold md:text-[45px] select-none animate-ToDown  text-white">
+                        {{$tour->title}}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parent_container  text-gray-900 mb-4 md:mb-0">
+
+        <div class="child_container">
+
+            <h1 class="text-[1.1rem] md:text-[1.7rem] font-bold animate-HomeHeader_Up text-center">{{ $tour->title }}</h1>
+
+            <div class="flex space-x-1 md:space-x-2 md:mt-4 animate-HomeHeader_Up items-center">
+                <p class="text-lg md:text-2xl font-semibold text-gray-800/80">{{$tour->locations}}</p>
+                <svg class="h-5 w-5 md:h-7 md:w-7 text-gray-800/80" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row
+             md:p-1  space-y-3 md:space-y-0  w-full mx-auto ">
+            <div class="flex flex-col w-[25rem] md:w-[45rem]">
+                <div
+                    class="flex flex-col relative
+                      md:border md:rounded-xl overflow-hidden  shadow-md shadow-blue-200 rounded-r-lg  rounded-l-lg border-red-100">
+                    @forelse ($tour->images as $index=>$img)
+                        <div class="mySlides animate-fade relative ">
+                            <div class="numberText">{{ $index + 1 }} / {{ count($tour->Images) }}</div>
+                            <img id="img_{{ $index + 1 }}"
+                                 class="cursor-pointer object-fill  w-full h-[30rem] md:h-[35rem]"
+                                 src="{{$img->image_url}}" alt="{{$tour->title}}">
+                            <div class="text">Caption Two</div>
+                        </div>
+                    @empty
+                        No Images Yet
+                    @endforelse
+
+                    <a id="prev" class="previous">❮</a>
+                    <a id="next" class="next">❯</a>
+
+                    <div id="Image_bar"
+                         class="flex justify-start items-start cursor-pointer overflow-auto hide-scrollbar">
+
+                        @forelse ($tour->images as $index=>$img)
+                            <img id="dot{{ $index }}" class="image-gallery" src="{{$img->image_url}}"
+                                 alt="{{$tour->title}}">
+                        @empty
+                            No Images Yet
+                        @endforelse
+                    </div>
+
+                </div>
+                <!--Tap Collapse (itenary..etc)-->
+                <div class="w-full p-1 font-Riot ">
+                    <div id="tabContainer" class="w-full">
+                        <div class="w-full">
+                            <div
+                                class="mb-4 flex space-x-1 p-1 md:p-2 border-2  rounded-lg shadow-md text-gray-800 border-gray-800 ">
+
+                                @component('components.core.Tap_button', ['id' => '1', 'text' => 'Itinerary'])
+                                @endcomponent
+                                @component('components.core.Tap_button', ['id' => '2', 'text' => 'Places'])
+                                @endcomponent
+                                @component('components.core.Tap_button', ['id' => '3', 'text' => "Include"])
+                                @endcomponent
+                                @component('components.core.Tap_button', ['id' => '4', 'text' => "Excluded"])
+                                @endcomponent
+                                @component('components.core.Tap_button', ['id' => '5', 'text' => "Price Plane"])
+                                @endcomponent
+                            </div>
+
+                            <div id="tabContent_itenary"
+                                 class="transition-all duration-300 bg-white rounded-md  w-full gap-2 ">
+                                @php
+                                    $itenary_title = explode('/', $tour->itenary_title);
+                                    $itenary_section = explode('/', $tour->itenary_section);
+                                @endphp
+                                @component('components.core.itenary_button',['id'=>1,'text'=>'Day One','itenary'=>'sdASSDAsdASAsdASSDAsdASSDAsdASSDAsdASSDAsdASSDAsdASSDA '])
+                                @endcomponent
+
+                            </div>
+
+
+                            <div id="tabContent_Places"
+                                 class="transition-all duration-300 bg-white p-4
+                             rounded-lg  shadow-md border-l-[3px] border-l-gray-800">
+                                <h2 class="tour_details_h">Places You'll Visit </h2>
+                                @foreach (explode('/', $tour->places) as $places)
+                                    <div class="flex justify-between space-x-4 h-fit">
+                                        <svg class="h-6 w-6 text-gray-800" width="24" height="24"
+                                             viewBox="0 0 24 24"
+                                             stroke-width="2" stroke="currentColor" fill="none"
+                                             stroke-linecap="round"
+                                             stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z"/>
+                                            <path d="M5 12l5 5l10 -10"/>
+                                        </svg>
+                                        <p class="tour_details_p">
+                                            {{ $places }}
+                                        </p>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                            <div id="tabContent_Include"
+                                 class="transition-all duration-300 bg-white p-4
+                             rounded-lg  shadow-md border-l-[3px] border-l-gray-800">
+                                <h2 class="tour_details_h">What's Include</h2>
+                                @foreach (explode('/', $tour->included) as $included)
+                                    @component('components.core.include')
+                                        @slot('text')
+                                            {{ $included }}
+                                        @endslot
+                                    @endcomponent
+                                @endforeach
+                            </div>
+                        </div>
+                        <div id="tabContent_Exclude"
+                             class="transition-all duration-300 bg-white p-4
+                        rounded-lg  shadow-md border-l-[3px] border-l-gray-800">
+                            <h2 class="tour_details_h">What's Excluded</h2>
+                            @foreach (explode('/', $tour->excluded) as $excluded)
+                                @component('components.core.include')
+                                    @slot('text')
+                                        {{ $excluded }}
+                                    @endslot
+                                @endcomponent
+                            @endforeach
+                        </div>
+
+                        <div id="tabContent_PricePlane"
+                             class="flex flex-col space-y-1 ">
+                            @component('components.forms.PricePlane',['text'=>'1 Person','price'=>600])
+                            @endcomponent
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mx-auto border h-fit text-gray-800 rounded-3xl shadow-md shadow-blue-200 ">
+                @component('components.forms.Booking_Form', ['price' => $tour->price,'tour'=>$tour])
                 @endcomponent
             </div>
-    </div>
-    </section>
-
-    <section id="ImageLightbox">
-        <div id="image_lbox" class="hidden w-screen h-screen overflow-auto">
-            <h1 class="flex justify-center items-center text-3xl md:text-3xl bg-black text-white min-h-[10%] max-h-fit">
-               {{$currentTour->title}}</h1>
-            {{-- <p id="lbox_close" class="text-5xl cursor-pointer text-right mr-2 md:mr-10 leading-10 md:leading-[3rem] ">&times;</p> --}}
-            <div class="item_container w-full relative">
-                {{-- <div --}}
-                    <div class="lightbox_image_display md:w-[96rem]">
-                    {{-- @forelse ($tour->Images as $index=>$img) --}}
-                        <div class="LightBox_Slides animate-fade  ">
-                            <div class="numbertext"></div>
-                            <img class="object-fill  md:w-[96rem] h-[35rem] md:h-[35rem]" src="{{asset('Images/Test.jpg')}}">
-
-                            <div class="text">Caption One</div>
-                        </div>
-                        <div class="LightBox_Slides animate-fade  ">
-                            <div class="numbertext"></div>
-                            <img class="object-fill  md:w-[96rem] h-[35rem] md:h-[35rem]" src="{{asset('Images/Test.jpg')}}">
-
-                            <div class="text">Caption One</div>
-                        </div>
-                    {{-- @empty --}}
-                        {{-- No Image Yet! --}}
-                    {{-- @endforelse --}}
-
-                    <p id="LightBox_prev" class="previous">❮</p>
-                    <a id="LightBox_next" class="next">❯</a>
-                </div>
-                <p id="lbox_close" class="absolute right-0 top-0 text-5xl cursor-pointer text-right mr-2 md:mr-10 leading-10 md:leading-[3rem]
-                text-white ">&times;</p>
-            </div>
-            <div
-                class="flex flex-wrap h-[20vh] overflow-y-auto cursor-pointer bg-white justify-center items-center
-                md:overflow-y-auto md:h-20">
-                {{-- @forelse ($tour->Images as $index=> $img) --}}
-                    <img id="Lightbox_img1" class="LightBox_image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-                    <img id="Lightbox_img1" class="LightBox_image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-                    <img id="Lightbox_img1" class="LightBox_image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-                    <img id="Lightbox_img1" class="LightBox_image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-                    <img id="Lightbox_img1" class="LightBox_image-gallery" src="{{asset('Images/Test.jpg')}}"></img>
-                {{-- @empty --}}
-                    {{-- No Images Yet! --}}
-                {{-- @endforelse --}}
-            </div>
-            <!--Tap Collapse (itenary..etc)-->
 
         </div>
-    </section>
-@endsection
+    </div>
+    <!--end Of tap-->
+@endsection('content')
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        let f_tap = 1;
+
+        document.querySelectorAll('[id^="tab_"]').forEach(function (tab, index) {
+            tab.addEventListener('click', function () {
+                openTab(index + 1)
+            })
+        })
+
+
+        openTab(f_tap)
+
+
+        function openTab(tabIndex) {
+
+            const tabContents = document.querySelectorAll('[id^="tabContent"]');
+
+            const tabContentIds = Array.from(tabContents, tabContent => tabContent.id);
+
+
+
+            tabContents.forEach(function (tabContent) {
+                tabContent.style.display = "none";
+            });
+
+            // Remove 'text-white' class from all buttons
+            document.querySelectorAll('[id^="tab_"]').forEach(function (button) {
+                button.classList.remove("text-red-600");
+            });
+
+            // Show the selected tab content
+            document.getElementById(tabContentIds[tabIndex - 1]).style.display = "inline-block";
+
+            document.getElementById("tab_" + tabIndex).classList.add("text-red-600");
+        }
+
+        const itenaryTitle = document.querySelectorAll('[id^="title_"]')
+        const itenaryDesc = document.querySelectorAll('[id^="descr_"]')
+        const Plus = document.querySelectorAll('[id^="plus_"]');
+        const Minus = document.querySelectorAll('[id^="Minus_"]');
+        itenaryTitle.forEach(function (btn, index) {
+            btn.addEventListener("click", function () {
+                itenaryDesc[index].classList.toggle("max-h-0");// setTimeout(() => {
+                Plus[index].classList.toggle("hidden");
+                Minus[index].classList.toggle("hidden");
+                // }, 150);
+            });
+        });
+    })
+
+</script>
+

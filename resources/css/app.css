@@ -104,7 +104,7 @@
     .image-gallery{
         @apply md:h-28 md:w-[8rem] h-16  hover:opacity-100 transition-opacity
     }
-    .numbertext{
+    .numberText{
         @apply absolute top-2 left-2 select-none;
     }
     .text{

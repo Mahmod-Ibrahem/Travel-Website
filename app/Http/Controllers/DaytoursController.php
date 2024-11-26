@@ -34,8 +34,8 @@ class DaytoursController extends Controller
 
     public function Tour($Cateogry, $Tour)
     {
-        dd($Tour);
-        $CurrentTour = Tour::where('title', $tour)->first();
-        return view('Daytours.tours', ['currentTour' => $CurrentTour]);
+        $tour = Tour::where('slug', $Tour)->with('images')->first();
+        //get() hatrg3ly kol al instance 7ta lo katbt 2blha first()
+        return view('Tour', compact('tour'));
     }
 }
