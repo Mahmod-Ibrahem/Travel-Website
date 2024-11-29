@@ -51,6 +51,7 @@ export function createProduct({commit}, product) {
         form.append('description', product.description);
         form.append('itenary_title', product.itenary_title);
         form.append('itenary_section', product.itenary_section);
+        form.append('places', product.places);
         form.append('locations', product.locations);
         form.append('included', product.included);
         form.append('excluded', product.excluded);
@@ -79,6 +80,7 @@ export function updateProduct({commit}, product) {
         form.append('description', product.description);
         form.append('itenary_title', product.itenary_title);
         form.append('locations', product.locations);
+        form.append('places', product.places);
         form.append('itenary_section', product.itenary_section);
         form.append('included', product.included);
         form.append('excluded', product.excluded);

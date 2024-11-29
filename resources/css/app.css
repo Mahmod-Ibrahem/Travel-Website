@@ -59,6 +59,9 @@
     .parent_header{
         @apply text-center text-Primary text-[1.4rem] font-bold md:text-4xl  my-7 select-none
     }
+    .booking_p{
+        @apply text-base  font-medium text-gray-800 border-b-2 pb-2 border-[#ff6000]
+    }
 
     .child_container {
         @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap
@@ -94,19 +97,27 @@
         @apply flex flex-col w-[22rem] md:w-[400px]  my-4  md:mb-2 md:my-0 md:mr-3 overflow-hidden rounded-2xl   bg-white shadow-sm
         transition-all duration-[0.2s]
     }
-    .footer_anchor{
-        @apply border-b-2 border-black/50 mb-2 md:mb-3 pb-1 hover:text-[#ff6700] transition duration-200 hover:translate-x-1
+
+    .Category_titleContainer{
+        @apply h-fit overflow-hidden  box-border text-center md:max-w-[75%] bg-black/20 rounded-lg p-3.5 md:p-6
     }
-    .sandwitch_border
-    {
-        @apply border-t-2 border-b-2 border-black/40 mx-3 md:mx-16  my-5
+    .Category_title{
+        @apply text-[20px] font-extrabold md:text-[40px] select-none animate-ToDown  text-white sm:leading-7 md:leading-[3rem]
+    }
+    .footer_main {
+        @apply text-lg font-medium mb-7 text-white
+    }
+    .footer_anchor{
+        @apply border-b-2 border-[#ff6000] mb-2 md:mb-3 pb-1 hover:text-[#ff6700] transition duration-200 hover:translate-x-1 text-white
+    }
+    .tourDetail_container{
+        @apply transition-all duration-300 bg-white px-4 py-2 font-medium w-full
+        rounded-lg  shadow-md border-l-[3px] border-l-[#ff6700]
     }
     .image-gallery{
-        @apply md:h-28 md:w-[8rem] h-16  hover:opacity-100 transition-opacity
+        @apply md:h-28 md:w-[8rem] w-[5rem] h-16   hover:opacity-100 transition-opacity  flex flex-shrink-0 object-cover bg-center bg-cover
     }
-    .numberText{
-        @apply absolute top-2 left-2 select-none;
-    }
+
     .text{
         @apply hidden bottom-[128px] text-center w-full h-8 bg-slate-200/50 select-none;
     }
@@ -115,38 +126,28 @@
         @apply cursor-pointer w-24 h-4 my-1 bg-black/50 rounded-full inline-block;
     }
     .previous{
-        @apply absolute top-[50%] ml-3 select-none cursor-pointer
+        @apply absolute top-[35%] ml-3 select-none cursor-pointer
         text-2xl text-white text-center  hover:bg-black/50 transition duration-200
     }
     .next
     {
-        @apply absolute top-[50%] right-0 mr-3 select-none cursor-pointer
+        @apply absolute top-[35%] right-0 md:right-0  mr-3 select-none cursor-pointer
         text-2xl text-white  transition duration-200 hover:bg-black/50
     }
-    .LightBox_Slides{
-        @apply hidden
-    }
-    .LightBox_image-gallery{
-        @apply w-[22%] h-20 md:w-[6rem] m-[2px] md:h-20 box-border hover:opacity-100 transition-opacity border
-        rounded-md border-solid border-slate-400
-    }
-    .lightbox_image_display
-    {
-        @apply flex flex-col relative overflow-hidden md:mx-auto mb-1 border shadow-lg border-black/20
-    }
+
     .price_label{
         @apply text-lg font-semibold
     }
     .input_style{
         @apply h-12 w-80
-        rounded-lg text-black bg-white bg-transparent placeholder-transparent ring-2 px-2 ring-gray-500
-        focus:ring-black focus:outline-none;
+        rounded-lg text-black font-medium bg-white bg-transparent placeholder-transparent border-2 focus:border-[#ff6000] px-2
+         focus:outline-none shadow-md;
       }
 
       .input_label_style{
-        @apply absolute cursor-text left-0 -top-4 text-sm
-        text-gray-500 bg-inherit mx-1 px-1 peer-placeholder-shown:text-base
-         peer-placeholder-shown:text-gray-500 peer-placeholder-shown:top-2
+        @apply absolute cursor-text left-0 -top-4 text-sm font-medium
+         bg-inherit mx-1 px-1 peer-placeholder-shown:text-sm bg-white
+         peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-2
          peer-focus:-top-4 peer-focus:text-black peer-focus:text-sm transition-all;
       }
 
@@ -156,6 +157,13 @@
 
     .hide-scrollbar::-webkit-scrollbar {
         @apply hidden overflow-x-auto;
+    }
+
+    .destination_p{
+        @apply text-gray-800/75 text-xs font-medium p-1 md:p-0   md:text-base leading-6 md:mt-2 md:mb-2;
+    }
+    .destination_header{
+        @apply text-gray-800/80 font-bold text-[0.85rem] p-1 md:text-lg md:p-0 ;
     }
 
 }

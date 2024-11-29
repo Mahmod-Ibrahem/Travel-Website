@@ -22,6 +22,7 @@ class ProductResource extends JsonResource
             'preference'=> $this->preference,
             'title'=> $this->title,
             'description' => $this->description,
+            'places' => $this->places,
             'included' => $this->included,
             'excluded' => $this->excluded,
             'locations' => $this->locations ? implode(',', json_decode($this->locations)) : null,

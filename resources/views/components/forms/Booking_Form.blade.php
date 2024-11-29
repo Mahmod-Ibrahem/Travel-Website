@@ -1,11 +1,11 @@
-<div class="text-gray-800 border p-6 w-fit md:w-96 rounded-3xl">
+<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96 border-[3px]">
     <h1
-     class="text-xl md:text-3xl font-semibold pb-3 mb-6 text-gray-800 text-center border-b-2 border-gray-800">
+     class="text-xl md:text-3xl font-medium text-[#ff6700] pb-3 mb-6  text-center border-b-2 border-Primary/20">
      Booking Form</h1>
 
-    <form>
+    <form method="POST" action="{{route('booking.checkout',['tour'=>$tour])}}">
        @csrf
-        <div class="flex flex-col space-y-7 mt-2">
+        <div class="flex flex-col items-center gap-7">
 
             <div class="relative bg-white">
 
@@ -36,16 +36,16 @@
 
             <div class="relative bg-white">
 
-                <input id='Country' name="Country" value="{{ old('Country') }}" required
+                <input id='nationality' name="nationality" value="{{ old('nationality') }}" required
                 class="peer input_style" placeholder="Country" autocomplete="off">
 
-                <label for="Country" class="input_label_style">
-                     Country</label>
+                <label for="nationality" class="input_label_style">
+                    Nationality</label>
             </div>
 
             <div class="relative bg-white">
 
-                <input id='Adult' name="Adult" value="{{ old('Adult') }}" required
+                <input id='Adult' type="number" name="Adult" value="{{ old('Adult') }}" required
                 class="peer input_style" placeholder="Adult" autocomplete="off">
 
                 <label for="Adult" class="input_label_style">
@@ -54,10 +54,10 @@
 
             <div class="relative bg-white">
 
-                <input id='Childeren' name="Childeren" value="{{ old('Childeren') }}" required
-                class="peer input_style" placeholder="Childeren" autocomplete="off">
+                <input id='Children' type="number" name="Children" value="{{ old('Children') }}" required
+                class="peer input_style" placeholder="Children" autocomplete="off">
 
-                <label for="Childeren" class="input_label_style">
+                <label for="Children" class="input_label_style">
                      Childeren</label>
                      @if ($errors->has('Address'))
                      <p class="text-sm text-red-500">{{ $errors->first('Address') }}</p>
@@ -74,10 +74,9 @@
 
             </div>
       <button type="submit"
-            class="mb-3 w-full border-2 md:text-2xl border-gray-500 bg-gray-800 text-white
-             hover:text-white font-semibold tracking-wide rounded-lg text-center cursor-pointer
-                transition-all hover:border-gray-200 p-1">
-            Confirm
+            class="font-medium text-Primary text-[16px] tracking-widest rounded-full transition-all duration-500
+                          bg-[#f9f9f9]  border-2 border-[#ff6700] shadow-md hover:bg-orange-600 hover:text-white px-14 py-2">
+          Confirm
         </button>
        </div>
     </form>

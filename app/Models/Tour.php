@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 
 class Tour extends Model
 {
-    use HasFactory , Sluggable;
+    use HasFactory, Sluggable;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title','locations',
+    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title', 'locations', 'places',
         'itenary_section', 'included', 'excluded', 'duration', 'price_per_person', 'price_two_five', 'price_six_twenty'];
 
     public function category()
@@ -34,15 +34,13 @@ class Tour extends Model
         return [
             'slug' => [
                 'source' => 'title',
-                'onUpdate'=>true, //To Change Slug WhenEver Title Field Is Changed
+                'onUpdate' => true, //To Change Slug WhenEver Title Field Is Changed
             ]
         ];
     }
-
-    public function shouldUpdateSlug(): bool
+    public function getRouteKeyName(): string //reslove this model by slug not id
     {
-        return $this->isDirty('title'); // Update slug only when the title is changed
-
+        return 'slug';
     }
 }
 

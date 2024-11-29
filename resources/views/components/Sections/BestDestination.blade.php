@@ -33,7 +33,7 @@ class="">
             <p class="mx-auto text-Primary/75  max-w-[330px]  select-none
                 md:max-w-[690px] md:mb-12
                  font-medium">
-                Discover Egypt’s top destinations with Dr. Boogie Egypt Tours. From the pyramids to the Nile, we
+                Discover Egypt’s top destinations with Desert Storm Egypt Tours. From the pyramids to the Nile, we
                 have the perfect package for you!</p>
         </div>
         <div id="TrendCard"

@@ -45,7 +45,8 @@
                 <CustomInput type="textarea" class="mb-2" v-model="product.included" label="Tour Included"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.excluded" label="Tour Excluded"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.itenary_title" label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_description" label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section" label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"/>
                 <CustomInput class="mb-2" v-model="product.locations" label="Tour Location (2fsl ben kol location we al tany b sla4 /"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration"/>
 
@@ -118,6 +119,7 @@ const product = ref({
     description: null,
     included: null,
     excluded: null,
+    places: null,
     duration: null,
     tour_cover: null,
     tour_images: null,

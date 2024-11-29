@@ -1,7 +1,7 @@
 <section id="DayToursCategory" class="bg-[#f9f9f9] py-6 select-none">
     <div class="parent_container gap-8">
-        <div class="flex items-center gap-3">
-            <h1 class=" text-Primary font-semibold text-2xl md:text-4xl">Check Your Egypt Day Tours & Excursions By Your
+        <div class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-4">
+            <h1 class="text-Primary font-semibold text-xl md:text-2xl">Check Your Egypt Day Tours & Excursions By Your
                 Destination</h1>
 
         </div>

@@ -92,7 +92,8 @@ class ProductController extends Controller
         }
         //handle location to be  a json before uddating
 
-        $data['locations'] = json_encode(array_map('trim', explode(',', $data['locations'])));
+        $data['locations'] = json_encode(array_map('trim', explode('/', $data['locations'])));
+        $data['visit_count']=$tour->visit_count;
 
         $tour->update($data);
         return response()->json(['message' => 'Tour updated successfully'], 200);

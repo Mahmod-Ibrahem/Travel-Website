@@ -1,6 +1,12 @@
-<div class="flex justify-between space-x-4 h-fit">
-    <svg class="h-6 w-6 md:h-8 md:w-8 text-gray-900"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none"
-    d="M0 0h24v24H0z"/>  <line x1="18" y1="6" x2="6" y2="18" />  <line x1="6" y1="6" x2="18" y2="18" />
-    </svg>    <p class="tour_details_p">{{$text}}</p>
+<div class="flex justify-between ">
+
+    <p class="mt-2">&bull; {{$text}}</p>
+
+    <svg class="h-6 w-6 text-[#ff6700]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none"
+              d="M0 0h24v24H0z"/>
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
 </div>

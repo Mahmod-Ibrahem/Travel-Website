@@ -3,10 +3,10 @@
         <div
             class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-4">
             <h1 class="text-Primary font-semibold text-xl md:text-2xl">
-                {{ $tours[0]['category']['header'] }}
+                {{ $tours[0]['category']['header'] ?? 'Soon' }}
             </h1>
             <p class="font-medium text-Primary/75">
-                {{ $tours[0]['category']['description'] }}
+                {{ $tours[0]['category']['description'] ??'Soon' }}
             </p>
         </div>
 

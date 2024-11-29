@@ -8,13 +8,13 @@
             @endcomponent
 
                 <div
-                    class="flex flex-col items-center justify-center md:items-center   h-full
+                    class="flex flex-col items-center justify-center md:items-center   h-full bg-[#33333382]
                   ">
 
-                    <div class=" h-fit overflow-hidden  box-border text-center ">
+                    <div class="Category_titleContainer">
                         <h1 id="home_title"
-                            class="text-[26px] font-bold md:text-[40px] select-none animate-ToDown  text-white leading-tight ">
-                            Exclusive Egypt Day Tours for Unforgettable Experiences
+                            class="Category_title">
+                            Exploring Egypt Day Tours With Comfort
                         </h1>
                     </div>
                 </div>

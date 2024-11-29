@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SeaShoreControllers;
+use App\Http\Controllers\TailorMadeController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DaytoursController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PopularDestController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
     /* DayTours Controller*/
@@ -30,3 +32,30 @@ Route::get('/SeaShoreTours/{Tour:slug}', [\App\Http\Controllers\SeaShoreControll
 
 
 Route::get('/BestDestination/{location}', [\App\Http\Controllers\BestDController::class, 'index'])->name('BestDestination.index');
+/* Tailor Made Tours */
+
+Route::get('/TailorMade',[TailorMadeController::class,'index'])->name('TailorMade.index');
+Route::post('/TailorMade/submit',[TailorMadeController::class,'submitting'])->name('TailorMade.post');
+
+/* About */
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+/* TransferService */
+
+Route::get("/TransferService",[TransferController::class,'index'])->name('Transfer.index');
+Route::post("/TransferService/submit",[TransferController::class,'submitting'])->name('Transfer.post');
+/* Contact Form */
+Route::get('/Contact',[\App\Http\Controllers\ContactController::class,'index'])->name('Contact.index');
+Route::post('/Contact/submit',[\App\Http\Controllers\ContactController::class,'submitting'])->name('Contact.post');
+/*Booking Controller*/
+Route::post('/checkout/{tour}',[\App\Http\Controllers\BookingController::class,'index'])->name('booking.checkout'); //tour should be as paramater passed to controller
+
+Route::post('/checkout/{tour}/confirm',[\App\Http\Controllers\BookingController::class,'confirm'])->name('booking.confirm');
+
+/*Blog*/
+Route::resource('/Blog',BlogController::class)->only(['index','show']);
+Route::get('/Blog/{Blog}/{attract}',[BlogController::class,'Attraction'])->name('Attraction');
+
+

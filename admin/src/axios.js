@@ -3,7 +3,7 @@ import store from "./store"
 import router from "./router/index.js";
 
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8000/api'
+    baseURL: 'https://desertstormegypttours.com/api'
 });
 
 axiosClient.interceptors.request.use(config=>{

@@ -15,8 +15,11 @@
             </a>
         @endif
         <a>
-            <h3 class="text-[#ff6700] md:text-[19px] font-semibold whitespace-normal line-clamp-2 min-h-[50px] ">{{$tour['title']}}
-            </h3>
+            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}"
+               class="text-[#ff6700] md:text-[19px] font-semibold whitespace-normal line-clamp-2 min-h-[50px] hover:text-red-700 transition-all">
+                {{$tour['title']}}
+            </a>
+
         </a>
         <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-3 leading-6 min-h-[72px]  ">
             {{$tour['description']}}
@@ -63,7 +66,7 @@
                               fill="#ff6700"></path>
                     </g>
                 </svg>
-                <p class="font-medium text-sm">Maint</p>
+                <p class="font-medium text-sm">{{$tour['visit_count']}}</p>
             </div>
         </div>
         <a class="flex items-center justify-center">

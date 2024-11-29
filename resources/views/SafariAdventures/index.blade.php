@@ -8,12 +8,12 @@
             @endcomponent
 
             <div
-                class="flex flex-col items-center justify-center md:items-center   h-full
+                class="flex flex-col items-center justify-center md:items-center   h-full bg-[#33333382]
                   ">
 
-                <div class=" h-fit overflow-hidden  box-border text-center ">
+                <div class="Category_titleContainer">
                     <h1 id="home_title"
-                        class="text-[26px] font-bold md:text-[40px] select-none animate-ToDown  text-white tracking-wider">
+                        class="Category_title">
                         Discover The Top 10 Egypt Safaris
                     </h1>
                 </div>

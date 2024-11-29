@@ -33,7 +33,7 @@
                     testament to our dedication to creating extraordinary moments for you.</h1>
             </div>
         </div>
-        <a href="#" class="h-fit overflow-hidden">
+        <a href="{{route('TailorMade.index')}}" class="h-fit overflow-hidden">
             <button id="tailorButton"
                     type="button"
                     class="font-medium text-Primary text-[16px] tracking-widest px-10 py-3 rounded-full transition-all duration-500

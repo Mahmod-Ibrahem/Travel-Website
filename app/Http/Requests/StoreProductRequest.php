@@ -30,6 +30,7 @@ class StoreProductRequest extends FormRequest
             'tour_cover' => 'required|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048',
             'tour_images' => 'required|array', // Ensure tour_images is an array
             'tour_images.*' => 'required|image|', // Validate each file in the array
+            'places' => 'required',
             'itenary_title' => 'required',
             'itenary_section' => 'required',
             'locations'=>'required|json',
@@ -49,7 +50,7 @@ class StoreProductRequest extends FormRequest
         $locations = $this->locations;
 
         $this->merge([
-            'locations' => json_encode(array_map('trim', explode(',', $locations))),
+            'locations' => json_encode(array_map('trim', explode('/', $locations))),
         ]);
     }
 }

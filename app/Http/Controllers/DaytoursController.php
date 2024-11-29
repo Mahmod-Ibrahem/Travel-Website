@@ -7,10 +7,12 @@ use App\Http\Requests\DTourRequest;
 use App\Models\Category;
 use App\Models\IpTable;
 use App\Models\Tour;
+use App\Traits\TourUtility;
 use Illuminate\Http\Request;
 
 class DaytoursController extends Controller
 {
+    use TourUtility;
     public function index()
     {
         $category = Category::where('type', '=', 'DayTours')->withCount('tours')->get()->toArray();
@@ -35,6 +37,10 @@ class DaytoursController extends Controller
     public function Tour($Cateogry, $Tour)
     {
         $tour = Tour::where('slug', $Tour)->with('images')->first();
+
+        $tour->locations=implode('/',json_decode($tour->locations));
+        $this->storeIp(Request()->ip(),$tour->id);
+
         //get() hatrg3ly kol al instance 7ta lo katbt 2blha first()
         return view('Tour', compact('tour'));
     }
