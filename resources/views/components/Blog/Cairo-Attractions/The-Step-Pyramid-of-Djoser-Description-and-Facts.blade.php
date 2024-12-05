@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Al-Azhar Mosque History | Explore Cairo’s Iconic Religious Landmark
+@endsection
+@section('description')
+    Discover the history and significance of Al-Azhar Mosque, a symbol of Islamic Cairo. Experience its stunning architecture and cultural heritage with Desert Storm Egypt Tours
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div

@@ -5,27 +5,34 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
 
     public function index(Tour $tour){
         $userData=\request()->all();
-        $numPerson=(int)$userData['Adult'];
+        $numPerson =
+            (int)($userData['Adult'] ?? 0);
 
         if($numPerson>0 && $numPerson<2)
         {
-            $userData['totalPrice']=(int)$tour->price_per_person*$numPerson;
+            $price=(int)$tour->price_per_person;
+            $userData['totalPrice']=$this->CalculateTotalPrice($price,$userData);
+            $userData['price']=$price;
         }
         else if($numPerson>1 && $numPerson<6)
         {
-            $userData['totalPrice']=(int)$tour->price_two_five *$numPerson;
+            $price=(int)$tour->price_two_five;
+            $userData['totalPrice']=$this->CalculateTotalPrice($price,$userData);
+            $userData['price']=$price;
         }
         else
         {
-            $userData['totalPrice']=(int)$tour->price_six_twenty *$numPerson;
+            $price=(int)$tour->price_six_twenty;
+            $userData['totalPrice']=$this->CalculateTotalPrice($price,$userData);
+            $userData['price']=$price;
         }
-        //To Do Ask For Childeren !!
         return view('checkout',compact('tour','userData'));
     }
 
@@ -36,8 +43,8 @@ class BookingController extends Controller
         $tourType=$tour->group;
 //        $tourSlug=$tour->slug;
         $tour=$tour->toArray();
-
-        \Mail::to('mahmodaborakika2@gmail.com')->send(new \App\Mail\TourBookingMail($data,$tour));
+        Mail::to('mahmodaborakika2@gmail.com')->send(new \App\Mail\TourBookingMail($data,$tour));
+        Mail::to($data['email'])->send(new \App\Mail\InformUserForBookingMail());
 
         $text="Your Tour Is Booked!";
         $thanks="Thanks For Booking With Us";
@@ -46,4 +53,10 @@ class BookingController extends Controller
         return view('landing.Responding',compact('text','thanks','route'));
 
     }
+
+    private function CalculateTotalPrice($price,$userData)
+    {
+        return $userData['Adult']*$price + ($userData['Children_under_12']* + $price + $userData['students'] * $price)*0.5;
+    }
+
 }

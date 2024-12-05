@@ -3,7 +3,7 @@
     <div class="h-[20rem] md:h-screen w-full ">
         <div
             class="md:bg-fixed h-full w-full object-cover bg-center bg-cover"
-            style="background-image: url('{{ $tours[1]['tour_cover'] ?? asset('Images/BestDestination.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+            style="background-image: url('{{ $tours[0]['tour_cover'] ?? asset('Images/BestDestination.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
             @component('components.navbar')
             @endcomponent
 

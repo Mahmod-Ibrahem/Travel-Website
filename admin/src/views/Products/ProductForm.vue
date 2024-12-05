@@ -40,8 +40,10 @@
                     <option value="limited_offers">Limited offers</option>
                 </select>
 
-                <CustomInput class="mb-2" v-model="product.title" label="Tour Title"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description"/>
+                <CustomInput class="mb-2" v-model="product.title" label="Tour Title يستحسن يكون اكتر من 45 حرف "/>
+                <p v-if="product.title" class="text-xs font-semibold text-Primary" :class="{ 'text-green-600' : product.title?.length>45 }" >Character Length : {{product.title?.length  }}</p>
+                <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description يستحسن ميكونش اقل من 230 حرف"/>
+                <p v-if="product.description" class="text-xs font-semibold text-Primary" :class="{ 'text-green-600' : product.description?.length>230 }" >Character Length : {{product.description?.length  }}</p>
                 <CustomInput type="textarea" class="mb-2" v-model="product.included" label="Tour Included"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.excluded" label="Tour Excluded"/>
                 <CustomInput type="textarea" class="mb-2" v-model="product.itenary_title" label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>

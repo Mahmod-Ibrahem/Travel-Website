@@ -7,7 +7,7 @@
         </div>
         <div class="child_container gap-9">
             @forelse($tours as $tour)
-                @if($tour['group'] != 'SafariAdventures' || $tour['group'] != 'SeaShoreTours')
+                @if($tour['group'] != 'SafariAdventures' && $tour['group'] != 'SeaShoreTours')
                 @component('components.TourCard', ['tour' => $tour])
                     @slot('image')
                         {{ asset($tour['tour_cover']) }}

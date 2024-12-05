@@ -10,12 +10,12 @@ class BestDController extends Controller
 {
     public function index($location)
     {
-        //$tours=Tour::whereJsonContains('locations', $location)->get()->toArray();
-        $tours = Tour::whereJsonContains('locations', $location)
-            ->whereRaw('JSON_LENGTH(locations) = 1')
-            ->with('category')
-            ->get()
-            ->toArray(); //filter based on lengh
+        $tours=Tour::whereJsonContains('locations', $location)->with('category')->get()->toArray();
+//        $tours = Tour::whereJsonContains('locations', $location)
+//            ->whereRaw('JSON_LENGTH(locations) = 1')
+//            ->with('category')
+//            ->get()
+//            ->toArray(); //filter based on lengh
 //        dd($tours);
         return view('BestDestination.index', compact('tours', 'location'));
     }

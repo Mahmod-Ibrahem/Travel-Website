@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Salah El-Din Citadel History | Cairo’s Historic Landmark
+@endsection
+@section('description')
+    Uncover the history of Salah El-Din Citadel with Desert Storm Egypt Tours. Experience Cairo’s medieval fortress, rich heritage, and stunning architecture
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div

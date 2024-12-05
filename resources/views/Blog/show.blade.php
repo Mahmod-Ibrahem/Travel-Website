@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    {{$about}} | Best Things to Do in {{$city}}
+@endsection
+@section('description')
+    Discover top activities and attractions in {{$city}}. From sightseeing to dining, find the best experiences to make your visit unforgettable!
+@endsection
 @section('content')
 @php
     $componentName='components.Blog.'.$about

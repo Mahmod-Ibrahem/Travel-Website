@@ -60,7 +60,7 @@
         @apply text-center text-Primary text-[1.4rem] font-bold md:text-4xl  my-7 select-none
     }
     .booking_p{
-        @apply text-base  font-medium text-gray-800 border-b-2 pb-2 border-[#ff6000]
+        @apply text-base  font-medium text-gray-800 border-b-2 pb-2  border-Primary/20
     }
 
     .child_container {
@@ -98,6 +98,13 @@
         transition-all duration-[0.2s]
     }
 
+    .tour_details_h {
+        @apply text-[14px] font-medium md:font-semibold md:text-[16px]    mb-2;
+    }
+
+    .tour_details_p {
+        @apply  text-xs  font-semibold md:text-[0.9rem] leading-6 tracking-wide text-Primary;
+    }
     .Category_titleContainer{
         @apply h-fit overflow-hidden  box-border text-center md:max-w-[75%] bg-black/20 rounded-lg p-3.5 md:p-6
     }

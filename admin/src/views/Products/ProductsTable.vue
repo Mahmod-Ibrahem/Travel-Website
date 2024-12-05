@@ -137,16 +137,16 @@
                                             Tour Images
                                         </RouterLink>
                                     </MenuItem>
-                                    <MenuItem v-slot="{ active }">
-                                        <button :class="[
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                            ]" @click="deleteProduct(product)">
-                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
-                                                       aria-hidden="true"/>
-                                            Delete
-                                        </button>
-                                    </MenuItem>
+<!--                                    <MenuItem v-slot="{ active }">-->
+<!--                                        <button :class="[-->
+<!--                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',-->
+<!--                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
+<!--                                            ]" @click="deleteProduct(product)">-->
+<!--                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"-->
+<!--                                                       aria-hidden="true"/>-->
+<!--                                            Delete-->
+<!--                                        </button>-->
+<!--                                    </MenuItem>-->
                                 </div>
                             </MenuItems>
                         </transition>
@@ -238,16 +238,16 @@ function editProduct(product) {
     emit('clickEdit', product)
 }
 
-function deleteProduct(product) {
-    if (!confirm('Are You Sure you want to delete the product ? ')) {
-        return
-    }
-    store.dispatch('deleteProduct', product.id)
-        .then(res => {
-            store.commit('showToast', 'Product Deleted Successfully')
-            store.dispatch('getProducts')
-        })
-}
+// function deleteProduct(product) {
+//     if (!confirm('Are You Sure you want to delete the product ? ')) {
+//         return
+//     }
+//     store.dispatch('deleteProduct', product.id)
+//         .then(res => {
+//             store.commit('showToast', 'Product Deleted Successfully')
+//             store.dispatch('getProducts')
+//         })
+// }
 
 onMounted(() => {
 

@@ -2,11 +2,11 @@
 @section('content')
     @component('components.navbar')
     @endcomponent
-    <header class="h-screen absolute top-0 z-10 w-screen md:w-full">
+    <header class="h-screen absolute top-0 z-10 w-screen md:w-full bg-black/35">
         <div
             class="flex flex-col items-center justify-center md:items-start  md:ml-32 space-y-4 md:space-y-6 h-full md:h-full text-white box-border
                   ">
-            <div class="bg-black/20 p-6 rounded-lg gap-6 flex flex-col">
+            <div class="p-6 rounded-lg gap-6 flex flex-col">
             <div class=" h-fit overflow-hidden  box-border ">
                 <h1 id="home_title"
                     class="text-[26px] font-bold md:text-[30px] select-none animate-ToDown max-w-[350px] md:max-w-[540px]  leading-tight">
@@ -53,32 +53,7 @@
         <div class="parent_container">
             <h1 class=" text-Primary font-bold text-2xl md:text-4xl text-center">Experience Egypt Through Our Happy Customers'
                 Eyes !</h1>
-            <div class="child_container gap-5 md:my-12">
-                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe class="w-[370px] h-[315px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" width="450" height="315" src="https://www.youtube.com/embed/mfxQy5A_tHs?si=9nJoP5Sff0HYwGzu"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
+
         </div>
     </section>
 @endsection

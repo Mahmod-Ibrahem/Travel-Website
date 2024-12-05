@@ -40,7 +40,6 @@
 
         </div>
         <div class="child_container gap-9">
-            @forelse($tours as $tour)
                 @forelse($tours as $tour)
                     @if($tour['group'] != 'SafariAdventures' && $tour['group'] != 'SeaShoreTours')
                         @component('components.TourCard', ['tour' => $tour])
@@ -59,10 +58,6 @@
                     <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are
                         Maintaining This Section </p>
                 @endforelse
-            @empty
-                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining
-                    This Section </p>
-            @endforelse
         </div>
     </div>
 </section>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Desert Storm Egypt Tours @yield('title')</title>
+        <title>@yield('title')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         @vite('resources/css/app.css')
         @vite('resources/js/Common.js')
@@ -11,6 +11,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{asset('Images/logo.png')}}">
     </head>
     <body class="m-0 p-0 scroll-smooth">
         @yield('content')
@@ -20,8 +21,8 @@
 
                 <a href="https://api.whatsapp.com/send?phone=201101833336">
                     <i class="fa fa-whatsapp transition-transform" style="font-size: 1.6rem"></i>
+                    <span>WhatApp Me</span>
                 </a>
-            <span>WhatApp Me</span>
         </div>
         <div id="footer">
         @component('components.footer')

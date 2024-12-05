@@ -1,7 +1,7 @@
 <div id="title_{{$id}}" class="flex justify-between items-center cursor-pointer transition-all rounded-lg h-fit shadow-md border-l-[3px] border-l-[#ff6700] border-b
  mx-auto bg-white mt-3">
     <button
-        class="py-2 px-4 text-[0.75rem] transition-all duration-300  text-gray-800 font-medium md:text-base">
+        class="py-2 px-4 text-[14px] transition-all duration-300  text-gray-800 font-medium md:text-[16px]">
         {{$text}}
     </button>
 
@@ -16,7 +16,7 @@
 
 <div  id="descr_{{$id}}" class="flex-col  space-y-3 w-full  hidden mt-3 transition-all overflow-hidden rounded-lg bg-white shadow">
 
-                <p class="py-3 px-4 font-semibold pl-3 m tracking-wide leading-5 whitespace-normal  break-words bg-white ">
+                <p class="py-3 px-4 font-semibold pl-3 m tracking-wide leading-5 whitespace-normal  break-words bg-white text-xs md:text-[0.90rem] ">
                     {{$itenary}}
                 </p>
 

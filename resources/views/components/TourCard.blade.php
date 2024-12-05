@@ -21,9 +21,9 @@
             </a>
 
         </a>
-        <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-3 leading-6 min-h-[72px]  ">
+        <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5 leading-6 min-h-[120px]  ">
             {{$tour['description']}}
-        </p>
+        </p>w
         <div class="flex md:flex-row items-center  justify-between">
             <div class="flex md:flex-row  items-center gap-1  pb-2">
                 <svg height="26px" width="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@
                 <p class="font-medium text-sm">{{$tour['visit_count']}}</p>
             </div>
         </div>
-        <a class="flex items-center justify-center">
+        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}" class="flex items-center justify-center">
             <button class="font-medium text-Primary text-[16px] tracking-widest rounded-full transition-all duration-500
                           bg-[#f9f9f9]  border-2 border-[#ff6700] shadow-md hover:bg-orange-600 hover:text-white px-14 py-2">
                 Explore

@@ -42,10 +42,13 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
+        //Check if the tour exists
+        if (Tour::where('title', $data['title'])->exists()) {
+            return response()->json(['message' => 'Tour already exists'], 409);
+        }
         //handling image cover make it stored in Imaged/Group of Image/TitleCover.extension
         $data['tour_cover'] = $data['tour_cover']->storeAs("Images/{$data['group']}", $data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension());
         $data['tour_cover'] = URL::to(Storage::url($data['tour_cover']));
-
         //Store Tour to get its id and assign to it images model
         $CreatedTour = Tour::create($data);
         //handling Tour Images
@@ -93,7 +96,10 @@ class ProductController extends Controller
         //handle location to be  a json before uddating
 
         $data['locations'] = json_encode(array_map('trim', explode('/', $data['locations'])));
-        $data['visit_count']=$tour->visit_count;
+        $data['visit_count'] = $tour->visit_count;
+        //Check For Type to set Cateogry_id to custom its group safart or sea shore
+//        $data['group'] == 'SeaShoreTours' || $data['group'] == 'SafariAdventures'
+//            ? $data['category_id'] = null : null;
 
         $tour->update($data);
         return response()->json(['message' => 'Tour updated successfully'], 200);
@@ -102,24 +108,26 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tour $product)
     {
-        //
+        $product->delete();
+
+        return response()->noContent();
     }
 
     public function addImages(Request $request, string $id)
     {
         $data = $request->all();
         $tour = Tour::find($id);
-        $tourImages=$data['tour_images'];
+        $tourImages = $data['tour_images'];
 
         foreach ($tourImages as $key => $image) {
-                $image = $image->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
-                $image = URL::to(Storage::url($image));
-                TourImage::create([
-                    'tours_id' => $tour->id,
-                    'image_url' => $image,
-                ]);
+            $image = $image->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
+            $image = URL::to(Storage::url($image));
+            TourImage::create([
+                'tours_id' => $tour->id,
+                'image_url' => $image,
+            ]);
         }
         return response()->json(['message' => 'Images Added successfully'], 200);
 

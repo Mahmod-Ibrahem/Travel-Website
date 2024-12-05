@@ -1,5 +1,5 @@
-<div class="sm:break-inside-avoid flex-shrink-0 w-[22rem] p-4 h-full">
-    <blockquote class="bg-white rounded-lg shadow-custom p-6">
+<div class="sm:break-inside-avoid flex-shrink-0 w-[22rem] p-4">
+    <blockquote class="bg-white rounded-lg shadow-custom p-6 line-clamp-[15] ">
         <div class="flex items-center gap-4">
             <img
                 alt=""
@@ -40,8 +40,10 @@
             </div>
         </div>
 
-        <p class="mt-4 text-gray-700 max-w-[300px]">
+        <p class="mt-4 text-gray-700 max-w-[300px] min-h-[300px]  line-clamp-[15] whitespace-normal overflow-hidden review_description">
             {{$review_description}}
         </p>
     </blockquote>
 </div>
+
+

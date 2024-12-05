@@ -1,6 +1,6 @@
 @extends('layouts')
 @section('content')
-    <div class="h-[20rem] md:h-auto  w-full">
+    <div class="h-[20rem] md:h-auto  w-screen ">
         <div
             class="md:bg-fixed md:h-[75%]  w-full object-cover bg-center bg-cover"
             style="background-image: url('{{ $tour->tour_cover }}');">
@@ -36,16 +36,16 @@
             </svg>
         </div>
         <div class="flex flex-col md:flex-row md:justify-around
-             md:p-1  space-y-3   w-full">
+             md:p-1  space-y-3 mx-auto   w-full px-2">
 
-            <div class="flex flex-col w-[26rem] md:w-[50rem] mx-auto md:mx-0  ">
+            <div class="flex flex-col md:w-[50rem]  md:mx-0 mx-auto  ">
                 <div id="Holder" class="relative ">
                     <div id="images_container"
-                         class="flex flex-row  md:rounded-t-xl w-full h-[35rem] touch-none overflow-y-hidden overflow-x-auto scroll-smooth hide-scrollbar rounded-t
+                         class="flex flex-row  md:rounded-t-xl w-full h-[25rem] md:h-[35rem]  overflow-y-hidden overflow-x-auto scroll-smooth hide-scrollbar rounded-t
                             border-[2px] border-b-0 shadow-md ">
 
                         @forelse ($tour->images as $index=>$img)
-                            <div class="w-full h-full flex-shrink-0 touch-none">
+                            <div class="w-full h-full flex-shrink-0 ">
                                 <img id="img_{{ $index + 1 }}"
                                      class="cursor-pointer object-cover bg-center bg-cover w-full h-full"
                                      src="{{$img->image_url}}" alt="{{$tour->title}}">
@@ -127,7 +127,7 @@
                              class="tourDetail_container">
                             <h2 class="tour_details_h">Places You'll Visit </h2>
                             @foreach (explode('/', $tour->places) as $places)
-                                <div class="flex justify-between space-x-4 h-fit mt-2">
+                                <div class="flex justify-between gap-4 h-fit mt-2">
                                     <p class="tour_details_p">
                                         &bull; {{ $places }}
                                     </p>
@@ -244,9 +244,6 @@
         const Next = document.getElementById('next')
         const Prev = document.getElementById('prev')
         const imageBar = document.getElementById('Image_bar')
-        let width = imageBar.offsetWidth
-        console.log(width)
-        //Initiate Image Swipper
         let slideIndex = 0
         Next.addEventListener('click', () => ScrollHorizontal(1))
         Prev.addEventListener('click', () => ScrollHorizontal(-1))
@@ -270,10 +267,10 @@
                 }
             }
             if (window.innerWidth >= 768) {
-                imagesContainer.scrollLeft = 796.8 * slideIndex;
+                imagesContainer.scrollLeft = (imagesContainer.offsetWidth-3.2) * slideIndex;
                 imageBar.scrollLeft = 130 * slideIndex
             } else {
-                imagesContainer.scrollLeft = 412.8 * slideIndex;
+                imagesContainer.scrollLeft = (imagesContainer.offsetWidth-3.2) * slideIndex;
                 imageBar.scrollLeft = 82 * slideIndex
             }
             addOpacityToDots()

@@ -1,4 +1,9 @@
 @extends('layouts')
+@section('title')
+    Al-Azhar Mosque History | Explore Cairo’s Iconic Religious Landmark@endsection
+@section('description')
+    Explore the timeless beauty of Al-Azhar Mosque with Desert Storm Egypt Tours. Discover history, culture, and stunning architecture in the heart of Cairo
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div
@@ -14,7 +19,7 @@
                 <div class="Category_titleContainer">
                     <h1 id="home_title"
                         class="Category_title">
-                        Facts Abut Al Azhar Mosque
+                        Facts About Al Azhar Mosque
                     </h1>
                 </div>
             </div>

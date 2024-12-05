@@ -38,11 +38,17 @@
              class="flex items-center  w-[22rem] gap-6 md:gap-0
                   md:flex-row md:items-start  md:space-x-7  md:w-full
                     overflow-x-auto overflow-y-hidden  scroll-smooth hide-scrollbar mt-5 md:mt-0">
-           @component('components.Tripadvisor',['review_name' =>'John Doe','review_description'=>'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate officia natus
+           @component('components.Tripadvisor',['review_name' =>'John Doe','review_description'=>'
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate officia natus
                 blanditiis rerum incidunt ex autem repudiandae doloribus eveniet quia? Culpa commodi
                 quae atque perspiciatis? Provident, magni beatae saepe porro aspernatur facere neque
-                sunt possimus assumenda perspiciatis aperiam quisquam animi libero voluptatem fuga.
-                Repudiandae, facere? Nemo reprehenderit quas ratione quis.'])@endcomponent           @component('components.Tripadvisor',['review_name' =>'Michele Doe','review_description'=>'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate officia natus
+                sunt possimus assumenda perspiciatis aperiam quisquam animi
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate officia natus
+                blanditiis rerum incidunt ex autem repudiandae doloribus eveniet quia? Culpa commodi
+                quae atque perspiciatis? Provident, magni beatae saepe porro aspernatur facere neque
+                sunt possimus assumenda perspiciatis aperiam quisquam animi
+'])@endcomponent
+               @component('components.Tripadvisor',['review_name' =>'Michele Doe','review_description'=>'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate officia natus
                 blanditiis rerum incidunt ex autem repudiandae doloribus eveniet quia? Culpa commodi
                 quae atque perspiciatis? Provident, magni beatae saepe porro aspernatur facere neque
                 sunt possimus assumenda perspiciatis aperiam quisquam animi libero voluptatem fuga.
@@ -104,6 +110,16 @@
                 Testimonials_Cards.scrollLeft += 376 * sign;
             }
         }
+
+        /*Toggle Line Clamp in Review Card*/
+
+            let reviewDescriptions = [...document.getElementsByClassName('review_description')];
+
+            reviewDescriptions.forEach((description) => {
+            description.addEventListener('click', () => {
+                description.classList.toggle('line-clamp-[15]');
+            })
+        })
 
     });
 

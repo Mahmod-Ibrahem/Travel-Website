@@ -52,16 +52,32 @@
                      Adult</label>
             </div>
 
+
             <div class="relative bg-white">
 
-                <input id='Children' type="number" name="Children" value="{{ old('Children') }}" required
-                class="peer input_style" placeholder="Children" autocomplete="off">
+                <input id='Children_under_12'  type="number" name="Children_under_12" value="{{ old('Children_under_12') }}"
+                       class="peer input_style" placeholder="Children_under_12" autocomplete="off">
 
-                <label for="Children" class="input_label_style">
-                     Childeren</label>
-                     @if ($errors->has('Address'))
-                     <p class="text-sm text-red-500">{{ $errors->first('Address') }}</p>
-                 @endif
+                <label for="Children_under_12" class="input_label_style">
+                    Children Under 12</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='Children_under_6' type="number" name="Children_under_6" value="{{ old('Children_under_6') }}"
+                       class="peer input_style" placeholder="Children Under 6" autocomplete="off">
+
+                <label for="Children_under_6" class="input_label_style">
+                    Children Under 6</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='students' type="number" name="students" value="{{ old('students') }}"
+                       class="peer input_style" placeholder="Students" autocomplete="off">
+
+                <label for="students" class="input_label_style">
+                    Students</label>
             </div>
 
             <div class="relative bg-white">

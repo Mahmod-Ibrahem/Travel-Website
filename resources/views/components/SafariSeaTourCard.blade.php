@@ -18,7 +18,7 @@
             <h3 class="text-[#ff6700] md:text-[19px] font-semibold whitespace-normal line-clamp-2 min-h-[50px] ">{{$tour['title']}}
             </h3>
         </a>
-        <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-3 leading-6 min-h-[72px]  ">
+            <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5 leading-6 min-h-[120px] ">
             {{$tour['description']}}
         </p>
         <div class="flex md:flex-row items-center  justify-between">

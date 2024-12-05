@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Explore Islamic Cairo | Historic Mosques, Markets, and Landmarks
+@endsection
+@section('description')
+    Discover the rich history of Islamic Cairo. Explore its iconic mosques, vibrant markets, and historical landmarks with Desert Storm Egypt Tours for an unforgettable experience.
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div

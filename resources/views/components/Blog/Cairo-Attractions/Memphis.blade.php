@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Memphis: Ancient Egypt's Capital | Explore Egypt’s Historic Site
+@endsection
+@section('description')
+    Explore Memphis, the ancient capital of Egypt, with Desert Storm Egypt Tours. Discover its rich history, iconic landmarks, and timeless cultural treasures
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div
@@ -14,7 +20,7 @@
                 <div class="Category_titleContainer">
                     <h1 id="home_title"
                         class="Category_title">
-                        Memphis: The Capital of Ancient Egypt
+                        Explore Memphis with Desert Storm Egypt Tours | The Ancient Capital of Egypt.
                     </h1>
                 </div>
             </div>

@@ -1,15 +1,19 @@
 <section id="RecommendedTours" class="bg-[#f9f9f9] py-6 select-none">
     <div class="parent_container gap-8">
         <div
-            class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-4">
-            <h1 class="text-Primary font-semibold text-xl md:text-2xl">Explore what Egypt has for you with the best
+            class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-6xl gap-4 mb-6">
+            <h1 class="text-Primary font-semibold text-xl md:text-2xl text-center">Explore what Egypt has for you with
+                the best
                 Egypt shore excursions that you can ever find today
+
             </h1>
-            <p class="font-medium text-Primary/75">Dive into the wonders of Egypt’s mesmerizing coastline with Dr Boogie Egypt Tours.
+            <p class="font-medium text-Primary/75">
+                Dive into the wonders of Egypt’s mesmerizing coastline with Desert Storm Egypt Tours
                 Each sea shore excursion is a blend of relaxation and exploration, offering breathtaking views,
                 crystal-clear waters, and a touch of ancient charm. Let our dedicated team guide you through
                 unforgettable moments, creating memories that will linger long after the waves have kissed the
-                shore.</p>
+                shore.
+            </p>
         </div>
 
 
@@ -22,7 +26,8 @@
                     @endslot
                 @endcomponent
             @empty
-                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining This Section  </p>
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining
+                    This Section </p>
             @endforelse
 
         </div>

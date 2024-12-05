@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Desert Storm Egypt Tours | Explore Ancient Wonders & Hidden Gems
+@endsection('title')
+@section('description')
+    Join us on a journey through Egypt’s rich history. Explore iconic landmarks like the Pyramids, temples, and more with expert guides. Start your adventure today!
+@endsection('description')
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div
@@ -29,11 +35,12 @@
                 'route'=>'Blog.show',
                 'url'=>asset('/Images/Blog/Cairo/Cairo Main.jpg'),'paramter'=>'Cairo-Attractions'])
                 @endcomponent
-{{--                @component('components.BlogCard',--}}
-{{--                ['About'=>'Luxor Attractions',--}}
-{{--                'route'=>'Blog.show',--}}
-{{--                'url'=>asset('Images/Blog/Luxor/Luxor Main.jpg'),'paramter'=>'Luxor Attractions'])--}}
-{{--                @endcomponent--}}
+                @component('components.BlogCard',
+                ['About'=>'Luxor-Attractions',
+                 'title'=>'Luxor-Attractions',
+                'route'=>'Blog.show',
+                'url'=>asset('Images/Blog/Luxor/Luxor Main.jpg'),'paramter'=>'Luxor-Attractions'])
+                @endcomponent
             </div>
         </div>
 @endsection

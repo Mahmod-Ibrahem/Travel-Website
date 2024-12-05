@@ -1,6 +1,5 @@
-<div class="flex justify-between ">
-
-    <p class="mt-2">&bull; {{$text}}</p>
+<div class="flex justify-between mt-2 ">
+    <p class="tour_details_p">&bull; {{$text}}</p>
 
     <svg class="h-6 w-6 text-[#ff6700]" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

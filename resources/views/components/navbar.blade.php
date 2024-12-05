@@ -4,7 +4,7 @@
     <!--Language icon-->
 
         <div class="md:hidden z-20 ">
-            <img src="{{asset('/Images/logo.png')}}" class="w-[6rem] h-[5rem]">
+            <img src="{{asset('/Images/logo.png')}}" class="w-[6rem] h-[6rem]">
         </div>
 
     <div class="md:order-2 relative  z-20">
@@ -15,11 +15,11 @@
         </a>
     </div>
 
-    <div class="hidden md:block">
+    <div class="hidden md:block  md:h-[5rem] md:w-[8rem]">
         <img src="{{asset('/Images/logo.png')}}"
              alt="logo"
              width="140" height="72"
-             class="w-[7rem] md:w-[8rem] h-18 object-cover">
+             class=" object-cover w-full h-full">
     </div>
 
     <!--PC NavBar Or Menu-->

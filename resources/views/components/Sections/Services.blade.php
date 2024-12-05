@@ -28,7 +28,7 @@
                 <div id="leftServices" class="flex flex-col gap-5 opacity-0">
                     <div class="ServiceCard">
                         <div class="w-[5rem] ">
-                            <img src="{{asset('Images/icons/Hotel.png')}}" alt="hotel">
+                            <img width="80" height="80" src="{{asset('Images/icons/Hotel.png')}}" alt="hotel">
                         </div>
                         <div class="flex-col justify-center items-center">
                             <h3 class="Service_icon_header">Hotel Accommodation</h3>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="ServiceCard">
                         <div class="w-[5rem] ">
-                            <img src="{{asset('Images/icons/Car.png')}}" alt="Car">
+                            <img width="80" height="80" src="{{asset('Images/icons/Car.png')}}" alt="Car">
                         </div>
                         <div class="flex-col justify-center items-center">
                             <h3 class="Service_icon_header">Private Transfers</h3>

@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Top Cairo Attractions | Must-See Landmarks and Historical Sites
+@endsection
+@section('description')
+    Explore the top attractions in Cairo, from the Pyramids of Giza to Islamic Cairo’s treasures. Discover Egypt’s most iconic landmarks with Desert Storm Egypt Tours
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div

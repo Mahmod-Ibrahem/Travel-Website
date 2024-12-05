@@ -1,4 +1,10 @@
 @extends('layouts')
+@section('title')
+    Explore the Best Romantic Places in Cairo | Egypt Travel Guide
+@endsection
+@section('description')
+    Discover the most romantic spots in Cairo with Desert Storm Egypt Tours. Perfect for couples seeking unforgettable moments in the city of love and history.
+@endsection
 @section('content')
     <div class="h-[20rem] md:h-screen w-full ">
         <div

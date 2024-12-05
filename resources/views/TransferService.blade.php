@@ -36,13 +36,19 @@
 
 
         <div class="parent_container  mb-4 py-6 bg-[#f9f9f9] ">
-            <h1
-                class="text-[#333333] font-bold text-xl md:text-3xl mb-6 md:mb-8 md:mt-6">
-                Private Limousine Vehicles Egypt Transportation Services
-            </h1>
-            <p>
+            <div
+                class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-6xl gap-4 mb-6">
+                <h1 class="text-Primary font-semibold text-xl md:text-2xl text-center">Private Transfer Service In Egypt
+                </h1>
+                <p class="font-medium text-Primary/75">
+                    Our premium transfer services in Egypt are designed to ensure a seamless and comfortable travel experience for tourists. Whether arriving at Cairo International Airport or any other major airport, our professional drivers will be waiting for you at the arrivals hall with a personalized sign, ready to assist with your luggage and take you directly to your destination.
 
-            </p>
+                    We also offer convenient transfers between major cities, such as Cairo, Alexandria, Luxor, and Aswan, as well as between popular tourist spots like the Giza Pyramids, the Egyptian Museum, and the Red Sea resorts in Sharm El Sheikh or Hurghada. For those exploring nearby towns or regional attractions, such as Siwa Oasis or St. Catherine's Monastery, we provide longer-distance transfers to ensure you travel in comfort and style.
+
+                    Our goal is to make every part of your journey smooth, punctual, and stress-free, allowing you to focus on enjoying the wonders of Egypt.
+                </p>
+            </div>
+
             <form method="POST" action="{{route('Transfer.post')}}">
                 @csrf
                 <div class="flex flex-col items-center">
