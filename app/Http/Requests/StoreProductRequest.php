@@ -48,6 +48,9 @@ class StoreProductRequest extends FormRequest
     {
         // Safely handle `locations` to ensure it's properly transformed if present
         $locations = $this->locations;
+        iF($locations == null) {
+            return ;
+        }
 
         $this->merge([
             'locations' => json_encode(array_map('trim', explode('/', $locations))),

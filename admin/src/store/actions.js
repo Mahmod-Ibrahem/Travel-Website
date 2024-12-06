@@ -52,7 +52,7 @@ export function createProduct({commit}, product) {
         form.append('itenary_title', product.itenary_title);
         form.append('itenary_section', product.itenary_section);
         form.append('places', product.places);
-        form.append('locations', product.locations);
+        form.append('locations', product.locations || '');
         form.append('included', product.included);
         form.append('excluded', product.excluded);
         form.append('duration', product.duration);

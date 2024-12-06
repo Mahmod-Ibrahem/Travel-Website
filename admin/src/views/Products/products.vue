@@ -9,8 +9,7 @@
       Add new Product
     </RouterLink>
   </div>
-  <ProductModel v-model="showModal" :product="productModel" @close="onModalClose"></ProductModel>
-  <ProductsTable @click-edit="EditProduct"></ProductsTable>
+  <ProductsTable></ProductsTable>
 </template>
 <script setup>
 import ProductsTable from './ProductsTable.vue';
@@ -19,34 +18,8 @@ import { ref } from 'vue';
 import store from '../../store';
 const showModal = ref(false)
 
-const productModel = ref({
-  id: '',
-  title: '',
-  image: '',
-  description: '',
-  price: '',
-
-})
 
 
-function EditProduct(product) {
-  store.dispatch('getProduct', product.id)
-    .then(({ data }) => {
-      productModel.value = data
-    }
-    )
-}
-function onModalClose() {
-  productModel.value = {
-    id: '',
-    title: '',
-    published:false,
-    image: '',
-    description: '',
-    price: '',
-
-  }
-}
 </script>
 
 <style scoped></style>

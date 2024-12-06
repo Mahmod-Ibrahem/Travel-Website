@@ -23,7 +23,7 @@
         </a>
         <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5 leading-6 min-h-[120px]  ">
             {{$tour['description']}}
-        </p>w
+        </p>
         <div class="flex md:flex-row items-center  justify-between">
             <div class="flex md:flex-row  items-center gap-1  pb-2">
                 <svg height="26px" width="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

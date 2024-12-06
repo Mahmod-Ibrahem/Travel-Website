@@ -3,7 +3,7 @@ import store from "./store"
 import router from "./router/index.js";
 
 const axiosClient = axios.create({
-    baseURL: 'http://127.0.0.1:8000/api',
+    baseURL: 'https://desertstormegypttours.com/api',
 });
 
 axiosClient.interceptors.request.use(config=>{
@@ -20,7 +20,7 @@ axiosClient.interceptors.response.use(response=>{
       store.commit('setToken',null)
         router.push({name:'login'})
     }
-    console.error(error);
+    throw error
 })
 
 export default axiosClient

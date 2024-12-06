@@ -12,55 +12,82 @@
             <div class="bg-white px-4 pt-5 pb-4">
                 <!-- Tour Groups -->
                 <select name="type" v-model="product.group"
-                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                :class="{ 'border-red-500': errors.group && errors.group[0]}">
                     <option value="" disabled selected>Select Tour Group</option>
                     <option value="DayTours">Day Tours</option>
                     <option value="TourPackages">Tour Packages</option>
                     <option value="SeaShoreTours">Sea Shore Tours</option>
                     <option value="SafariAdventures">Safari Adventures</option>
                 </select>
+                <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0] ">{{ errors.group[0] }}</p>
                 <!-- Categories Types Depending on Tour Group -->
 
                 <select v-if="product.group==='DayTours' || product.group==='TourPackages'"
-                    name="type" v-model="product.category_id"
-                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
+                        name="type" v-model="product.category_id"
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                        :class="{ 'border-red-500': errors.category_id && errors.category_id[0]}">
                     <option value="">Select Category</option>
                     <option v-for="cat of filterdCategories" :selected="product.category_id===cat.id" :value="cat.id">
                         {{ cat.name }}
                     </option>
                 </select>
+                <p class="text-red-500 text-sm font-semibold px-3 mb-2" v-if="errors.category_id && errors.category_id[0]">{{ errors.category_id[0] }}</p>
 
                 <!-- Tour Preference -->
 
                 <select name="type" v-model="product.preference"
-                        class="<customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 mb-2 rounded-md">
-                    <option value=""  selected>Select Tour Preference (Optional)</option>
+                        class="<customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500  rounded-md"
+                        :class="{ 'border-red-500': errors.preference && errors.preference[0]}">
+                    <option value="" selected>Select Tour Preference (Optional)</option>
                     <option value="recommended">Recommended</option>
                     <option value="hidden_gems">Hidden Gems</option>
                     <option value="limited_offers">Limited offers</option>
                 </select>
 
-                <CustomInput class="mb-2" v-model="product.title" label="Tour Title يستحسن يكون اكتر من 45 حرف "/>
-                <p v-if="product.title" class="text-xs font-semibold text-Primary" :class="{ 'text-green-600' : product.title?.length>45 }" >Character Length : {{product.title?.length  }}</p>
-                <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description يستحسن ميكونش اقل من 230 حرف"/>
-                <p v-if="product.description" class="text-xs font-semibold text-Primary" :class="{ 'text-green-600' : product.description?.length>230 }" >Character Length : {{product.description?.length  }}</p>
-                <CustomInput type="textarea" class="mb-2" v-model="product.included" label="Tour Included"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.excluded" label="Tour Excluded"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_title" label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section" label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"/>
-                <CustomInput class="mb-2" v-model="product.locations" label="Tour Location (2fsl ben kol location we al tany b sla4 /"/>
-                <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration"/>
+                <p class="text-red-500 text-sm font-semibold px-3 mb-2" v-if="errors.preference && errors.preference[0]">{{ errors.preference[0] }}</p>
+
+
+                <CustomInput class="mb-2" v-model="product.title" :errors="errors.title" label="Tour Title يستحسن يكون اكتر من 45 حرف "/>
+                <p v-if="product.title"
+                   class="text-xs font-semibold"
+                   :class="{
+       'text-green-600': product.title?.length > 45 && product.title?.length <= 80,
+       'text-red-600': product.title?.length > 80
+   }">
+                    Character Length: {{ product.title?.length }}
+                </p>
+                <CustomInput type="textarea" class="mb-2" v-model="product.description" :errors="errors.description"
+                             label="Description يستحسن ميكونش اقل من 230 حرف"/>
+                <p v-if="product.description" class="text-xs font-semibold text-Primary"
+                   :class="{ 'text-green-600' : product.description?.length>=230 && product.description?.length <= 280, 'text-red-600' : product.description?.length > 280 }">Character Length :
+                    {{ product.description?.length }}</p>
+
+                <CustomInput type="textarea" class="mb-2" :errors="errors.included" v-model="product.included" label="Tour Included"/>
+                <CustomInput type="textarea" class="mb-2" :errors="errors.excluded" v-model="product.excluded" label="Tour Excluded"/>
+                <CustomInput type="textarea" class="mb-2" :errors="errors.itenary_title" v-model="product.itenary_title"
+                             label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section" :errors="errors.itenary_section"
+                             label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
+                <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places" :errors="errors.places"/>
+
+
+
+                <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration" :errors="errors.duration"/>
+
+                <CustomInput class="mb-2" type="textarea" v-model="product.locations"
+                             label="Tour Location (2fsl ben kol location we al tany b sla4 /"  :errors="errors.locations"/> 
 
                 <!-- Tour Cover -->
-                <CustomInput type="file" class="mb-2" label="Product Image"
+                <CustomInput type="file" class="mb-2" label="Product Image" :errors="errors.tour_cover"
                              @change="file => product.tour_cover = file"/>
 
                 <!-- Tour Images -->
 
                 <label v-if="!product.id"
-                    for="TourImages"
-                       class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
+                       for="TourImages"
+                       class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 "
+                       :class="{ 'border-red-500': errors.tour_images && errors.tour_images[0]}">
                     <span class="flex flex-col items-center justify-center py-1">
                         <svg class="w-8 h-8 mb-1 text-gray-500 dark:text-gray-400" aria-hidden="true"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -72,12 +99,14 @@
                     </span>
                     <input id="TourImages" type="file" class="hidden" @change="handleFiles" multiple/>
                 </label>
+                <p class="text-red-500 text-sm font-semibold mb-2" v-if="errors.tour_images && errors.tour_images[0]">{{ errors.tour_images[0] }}</p>
+
                 <!--                <CustomInput type="file" class="hidden" label="Product Image" @change="file => product.tour_cover = file"/>-->
-                <CustomInput type="number" class="mb-2" v-model="product.price_per_person" label="Price Per Person"
+                <CustomInput type="number" class="mb-2" v-model="product.price_per_person" label="Price Per Person" :errors="errors.price_per_person"
                              prepend="$"/>
-                <CustomInput type="number" class="mb-2" v-model="product.price_two_five" label="Price From 2-5"
+                <CustomInput type="number" class="mb-2" v-model="product.price_two_five" label="Price From 2-5" :errors="errors.price_two_five"
                              prepend="$"/>
-                <CustomInput type="number" class="mb-2" v-model="product.price_six_twenty" label="price From 6-20"
+                <CustomInput type="number" class="mb-2" v-model="product.price_six_twenty" label="price From 6-20" :errors="errors.price_six_twenty"
                              prepend="$"/>
                 <!--                <CustomInput type="checkbox" class="mb-2" v-model="product.published" label="Published"/>-->
             </div>
@@ -117,21 +146,40 @@ const product = ref({
     group: '',
     category_id: '',
     preference: '',
-    title: null,
-    description: null,
-    included: null,
-    excluded: null,
-    places: null,
-    duration: null,
-    tour_cover: null,
-    tour_images: null,
-    locations:'',
-    itenary_section: null,
-    itenary_title: null,
-    price_per_person: null,
-    price_two_five: null,
-    price_six_twenty: null,
+    title: '',
+    description: '',
+    included: '',
+    excluded: '',
+    places: '',
+    duration: '',
+    tour_cover: '',
+    tour_images: '',
+    locations: '',
+    itenary_section: '',
+    itenary_title: '',
+    price_per_person: '',
+    price_two_five: '',
+    price_six_twenty: '',
     // published: false
+})
+const errors=ref({
+    title:[],
+    description:[],
+    group:[],
+    category_id:[],
+    preference:[],
+    included:[],
+    excluded:[],
+    places:[],
+    duration:[],
+    tour_cover:[],
+    tour_images:[],
+    locations:[],
+    itenary_section:[],
+    itenary_title:[],
+    price_per_person:[],
+    price_two_five:[],
+    price_six_twenty:[],
 })
 const categories = computed(() => store.state.categories.data)
 const filterdCategories = computed(() => {
@@ -176,6 +224,7 @@ function onSubmit($event, close = false) {
             })
             .catch(err => {
                 loading.value = false;
+                errors.value=err.response.data.errors
             })
     }
 }

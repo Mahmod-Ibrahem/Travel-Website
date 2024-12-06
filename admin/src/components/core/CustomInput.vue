@@ -58,6 +58,7 @@
         {{ append }}
       </span>
     </div>
+      <p class="text-red-600 text-sm font-semibold" v-if="errors && errors[0]">{{errors[0]}}</p>
   </div>
 </template>
 
@@ -82,7 +83,11 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  selectOptions: Array
+  selectOptions: Array,
+    errors:{
+     type: Array,
+      required:false,
+    }
 })
 
 const id = computed(() => {
@@ -102,6 +107,10 @@ const inputClasses = computed(() => {
     cls.push(`rounded-r-md`)
   } else if (!props.prepend && !props.append) {
     cls.push('rounded-md')
+  }
+   if (props.errors && props.errors[0])
+  {
+      cls.push('border-red-600 focus:border-red-600')
   }
   return cls.join(' ')
 })
