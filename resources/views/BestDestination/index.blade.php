@@ -32,7 +32,7 @@
 
         <div class="child_container gap-4 mx-auto">
             @forelse($tours as $tour)
-                @if($tour['group'] == 'SafariAdventures' || $tour['group'] == 'SeaShoreTours')
+                @if($tour['group'] == 'SafariAdventures' || $tour['group'] == 'SeaShoreTours' || $tour['group'] == 'LayoverTours')
                     @component('components.SafariSeaTourCard',['tour'=>$tour])
                         @slot('image')
                             {{ asset($tour['tour_cover']) }}

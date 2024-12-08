@@ -14,13 +14,11 @@
                 </div>
             </a>
         @endif
-        <a>
             <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}"
                class="text-[#ff6700] md:text-[19px] font-semibold whitespace-normal line-clamp-2 min-h-[50px] hover:text-red-700 transition-all">
                 {{$tour['title']}}
             </a>
 
-        </a>
         <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5 leading-6 min-h-[120px]  ">
             {{$tour['description']}}
         </p>

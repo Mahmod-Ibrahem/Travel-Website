@@ -63,6 +63,15 @@ export function setUser(state, user) {
     state.toast.message = message;
   }
 
+export function showErrorToast(state, message) {
+    state.errorToast.show = true;
+    state.errorToast.message = message;
+}
+export function hideErrorToast(state) {
+    state.errorToast.show = false;
+    state.errorToast.message = '';
+}
+
   export function hideToast(state) {
     state.toast.show = false;
     state.toast.message = '';

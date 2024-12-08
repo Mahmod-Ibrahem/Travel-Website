@@ -41,6 +41,14 @@
                 'route'=>'Blog.show',
                 'url'=>asset('Images/Blog/Luxor/Luxor Main.jpg'),'paramter'=>'Luxor-Attractions'])
                 @endcomponent
+
+                    @component('components.BlogCard',
+    ['About'=>'Hidden-Gems',
+     'title'=>'Hidden Gems In Egypt',
+    'route'=>'Blog.show',
+    'url'=>asset('Images/Blog/Hidden Gems/Main.jpg'),
+    'paramter'=>'Hidden-Gems'])
+                    @endcomponent
             </div>
         </div>
 @endsection

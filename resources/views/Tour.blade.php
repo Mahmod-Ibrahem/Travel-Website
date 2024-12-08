@@ -38,7 +38,7 @@
         <div class="flex flex-col md:flex-row md:justify-around
              md:p-1  space-y-3 mx-auto   w-full px-2">
 
-            <div class="flex flex-col md:w-[50rem]  md:mx-0 mx-auto  ">
+            <div class="flex flex-col md:w-[45rem]  md:mx-0 mx-auto  ">
                 <div id="Holder" class="relative ">
                     <div id="images_container"
                          class="flex flex-row  md:rounded-t-xl w-full h-[25rem] md:h-[35rem]  overflow-y-hidden overflow-x-auto scroll-smooth hide-scrollbar rounded-t
@@ -249,8 +249,8 @@
         Prev.addEventListener('click', () => ScrollHorizontal(-1))
         const dots = document.querySelectorAll('[id^="dot"]');
         ScrollHorizontal(slideIndex)
-        // sm_prev.addEventListener('click', () => ScrollHorizontal(-1))
-        // sm_next.addEventListener('click', () => ScrollHorizontal(1))
+        sm_prev.addEventListener('click', () => ScrollHorizontal(-1))
+        sm_next.addEventListener('click', () => ScrollHorizontal(1))
 
         function ScrollHorizontal(sign) {
             if (sign === 1 || sign === 0) {
@@ -293,9 +293,9 @@
                 addOpacityToDots()
                 dot.classList.remove('opacity-50') // aly at3ml 3aleh click bs hoa al op 1
                 if (window.innerWidth >= 768) {
-                    imagesContainer.scrollLeft = index * 800
+                    imagesContainer.scrollLeft = index * imagesContainer.offsetWidth
                 } else {
-                    imagesContainer.scrollLeft = 416 * index;
+                    imagesContainer.scrollLeft =  imagesContainer.offsetWidth * index;
                 }
                 slideIndex = index
             });

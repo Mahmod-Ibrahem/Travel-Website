@@ -63,7 +63,7 @@
                               fill="#ff6700"></path>
                     </g>
                 </svg>
-                <p class="font-medium text-sm">Maint</p>
+                <p class="font-medium text-sm">{{$tour['visit_count']}}</p>
             </div>
         </div>
         <a class="flex items-center justify-center">

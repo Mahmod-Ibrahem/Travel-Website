@@ -68,7 +68,7 @@
     }
 
     .homeSecHeader {
-        @apply text-[1.75rem] font-bold text-center my-2 md:text-3xl text-gray-950  md:my-5 animate-ToUp  select-none
+        @apply text-[1.75rem] font-bold text-center my-2 md:text-3xl text-gray-950  md:my-5 select-none
     }
 
     .CategoryCard {
@@ -109,7 +109,7 @@
         @apply h-fit overflow-hidden  box-border text-center md:max-w-[75%] bg-black/20 rounded-lg p-3.5 md:p-6
     }
     .Category_title{
-        @apply text-[20px] font-extrabold md:text-[40px] select-none animate-ToDown  text-white sm:leading-7 md:leading-[3rem]
+        @apply text-[20px] font-extrabold md:text-[40px] select-none text-white sm:leading-7 md:leading-[3rem]
     }
     .footer_main {
         @apply text-lg font-medium mb-7 text-white

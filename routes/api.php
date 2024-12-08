@@ -15,3 +15,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
 });    Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
 
 Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::post('test-upload', [\App\Http\Controllers\TestController::class, 'testUpload']);

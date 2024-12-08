@@ -8,9 +8,12 @@ use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Tour;
 use App\Models\TourImage;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use URL;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ProductController extends Controller
 {
@@ -47,11 +50,31 @@ class ProductController extends Controller
             return response()->json(['message' => 'Tour already exists'], 409);
         }
         //handling image cover make it stored in Imaged/Group of Image/TitleCover.extension
+        // create image manager with desired driver
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()) . '.' . $data['tour_cover']->getClientOriginalExtension();
+        $dir_path = 'Images/' . $data['group']; // Adjusted path
+
+        // Check if directory exists, if not create it
+        if (!file_exists(storage_path('app/public/' . $dir_path))) {
+            mkdir(storage_path('app/public/' . $dir_path), 0755, true); // Create the directory if it doesn't exist
+        }
+
+        // Process and save the image
+        try {
+            $img = $manager->read($data['tour_cover']);
+            $img = $img->resize(640, 640);
+            $img->toWebp()->save(storage_path('app/public/' . $dir_path . '/' . $name_gen));
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error processing image: ' . $e->getMessage()], 500);
+        }
         $data['tour_cover'] = $data['tour_cover']->storeAs("Images/{$data['group']}", $data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension());
         $data['tour_cover'] = URL::to(Storage::url($data['tour_cover']));
         //Store Tour to get its id and assign to it images model
         $CreatedTour = Tour::create($data);
-        //handling Tour Images
+
+
+//        handling Tour Images
         $tourImages = $data['tour_images'];
 
         foreach ($tourImages as $key => $image) {

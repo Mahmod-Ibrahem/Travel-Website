@@ -5,7 +5,7 @@
             <header class="h-fit overflow-hidden">
                 <h1
                     id="servicesHeader"
-                    class="parent_header opacity-0"
+                    class="parent_header"
                 >
                     Why <span class="text-[#f67103]">Dr Boogie Egypt Tours</span> is The Best For Your Egypt Tours?
                 </h1>
@@ -25,7 +25,7 @@
                 adventure in Egypt.</p>
             <div class="flex flex-col space-y-10 mb-5 md:flex-row md:justify-around  md:space-x-10 md:space-y-0">
 
-                <div id="leftServices" class="flex flex-col gap-5 opacity-0">
+                <div id="leftServices" class="flex flex-col gap-5">
                     <div class="ServiceCard">
                         <div class="w-[5rem] ">
                             <img width="80" height="80" src="{{asset('Images/icons/Hotel.png')}}" alt="hotel">
@@ -64,7 +64,7 @@
                         text-xl md:text-3xl font-bold tracking-wider select-none">Our Services
                     </div>
                 </div>
-                <div id="rightServices" class="flex flex-col gap-5 opacity-0">
+                <div id="rightServices" class="flex flex-col gap-5">
                     <div class="ServiceCard">
                         <div class="w-[5rem] ">
                             <img src="{{asset('Images/icons/Flight.webp')}}" alt="Flight">
@@ -106,45 +106,45 @@
         </div>
     </div>
 </section>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const servicesHeader=document.getElementById("servicesHeader");
-        const leftServices = document.getElementById("leftServices");
-        const rightServices = document.getElementById("rightServices");
+{{--<script>--}}
+{{--    document.addEventListener("DOMContentLoaded", function () {--}}
+{{--        const servicesHeader=document.getElementById("servicesHeader");--}}
+{{--        const leftServices = document.getElementById("leftServices");--}}
+{{--        const rightServices = document.getElementById("rightServices");--}}
 
-        function scrollfunction() {
-            const scrollPosition = window.scrollY;
-            if (window.innerWidth >= 768) {
-                if (scrollPosition >= 425) {
-                    servicesHeader.classList.remove("opacity-0");
-                    servicesHeader.classList.add('animate-Button_ToUp');
-                }
-                if (scrollPosition >= 650) {
-                    leftServices.classList.remove("opacity-0");
-                    leftServices.classList.add('animate-ServicesToRight');
-                    rightServices.classList.remove("opacity-0");
-                    rightServices.classList.add('animate-ServicesToLeft');
-                }
-            } else {
-                if (scrollPosition >= 600) {
-                    servicesHeader.classList.remove("opacity-0");
-                    servicesHeader.classList.add('animate-Button_ToUp');
-                }
-                if (scrollPosition >= 1150) {
-                    leftServices.classList.remove("opacity-0");
-                    leftServices.classList.add('animate-ServicesToRight');
-                }
-                if (scrollPosition >= 1650) {
-                    rightServices.classList.remove("opacity-0");
-                    rightServices.classList.add('animate-ServicesToLeft');
-                }
-            }
-        }
+{{--        function scrollfunction() {--}}
+{{--            const scrollPosition = window.scrollY;--}}
+{{--            if (window.innerWidth >= 768) {--}}
+{{--                if (scrollPosition >= 425) {--}}
+{{--                    servicesHeader.classList.remove("");--}}
+{{--                    servicesHeader.classList.add('animate-Button_ToUp');--}}
+{{--                }--}}
+{{--                if (scrollPosition >= 650) {--}}
+{{--                    leftServices.classList.remove("opacity-0");--}}
+{{--                    leftServices.classList.add('animate-ServicesToRight');--}}
+{{--                    rightServices.classList.remove("opacity-0");--}}
+{{--                    rightServices.classList.add('animate-ServicesToLeft');--}}
+{{--                }--}}
+{{--            } else {--}}
+{{--                if (scrollPosition >= 600) {--}}
+{{--                    servicesHeader.classList.remove("opacity-0");--}}
+{{--                    servicesHeader.classList.add('animate-Button_ToUp');--}}
+{{--                }--}}
+{{--                if (scrollPosition >= 1150) {--}}
+{{--                    leftServices.classList.remove("opacity-0");--}}
+{{--                    leftServices.classList.add('animate-ServicesToRight');--}}
+{{--                }--}}
+{{--                if (scrollPosition >= 1650) {--}}
+{{--                    rightServices.classList.remove("opacity-0");--}}
+{{--                    rightServices.classList.add('animate-ServicesToLeft');--}}
+{{--                }--}}
+{{--            }--}}
+{{--        }--}}
 
-        //call scrollfunction when page is mounted
-        scrollfunction();
-        window.addEventListener("scroll", function () {
-            scrollfunction()
-        })
-    });
-</script>
+{{--        //call scrollfunction when page is mounted--}}
+{{--        scrollfunction();--}}
+{{--        window.addEventListener("scroll", function () {--}}
+{{--            scrollfunction()--}}
+{{--        })--}}
+{{--    });--}}
+{{--</script>--}}

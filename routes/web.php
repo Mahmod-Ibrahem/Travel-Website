@@ -58,4 +58,7 @@ Route::post('/checkout/{tour}/confirm',[\App\Http\Controllers\BookingController:
 Route::resource('/Blog',BlogController::class)->only(['index','show']);
 Route::get('/Blog/{Blog}/{attract}',[BlogController::class,'Attraction'])->name('Attraction');
 
+/*Layover Tours*/
+Route::get('/LayoverTours',[\App\Http\Controllers\LayoverController::class,'index'])->name('LayoverTours.index');
+Route::get('/LayoverTours/{Tour:slug}',[\App\Http\Controllers\LayoverController::class,'Tour'])->name('LayoverTours.Tour');
 

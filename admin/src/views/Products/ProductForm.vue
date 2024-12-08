@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-between mb-3">
         <h1 v-if="!loading" class="text-3xl font-semibold">
-            {{ product.id ? `Update product: "${product.title}"` : 'Create New Tour' }}
+            {{ product.id ? `Update Tour: "${product.title}"` : 'Create New Tour' }}
         </h1>
     </div>
     <div class="">
@@ -11,18 +11,23 @@
         <form @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <!-- Tour Groups -->
+                <div class=" mb-2">
                 <select name="type" v-model="product.group"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
-                :class="{ 'border-red-500': errors.group && errors.group[0]}">
+                        :class="{ 'border-red-500': errors.group && errors.group[0]}">
                     <option value="" disabled selected>Select Tour Group</option>
                     <option value="DayTours">Day Tours</option>
                     <option value="TourPackages">Tour Packages</option>
                     <option value="SeaShoreTours">Sea Shore Tours</option>
                     <option value="SafariAdventures">Safari Adventures</option>
+                    <option value="LayoverTours">Layover Tours</option>
                 </select>
-                <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0] ">{{ errors.group[0] }}</p>
+                <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0] ">{{
+                        errors.group[0]
+                    }}</p>
+                </div>
                 <!-- Categories Types Depending on Tour Group -->
-
+                <div class=" mb-2">
                 <select v-if="product.group==='DayTours' || product.group==='TourPackages'"
                         name="type" v-model="product.category_id"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
@@ -32,12 +37,14 @@
                         {{ cat.name }}
                     </option>
                 </select>
-                <p class="text-red-500 text-sm font-semibold px-3 mb-2" v-if="errors.category_id && errors.category_id[0]">{{ errors.category_id[0] }}</p>
+                <p class="text-red-500 text-sm font-semibold px-3 mb-2"
+                   v-if="errors.category_id && errors.category_id[0]">{{ errors.category_id[0] }}</p>
+                </div>
 
                 <!-- Tour Preference -->
 
                 <select name="type" v-model="product.preference"
-                        class="<customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500  rounded-md"
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500  rounded-md"
                         :class="{ 'border-red-500': errors.preference && errors.preference[0]}">
                     <option value="" selected>Select Tour Preference (Optional)</option>
                     <option value="recommended">Recommended</option>
@@ -45,10 +52,12 @@
                     <option value="limited_offers">Limited offers</option>
                 </select>
 
-                <p class="text-red-500 text-sm font-semibold px-3 mb-2" v-if="errors.preference && errors.preference[0]">{{ errors.preference[0] }}</p>
+                <p class="text-red-500 text-sm font-semibold px-3 mb-2"
+                   v-if="errors.preference && errors.preference[0]">{{ errors.preference[0] }}</p>
 
 
-                <CustomInput class="mb-2" v-model="product.title" :errors="errors.title" label="Tour Title يستحسن يكون اكتر من 45 حرف "/>
+                <CustomInput class="mb-2" v-model="product.title" :errors="errors.title"
+                             label="Tour Title يستحسن يكون اكتر من 45 حرف "/>
                 <p v-if="product.title"
                    class="text-xs font-semibold"
                    :class="{
@@ -60,23 +69,26 @@
                 <CustomInput type="textarea" class="mb-2" v-model="product.description" :errors="errors.description"
                              label="Description يستحسن ميكونش اقل من 230 حرف"/>
                 <p v-if="product.description" class="text-xs font-semibold text-Primary"
-                   :class="{ 'text-green-600' : product.description?.length>=230 && product.description?.length <= 280, 'text-red-600' : product.description?.length > 280 }">Character Length :
+                   :class="{ 'text-green-600' : product.description?.length>=230 && product.description?.length <= 280, 'text-red-600' : product.description?.length > 280 }">
+                    Character Length :
                     {{ product.description?.length }}</p>
 
-                <CustomInput type="textarea" class="mb-2" :errors="errors.included" v-model="product.included" label="Tour Included"/>
-                <CustomInput type="textarea" class="mb-2" :errors="errors.excluded" v-model="product.excluded" label="Tour Excluded"/>
+                <CustomInput type="textarea" class="mb-2" :errors="errors.included" v-model="product.included"
+                             label="Tour Included"/>
+                <CustomInput type="textarea" class="mb-2" :errors="errors.excluded" v-model="product.excluded"
+                             label="Tour Excluded"/>
                 <CustomInput type="textarea" class="mb-2" :errors="errors.itenary_title" v-model="product.itenary_title"
                              label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section" :errors="errors.itenary_section"
+                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section"
+                             :errors="errors.itenary_section"
                              label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places" :errors="errors.places"/>
-
-
-
+                <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"
+                             :errors="errors.places"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration" :errors="errors.duration"/>
 
                 <CustomInput class="mb-2" type="textarea" v-model="product.locations"
-                             label="Tour Location (2fsl ben kol location we al tany b sla4 /"  :errors="errors.locations"/> 
+                             label="Tour Location (2fsl ben kol location we al tany b sla4 /"
+                             :errors="errors.locations"/>
 
                 <!-- Tour Cover -->
                 <CustomInput type="file" class="mb-2" label="Product Image" :errors="errors.tour_cover"
@@ -99,14 +111,18 @@
                     </span>
                     <input id="TourImages" type="file" class="hidden" @change="handleFiles" multiple/>
                 </label>
-                <p class="text-red-500 text-sm font-semibold mb-2" v-if="errors.tour_images && errors.tour_images[0]">{{ errors.tour_images[0] }}</p>
+                <p class="text-red-500 text-sm font-semibold mb-2" v-if="errors.tour_images && errors.tour_images[0]">
+                    {{ errors.tour_images[0] }}</p>
 
                 <!--                <CustomInput type="file" class="hidden" label="Product Image" @change="file => product.tour_cover = file"/>-->
-                <CustomInput type="number" class="mb-2" v-model="product.price_per_person" label="Price Per Person" :errors="errors.price_per_person"
+                <CustomInput type="number" class="mb-2" v-model="product.price_per_person" label="Price Per Person"
+                             :errors="errors.price_per_person"
                              prepend="$"/>
-                <CustomInput type="number" class="mb-2" v-model="product.price_two_five" label="Price From 2-5" :errors="errors.price_two_five"
+                <CustomInput type="number" class="mb-2" v-model="product.price_two_five" label="Price From 2-5"
+                             :errors="errors.price_two_five"
                              prepend="$"/>
-                <CustomInput type="number" class="mb-2" v-model="product.price_six_twenty" label="price From 6-20" :errors="errors.price_six_twenty"
+                <CustomInput type="number" class="mb-2" v-model="product.price_six_twenty" label="price From 6-20"
+                             :errors="errors.price_six_twenty"
                              prepend="$"/>
                 <!--                <CustomInput type="checkbox" class="mb-2" v-model="product.published" label="Published"/>-->
             </div>
@@ -162,24 +178,24 @@ const product = ref({
     price_six_twenty: '',
     // published: false
 })
-const errors=ref({
-    title:[],
-    description:[],
-    group:[],
-    category_id:[],
-    preference:[],
-    included:[],
-    excluded:[],
-    places:[],
-    duration:[],
-    tour_cover:[],
-    tour_images:[],
-    locations:[],
-    itenary_section:[],
-    itenary_title:[],
-    price_per_person:[],
-    price_two_five:[],
-    price_six_twenty:[],
+const errors = ref({
+    title: [],
+    description: [],
+    group: [],
+    category_id: [],
+    preference: [],
+    included: [],
+    excluded: [],
+    places: [],
+    duration: [],
+    tour_cover: [],
+    tour_images: [],
+    locations: [],
+    itenary_section: [],
+    itenary_title: [],
+    price_per_person: [],
+    price_two_five: [],
+    price_six_twenty: [],
 })
 const categories = computed(() => store.state.categories.data)
 const filterdCategories = computed(() => {
@@ -224,7 +240,12 @@ function onSubmit($event, close = false) {
             })
             .catch(err => {
                 loading.value = false;
-                errors.value=err.response.data.errors
+                if (err.response.status === 422) {
+                    errors.value = err.response.data.errors
+                }
+                else if(err.response.status === 409) {
+                    store.commit('showErrorToast', err.response.data.message)
+                }
             })
     }
 }

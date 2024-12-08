@@ -19,6 +19,7 @@
       <Spinner></Spinner>
       </div>
       <Toast />
+        <ErrorToast></ErrorToast>
 
 </template>
 
@@ -29,6 +30,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import store from '../store';
 import Spinner from './Core/Spinner.vue';
 import Toast from './Core/Toast.vue';
+import ErrorToast from "./core/ErrorToast.vue";
 const props = defineProps({
     title: String
 })

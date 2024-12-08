@@ -5,7 +5,7 @@
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
             <span class="text-xs">
-                Products
+                Tours
             </span>
         </RouterLink>
 

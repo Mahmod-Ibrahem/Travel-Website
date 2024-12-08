@@ -22,6 +22,11 @@ const store = {
         message: "",
         delay: 5000,
     },
+    errorToast: {
+        show: false,
+        message: "",
+        delay: 5000,
+    },
 };
 
 export default store;

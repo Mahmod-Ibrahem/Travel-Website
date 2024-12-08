@@ -9,11 +9,11 @@
             <div class="p-6 rounded-lg gap-6 flex flex-col">
             <div class=" h-fit overflow-hidden  box-border ">
                 <h1 id="home_title"
-                    class="text-[26px] font-bold md:text-[30px] select-none animate-ToDown max-w-[350px] md:max-w-[540px]  leading-tight">
+                    class="text-[26px] font-bold md:text-[30px] select-none max-w-[350px] md:max-w-[540px]  leading-tight">
                     Desert Storm Egypt Tours Since 2011
                 </h1>
             </div>
-            <p class="max-w-[350px]   md:max-w-[540px] font-semibold select-none animate-ToDown">Welcome to Desert Storm Egypt Tours, where every journey becomes a story. Explore Egypt’s ancient wonders,
+            <p class="w-[350px]   md:w-[540px] font-medium select-none">Welcome to Desert Storm Egypt Tours, where every journey becomes a story. Explore Egypt’s ancient wonders,
                 cruise the Nile, and dive into its vibrant culture with our carefully crafted tours. We design
                 experiences tailored to your dreams,
                 offering a perfect balance of adventure and relaxation. Let us create unforgettable memories
@@ -53,7 +53,7 @@
         <div class="parent_container">
             <h1 class=" text-Primary font-bold text-2xl md:text-4xl text-center">Experience Egypt Through Our Happy Customers'
                 Eyes !</h1>
-            <iframe  class="w-[370px] md:w-[450px] md:h-[315px]" src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe
+            <iframe  class="w-[370px] md:w-[450px] md:h-[315px]" src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </section>
 @endsection

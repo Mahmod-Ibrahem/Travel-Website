@@ -61,7 +61,7 @@
                     <li class="footer_anchor"><a href="{{route('SafariAdventures.index')}}">Safari Adventures</a></li>
 
                     <li class="footer_anchor"><a href="{{route('SeaShoreTours.index')}}">Sea Shore Tours</a></li>
-
+                    <li class="footer_anchor"><a href="{{route('LayoverTours.index')}}">Layover Tours</a></li>
                 </ul>
             </div>
             <!--End Col-->

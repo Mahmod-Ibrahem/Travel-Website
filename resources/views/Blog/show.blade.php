@@ -24,7 +24,7 @@
             <div class="Category_titleContainer">
                 <h1 id="home_title"
                     class="Category_title">
-                    {{$about}}  | Best Things to Do in {{$city}}
+                    {{$about}}  | Best Things to Do in {{$city == 'Hidden' ?  'Hidden Gems In Egypt' : $city}}
                 </h1>
             </div>
         </div>
