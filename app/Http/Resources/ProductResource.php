@@ -25,7 +25,7 @@ class ProductResource extends JsonResource
             'places' => $this->places,
             'included' => $this->included,
             'excluded' => $this->excluded,
-            'locations' => $this->locations ? implode(',', json_decode($this->locations)) : null,
+            'locations' => $this->locations ? implode('/', json_decode($this->locations)) : null,
             'itenary_title'=> $this->itenary_title,
             'itenary_section'=> $this->itenary_section,
             'price_per_person' => $this->price_per_person,

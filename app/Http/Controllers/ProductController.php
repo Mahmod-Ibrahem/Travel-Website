@@ -45,47 +45,38 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $data = $request->validated();
+        $manager = new ImageManager(new Driver());
         //Check if the tour exists
         if (Tour::where('title', $data['title'])->exists()) {
             return response()->json(['message' => 'Tour already exists'], 409);
         }
-        //handling image cover make it stored in Imaged/Group of Image/TitleCover.extension
-        // create image manager with desired driver
-        $manager = new ImageManager(new Driver());
-        $name_gen = hexdec(uniqid()) . '.' . $data['tour_cover']->getClientOriginalExtension();
-        $dir_path = 'Images/' . $data['group']; // Adjusted path
 
-        // Check if directory exists, if not create it
+        $dir_path = "Images/{$data['group']}/{$data['title']}/"; // Adjusted path
+        $coverNameGen=$data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension();
+
         if (!file_exists(storage_path('app/public/' . $dir_path))) {
             mkdir(storage_path('app/public/' . $dir_path), 0755, true); // Create the directory if it doesn't exist
         }
-
-        // Process and save the image
-        try {
-            $img = $manager->read($data['tour_cover']);
-            $img = $img->resize(640, 640);
-            $img->toWebp()->save(storage_path('app/public/' . $dir_path . '/' . $name_gen));
-        } catch (Exception $e) {
-            return response()->json(['message' => 'Error processing image: ' . $e->getMessage()], 500);
-        }
-        $data['tour_cover'] = $data['tour_cover']->storeAs("Images/{$data['group']}", $data['title'] . "." . "Cover" . "." . $data['tour_cover']->getClientOriginalExtension());
+        $data['tour_cover'] = $data['tour_cover']->storeAs($dir_path, $coverNameGen);
         $data['tour_cover'] = URL::to(Storage::url($data['tour_cover']));
         //Store Tour to get its id and assign to it images model
         $CreatedTour = Tour::create($data);
-
-
 //        handling Tour Images
         $tourImages = $data['tour_images'];
 
-        foreach ($tourImages as $key => $image) {
-            $image = $image->storeAs("Images/{$data['group']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
-            $image = URL::to(Storage::url($image));
-            TourImage::create([
-                'tours_id' => $CreatedTour->id,
-                'image_url' => $image,
-            ]);
+        foreach ($tourImages  as $image) {
+            try{
+                $imgName=$data['title'] . "." . hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
+                $image=$this->uploadImage($image,$dir_path,$imgName); //returns public url
+                TourImage::create([
+                    'tours_id' => $CreatedTour->id,
+                    'image_url' => $image,
+                ]);
+            }
+            catch (Exception $e) {
+                return response()->json(['message' => 'Error processing image: ' . $e->getMessage()], 500);
+            }
         }
-
         return response()->json(['message' => 'Tour created successfully'], 201);
     }
 
@@ -120,9 +111,6 @@ class ProductController extends Controller
 
         $data['locations'] = json_encode(array_map('trim', explode('/', $data['locations'])));
         $data['visit_count'] = $tour->visit_count;
-        //Check For Type to set Cateogry_id to custom its group safart or sea shore
-//        $data['group'] == 'SeaShoreTours' || $data['group'] == 'SafariAdventures'
-//            ? $data['category_id'] = null : null;
 
         $tour->update($data);
         return response()->json(['message' => 'Tour updated successfully'], 200);
@@ -144,17 +132,22 @@ class ProductController extends Controller
         $tour = Tour::find($id);
         $tourImages = $data['tour_images'];
 
-        foreach ($tourImages as $key => $image) {
-            $image = $image->storeAs("Images/{$data['group']}/{$data['title']}", $data['title'] . "." . $key . "." . $image->getClientOriginalExtension());
-            $image = URL::to(Storage::url($image));
-            TourImage::create([
-                'tours_id' => $tour->id,
-                'image_url' => $image,
-            ]);
+        foreach ($tourImages  as $image)
+        {
+            $dir_path = "Images/{$data['group']}/{$data['title']}/"; // Adjusted path
+            try{
+                $imgName=$data['title'] . "." . hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
+                $image=$this->uploadImage($image,$dir_path,$imgName); //returns public url
+                TourImage::create([
+                    'tours_id' => $tour->id,
+                    'image_url' => $image,
+                ]);
+            }
+            catch (Exception $e) {
+                return response()->json(['message' => 'Error processing image: ' . $e->getMessage()], 500);
+            }
         }
         return response()->json(['message' => 'Images Added successfully'], 200);
-
-
     }
 
     public function deleteImage(string $id)
@@ -163,5 +156,21 @@ class ProductController extends Controller
         Storage::delete($tourImage->image_url);
         $tourImage->delete();
         return response()->json(['message' => 'Image deleted successfully'], 200);
+    }
+
+    private function uploadImage($image, $dir_path, $name_gen)
+    {
+        $manager = new ImageManager(new Driver());
+        try {
+            $img = $manager->read($image);
+            $img = $img->resize(716, 558.400);
+            if (!file_exists(storage_path('app/public/' . $dir_path))) {
+                mkdir(storage_path('app/public/' . $dir_path), 0755, true); // Create the directory if it doesn't exist
+            }
+            $img->toWebp()->save(storage_path('app/public/' . $dir_path . $name_gen));
+            return asset('storage/' . $dir_path . $name_gen);
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Error processing image: ' . $e->getMessage()], 500);
+        }
     }
 }

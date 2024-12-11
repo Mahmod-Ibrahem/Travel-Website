@@ -249,8 +249,7 @@
         Prev.addEventListener('click', () => ScrollHorizontal(-1))
         const dots = document.querySelectorAll('[id^="dot"]');
         ScrollHorizontal(slideIndex)
-        sm_prev.addEventListener('click', () => ScrollHorizontal(-1))
-        sm_next.addEventListener('click', () => ScrollHorizontal(1))
+
 
         function ScrollHorizontal(sign) {
             if (sign === 1 || sign === 0) {
