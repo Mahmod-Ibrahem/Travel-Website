@@ -19,12 +19,17 @@ class SeaShoreControllers extends Controller
     public function Tour($Tour)
     {
         $tour = Tour::where('slug', $Tour)->with('images')->first();
-        $tour->locations=implode('-',json_decode($tour->locations));
+        //related tour
+        $locations=json_decode($tour->locations);
+
+        $tour->locations = implode('-', json_decode($tour->locations));
+
+        $relatedTours=$this->getRelatedTours($locations,$tour->id);
+
 
         $this->storeIp(Request()->ip(),$tour->id);
 
 
-
-        return view('Tour', compact('tour'));
+        return view('Tour', compact('tour' , 'relatedTours'));
     }
 }

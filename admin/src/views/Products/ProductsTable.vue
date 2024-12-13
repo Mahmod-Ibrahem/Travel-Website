@@ -161,7 +161,7 @@
                  class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px md:flex "
                  aria-label="pagination">
                 <a v-for="(link, i) of products.links" :key="i" :disabled="!link.url" href="#"
-                   @click.prevent="    ForPage($event, link)" aria-current="page"
+                   @click.prevent="getForPage($event, link)" aria-current="page"
                    class="relative  items-center px-4 py-2 border text-sm font-medium whitespace-nowrap" :class="[
                         link.active
                             ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
@@ -201,6 +201,7 @@ const productloading = ref('true')
 
 
 function getProducts(url = null) {
+    productloading.value=true
     store.dispatch('getProducts', {
         url,
         search: search.value,

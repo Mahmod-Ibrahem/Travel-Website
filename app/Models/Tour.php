@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 class Tour extends Model
@@ -13,6 +14,8 @@ class Tour extends Model
 
     protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title', 'locations', 'places',
         'itenary_section', 'included', 'excluded', 'duration', 'price_per_person', 'price_two_five', 'price_six_twenty'];
+
+
 
     public function category()
     {
@@ -41,6 +44,13 @@ class Tour extends Model
     public function getRouteKeyName(): string //reslove this model by slug not id
     {
         return 'slug';
+    }
+
+    //local query scope for fetching related tours
+
+    public  function scopeRelatedTours(Builder $query,string $location)
+    {
+       return $query->whereJsonContains('locations', $location);
     }
 }
 

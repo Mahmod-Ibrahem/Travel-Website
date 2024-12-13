@@ -1,7 +1,7 @@
 <div id="title_{{$id}}" class="flex justify-between items-center cursor-pointer transition-all rounded-lg h-fit shadow-md border-l-[3px] border-l-[#ff6700] border-b
  mx-auto bg-white mt-3">
     <button
-        class="py-2 px-4 text-[14px] transition-all duration-300  text-gray-800 font-medium md:text-[16px]">
+        class="py-2 px-4 text-[14px] transition-all duration-300  text-gray-800 font-medium md:text-[16px] max-w-96">
         {{$text}}
     </button>
 

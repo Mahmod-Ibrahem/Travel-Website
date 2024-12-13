@@ -19,10 +19,23 @@ trait TourUtility
             ]);
             //Increase The Counter
 
-            $tour=Tour::find($tour_id);
-            $tour->visit_count=$tour->visit_count+1;
+            $tour = Tour::find($tour_id);
+            $tour->visit_count = $tour->visit_count + 1;
             $tour->save();
         }
+    }
+
+    public function getRelatedTours($locations, $id)
+    {
+        return Tour::where(function ($query) use ($locations) {
+            foreach ($locations as $location) {
+                $query->whereJsonContains('locations', $location);
+            }
+        })
+            ->where('id', '!=', $id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
     }
 
 

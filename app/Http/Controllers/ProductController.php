@@ -22,10 +22,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $SortField = request('sortField', 'updated_at');
-        $SortDirection = request('sortDirection', 'desc');
+        $SortField = request('sortField', 'created_at');
+        $SortDirection = request('sortDirection', 'asc');
         $search = request('search');
-        $perPage = request('perPage', 20);
+        $perPage = request('perPage', 10);
 
         // Eager load 'category' relationship
         $products = Tour::with('category')

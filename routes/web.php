@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PaypalController;
 use App\Http\Controllers\SeaShoreControllers;
 use App\Http\Controllers\TailorMadeController;
 use App\Http\Controllers\TransferController;
@@ -61,4 +62,12 @@ Route::get('/Blog/{Blog}/{attract}',[BlogController::class,'Attraction'])->name(
 /*Layover Tours*/
 Route::get('/LayoverTours',[\App\Http\Controllers\LayoverController::class,'index'])->name('LayoverTours.index');
 Route::get('/LayoverTours/{Tour:slug}',[\App\Http\Controllers\LayoverController::class,'Tour'])->name('LayoverTours.Tour');
+
+
+/*Paypal Controller */
+
+Route::get('/paypal/create', [PaypalController::class, 'createPayment'])->name('paypal.create');
+Route::get('/paypal/success', [PaypalController::class, 'successPayment'])->name('paypal.success');
+Route::get('/paypal/cancel', [PaypalController::class, 'cancelPayment'])->name('paypal.cancel');
+
 
