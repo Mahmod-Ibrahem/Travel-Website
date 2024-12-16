@@ -121,7 +121,7 @@
 
                 <div class="flex flex-col md:flex-row items-center justify-center space-x-2 mt-2">
                     <button type="submit"
-                            class="mb-3 px-20 md:text-2xl bg-[#ff6700] text-white
+                            class="mb-3 px-20 py-2 md:text-2xl bg-[#ff6700] text-white
                  hover:text-white font-semibold tracking-wide rounded-xl text-center cursor-pointer
                     transition-all p-1">Submit
                     </button>

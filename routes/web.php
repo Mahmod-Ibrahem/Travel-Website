@@ -63,6 +63,12 @@ Route::get('/Blog/{Blog}/{attract}',[BlogController::class,'Attraction'])->name(
 Route::get('/LayoverTours',[\App\Http\Controllers\LayoverController::class,'index'])->name('LayoverTours.index');
 Route::get('/LayoverTours/{Tour:slug}',[\App\Http\Controllers\LayoverController::class,'Tour'])->name('LayoverTours.Tour');
 
+/*TourCreation Controller*/
+
+Route::get('/TourCreation',[\App\Http\Controllers\TourCreationController::class,'index'])->name('TourCreation.index');
+Route::post('/TourCreation/submit',[\App\Http\Controllers\TourCreationController::class,'show'])->name('TourCreation.show');
+
+
 
 /*Paypal Controller */
 

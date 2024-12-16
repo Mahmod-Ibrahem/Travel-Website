@@ -173,4 +173,23 @@
         @apply text-gray-800/80 font-bold text-[0.85rem] p-1 md:text-lg md:p-0 ;
     }
 
+
+    .main_button {
+        @apply inline-block  text-white  tracking-widest  rounded-full
+        transition-all duration-500
+        border-2 hover:bg-[#ff6700] hover:text-white hover:border-[#ff6700]
+    }
+
+    .checkbox{
+        @apply w-5 h-5 cursor-pointer border border-gray-300  rounded-md  checked:bg-no-repeat checked:bg-center checked:bg-[#ff6700]
+    }
+
+    .checkbox_span{
+        @apply text-sm  text-gray-600 ml-2  font-medium
+    }
+
+    .checkbox_label{
+        @apply flex p-3 cursor-pointer  bg-white border-2 border-gray-300 hover:border-orange-500 transition-all rounded-md text-sm flex-shrink-0 w-[20rem] justify-between
+    }
+
 }

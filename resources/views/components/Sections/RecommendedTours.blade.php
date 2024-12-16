@@ -21,7 +21,7 @@
                     @endcomponent
                 @endif
             @empty
-                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining This Section  </p>
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl"> Soon </p>
             @endforelse
         </div>
     </div>

@@ -39,6 +39,8 @@
     @component('components.Sections.BestDestination')@endcomponent
     @component('components.Sections.Services')@endcomponent
     @component('components.Sections.TailorMade')@endcomponent
+    @component('CreateTourByLocation')@endcomponent
+
     @component('components.Sections.Testimonials')@endcomponent
     @if($recommendedTours ?? false)
     @component('components.Sections.RecommendedTours',['tours'=>$recommendedTours])@endcomponent

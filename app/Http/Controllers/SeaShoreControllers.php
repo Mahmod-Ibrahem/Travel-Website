@@ -24,7 +24,7 @@ class SeaShoreControllers extends Controller
 
         $tour->locations = implode('-', json_decode($tour->locations));
 
-        $relatedTours=$this->getRelatedTours($locations,$tour->id);
+        $relatedTours=$this->getRelatedTours($locations,$tour->id,$tour->group);
 
 
         $this->storeIp(Request()->ip(),$tour->id);

@@ -293,10 +293,10 @@
                 }
             }
             if (window.innerWidth >= 768) {
-                imagesContainer.scrollLeft = (imagesContainer.offsetWidth-3.2) * slideIndex;
+                imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
                 imageBar.scrollLeft = 130 * slideIndex
             } else {
-                imagesContainer.scrollLeft = (imagesContainer.offsetWidth-3.2) * slideIndex;
+                imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
                 imageBar.scrollLeft = 82 * slideIndex
             }
             addOpacityToDots()
@@ -319,9 +319,9 @@
                 addOpacityToDots()
                 dot.classList.remove('opacity-50') // aly at3ml 3aleh click bs hoa al op 1
                 if (window.innerWidth >= 768) {
-                    imagesContainer.scrollLeft = index * imagesContainer.offsetWidth
+                    imagesContainer.scrollLeft = index * imagesContainer.clientWidth // exclude border with
                 } else {
-                    imagesContainer.scrollLeft =  imagesContainer.offsetWidth * index;
+                    imagesContainer.scrollLeft =  imagesContainer.clientWidth * index;
                 }
                 slideIndex = index
             });

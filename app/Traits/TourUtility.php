@@ -25,13 +25,14 @@ trait TourUtility
         }
     }
 
-    public function getRelatedTours($locations, $id)
+    public function getRelatedTours($locations, $id,$group)
     {
         return Tour::where(function ($query) use ($locations) {
             foreach ($locations as $location) {
                 $query->whereJsonContains('locations', $location);
             }
         })
+            ->where('group', $group)
             ->where('id', '!=', $id)
             ->inRandomOrder()
             ->take(3)
