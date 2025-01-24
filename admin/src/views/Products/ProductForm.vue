@@ -1,14 +1,14 @@
 <template>
     <div class="flex items-center justify-between mb-3">
         <h1 v-if="!loading" class="text-3xl font-semibold">
-            {{ product.id ? `Update Tour: "${product.title}"` : 'Create New Tour' }}
+            {{ product.id ? `Update Tour: ${product.title}` : 'Create New Tour' }}
         </h1>
     </div>
     <div class="">
         <Spinner v-if="loading"
                  class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
 
-        <form @submit.prevent="onSubmit">
+        <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <!-- Tour Groups -->
                 <div class=" mb-2">
@@ -18,9 +18,6 @@
                     <option value="" disabled selected>Select Tour Group</option>
                     <option value="DayTours">Day Tours</option>
                     <option value="TourPackages">Tour Packages</option>
-                    <option value="SeaShoreTours">Sea Shore Tours</option>
-                    <option value="SafariAdventures">Safari Adventures</option>
-                    <option value="LayoverTours">Layover Tours</option>
                 </select>
                 <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0] ">{{
                         errors.group[0]
@@ -48,7 +45,6 @@
                         :class="{ 'border-red-500': errors.preference && errors.preference[0]}">
                     <option value="" selected>Select Tour Preference (Optional)</option>
                     <option value="recommended">Recommended</option>
-                    <option value="hidden_gems">Hidden Gems</option>
                     <option value="limited_offers">Limited offers</option>
                 </select>
 
@@ -79,9 +75,11 @@
                              label="Tour Excluded"/>
                 <CustomInput type="textarea" class="mb-2" :errors="errors.itenary_title" v-model="product.itenary_title"
                              label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
-                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section"
-                             :errors="errors.itenary_section"
-                             label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
+<!--                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section"-->
+<!--                             :errors="errors.itenary_section"-->
+<!--                             label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>-->
+                <Editor v-model="product.itenary_section" editorStyle="height: 320px" />
+
                 <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"
                              :errors="errors.places"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration" :errors="errors.duration"/>
@@ -89,7 +87,6 @@
                 <CustomInput class="mb-2" type="textarea" v-model="product.locations"
                              label="Tour Location (2fsl ben kol location we al tany b sla4 /"
                              :errors="errors.locations"/>
-
                 <!-- Tour Cover -->
                 <CustomInput type="file" class="mb-2" label="Product Image" :errors="errors.tour_cover"
                              @change="file => product.tour_cover = file"/>
@@ -151,7 +148,7 @@ import {ref, onMounted, computed} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import store from "../../store/index.js"
 import CustomInput from '../../components/Core/CustomInput.vue';
-
+import Editor from 'primevue/editor';
 const emit = defineEmits(['update:modelValue', 'close'])
 const route = useRoute()
 const router = useRouter()
@@ -211,49 +208,37 @@ function handleFiles(event) {
 }
 
 function onSubmit($event, close = false) {
-    loading.value = true
-    if (product.value.id) {
-        store.dispatch('updateProduct', product.value)
-            .then(response => {
-                loading.value = false;
-                if (response.status === 200) {
-                    store.commit('showToast', 'Product has  successfully updated')
-                    store.dispatch('getProducts')
-                    if (close) {
-                        router.push({name: 'app.products'})
-                    }
-                }
-            })
-    } else {
-        store.dispatch('createProduct', product.value)
-            .then(response => {
-                loading.value = false;
-                if (response.status === 201) {
-                    store.commit('showToast', 'Product has  successfully created')
-                    store.dispatch('getProducts')
-                    if (close) {
-                        router.push({name: 'app.products'})
-                    } else {
-                        router.push({name: 'app.products.edit', params: {id: response.data.id}})
-                    }
-                }
-            })
-            .catch(err => {
-                loading.value = false;
-                if (err.response.status === 422) {
-                    errors.value = err.response.data.errors
-                }
-                else if(err.response.status === 409) {
-                    store.commit('showErrorToast', err.response.data.message)
-                }
-            })
-    }
-}
+    loading.value = true;
+    const action = product.value.id ? 'updateProduct' : 'createProduct';
+    const successStatus = action === 'updateProduct' ? 200 : 201;
+    const successMessage = action === 'updateProduct' ? 'Product has successfully updated' : 'Product has successfully created';
 
+    store.dispatch(action, product.value)
+        .then(response => {
+            loading.value = false;
+            if (response.status === successStatus) {
+                store.commit('showToast', successMessage);
+                store.dispatch('getProducts');
+                if (close) {
+                    router.push({ name: 'app.products' });
+                } else if (action === 'createProduct') {
+                    router.push({ name: 'app.products.edit', params: { id: response.data.id } });
+                }
+            }
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors;
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message);
+            }
+        });
+}
 onMounted(() => {
     if (route.params.id) {
         loading.value = true
-        store.dispatch('getProduct', route.params.id)
+        store.dispatch('getProduct', {productId:route.params.id,locale:'en'})
             .then((response) => {
                 loading.value = false;
                 product.value = response.data
@@ -261,3 +246,8 @@ onMounted(() => {
     }
 })
 </script>
+<style scoped>
+::v-deep(.ql-editor a) {
+    text-decoration: none !important;
+}
+</style>

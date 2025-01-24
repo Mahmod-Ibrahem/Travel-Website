@@ -23,6 +23,8 @@ export default {
             },
 
         colors:{
+            'main':'#3b71fe',
+            'link-color':'#1A2B48',
             Primary:'#443c3e'
         },
         keyframes:{

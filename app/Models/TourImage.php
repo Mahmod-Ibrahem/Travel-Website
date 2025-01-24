@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TourImage extends Model
 {
 
-    protected  $fillable = ['image_url','tours_id'];
     use HasFactory;
+    protected  $fillable = ['path','tours_id'];
 }

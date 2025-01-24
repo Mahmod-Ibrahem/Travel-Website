@@ -2,9 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 @layer components {
-    .nav_anch_p {
-        @apply text-white  hover:text-orange-500 tracking-wide text-base
+    .nav_anch_div {
+        @apply transition-all duration-200 hover:scale-110
     }
+
+    .nav_anch_p {
+        @apply text-[#1A2B48]  hover:text-main tracking-wide text-[15px] uppercase
+    }
+
+    .main_button {
+        @apply font-medium rounded-full transition-all duration-500  text-white  cursor-pointer
+    }
+
+    .CategoryCard {
+        @apply rounded-lg relative  cursor-pointer max-w-[410px] max-h-[357px] md:max-w-[39rem] md:max-h-[26rem]
+    }
+
 
     /* Hamburger Button*/
     .hamburger {
@@ -23,7 +36,7 @@
         height: 2px;
         top: 0;
         left: 0;
-        background: #fff;
+        background: #000000;
         transform: rotate(0);
         transition: all 0.5s;
     }
@@ -52,29 +65,28 @@
         transform: rotate(-45deg) translateY(6px) translateX(-6px);
     }
 
-        .parent_container {
-            @apply flex flex-col items-center justify-center
-        }
-
-    .parent_header{
-        @apply text-center text-Primary text-[1.4rem] font-bold md:text-4xl  my-7 select-none
+    .parent_container {
+        @apply flex flex-col items-center justify-center   mt-6 md:mt-12 gap-6
     }
-    .booking_p{
-        @apply text-base  font-medium text-gray-800 border-b-2 pb-2  border-Primary/20
+
+    .parent_header {
+        @apply text-center text-main  font-medium text-[1.4rem] md:text-[35px]   select-none tracking-wide
+    }
+    .backgroundImageHeader{
+        @apply text-[20px] font-bold md:text-[40px] select-none animate-ToDown  text-white tracking-wide md:tracking-wide text-center
+    }
+    .booking_p {
+        @apply text-base  font-medium text-gray-800  pb-2
     }
 
     .child_container {
-        @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap
+        @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap w-full h-full
     }
 
     .homeSecHeader {
         @apply text-[1.75rem] font-bold text-center my-2 md:text-3xl text-gray-950  md:my-5 select-none
     }
 
-    .CategoryCard {
-        @apply flex flex-col justify-center items-center space-y-2 rounded-xl  hover:shadow-lg hover:shadow-red-100
-        cursor-pointer md:transition-all md:duration-[0.3s] md:hover:-translate-y-2
-    }
 
     .CategoryButton {
         @apply px-8 py-2 text-white bg-red-600 hover:bg-red-700 font-bold rounded-lg text-base md:text-lg  md:px-16 md:py-3
@@ -82,18 +94,22 @@
     }
 
     .ServiceCard {
-        @apply flex  md:flex-row gap-2
+        @apply flex flex-col md:flex-row items-center gap-2 py-[20px] md:border-r md:pr-6 ;
     }
-
+    .serviceTextContainer{
+        @apply flex-col justify-center items-center text-center mx-2 md:mx-0
+    }
     .Service_icon_header {
-        @apply text-[23px] font-medium text-Primary select-none
-    }
-    .Service_icon_paragraph{
-        @apply text-sm font-medium text-Primary/85 select-none md:max-w-[250px]
+        @apply text-[24px] font-medium text-white select-none whitespace-nowrap;
     }
 
 
-      .TourCard {
+    .Service_icon_paragraph {
+        @apply text-[13px] font-medium text-white select-none md:max-w-[250px]
+    }
+
+
+    .TourCard {
         @apply flex flex-col w-[22rem] md:w-[400px]  my-4  md:mb-2 md:my-0 md:mr-3 overflow-hidden rounded-2xl   bg-white shadow-sm
         transition-all duration-[0.2s]
     }
@@ -103,60 +119,78 @@
     }
 
     .tour_details_p {
-        @apply  text-xs  font-semibold md:text-[0.9rem] leading-6 tracking-wide text-Primary;
+        @apply text-xs  font-semibold md:text-[0.9rem] leading-6 tracking-wide text-Primary;
     }
-    .Category_titleContainer{
+
+    .Category_titleContainer {
         @apply h-fit overflow-hidden  box-border text-center md:max-w-[75%] bg-black/20 rounded-lg p-3.5 md:p-6
     }
-    .Category_title{
+
+    .Category_title {
         @apply text-[20px] font-extrabold md:text-[40px] select-none text-white sm:leading-7 md:leading-[3rem]
     }
+
     .footer_main {
-        @apply text-lg font-medium mb-7 text-white
+        @apply text-lg font-medium mb-7
     }
-    .footer_anchor{
-        @apply border-b-2 border-[#ff6000] mb-2 md:mb-3 pb-1 hover:text-[#ff6700] transition duration-200 hover:translate-x-1 text-white
+
+    .footer_anchor {
+        @apply border-b mb-2 md:mb-3 pb-1 hover:text-main transition duration-200 hover:translate-x-1 text-link-color
     }
-    .tourDetail_container{
+
+    .faqQues
+    {
+        @apply transition duration-500  group-hover:text-main group-focus:text-main
+    }
+
+    .faqContent{
+        @apply py-2 text-justify text-gray-400
+    }
+
+
+    .tourDetail_container {
         @apply transition-all duration-300 bg-white px-4 py-2 font-medium w-full
-        rounded-lg  shadow-md border-l-[3px] border-l-[#ff6700]
+        rounded-lg  shadow-md border-l-[3px] border-l-main
     }
-    .image-gallery{
+
+    .image-gallery {
         @apply md:h-28 md:w-[8rem] w-[5rem] h-16   hover:opacity-100 transition-opacity  flex flex-shrink-0 object-cover bg-center bg-cover
     }
 
-    .text{
+    .text {
         @apply hidden bottom-[128px] text-center w-full h-8 bg-slate-200/50 select-none;
     }
 
-    .dot{
+    .dot {
         @apply cursor-pointer w-24 h-4 my-1 bg-black/50 rounded-full inline-block;
     }
-    .previous{
+
+    .previous {
         @apply absolute top-[35%] ml-3 select-none cursor-pointer
         text-2xl text-white text-center  hover:bg-black/50 transition duration-200
     }
-    .next
-    {
+
+    .next {
         @apply absolute top-[35%] right-0 md:right-0  mr-3 select-none cursor-pointer
         text-2xl text-white  transition duration-200 hover:bg-black/50
     }
 
-    .price_label{
+    .price_label {
         @apply text-lg font-semibold
     }
-    .input_style{
-        @apply h-12 w-80
-        rounded-lg text-black font-medium bg-white bg-transparent placeholder-transparent border-2 focus:border-[#ff6000] px-2
-         focus:outline-none shadow-md;
-      }
 
-      .input_label_style{
+    .input_style {
+        @apply h-12 w-80
+        rounded-lg text-black font-medium bg-white bg-transparent placeholder-transparent border-2 px-2 focus:border-main
+        focus:outline-none shadow-md;
+    }
+
+    .input_label_style {
         @apply absolute cursor-text left-0 -top-4 text-sm font-medium
-         bg-inherit mx-1 px-1 peer-placeholder-shown:text-sm bg-white
-         peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-2
-         peer-focus:-top-4 peer-focus:text-black peer-focus:text-sm transition-all;
-      }
+        bg-inherit mx-1 px-1 peer-placeholder-shown:text-sm bg-white
+        peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-2
+        peer-focus:-top-4 peer-focus:text-black peer-focus:text-sm transition-all;
+    }
 
     .Next_Previous {
         @apply sm:hidden md:block md:absolute top-[50%]  select-none cursor-pointer hover:text-red-500;
@@ -166,29 +200,24 @@
         @apply hidden overflow-x-auto;
     }
 
-    .destination_p{
+    .destination_p {
         @apply text-gray-800/75 text-xs font-medium p-1 md:p-0   md:text-base leading-6 md:mt-2 md:mb-2;
     }
-    .destination_header{
+
+    .destination_header {
         @apply text-gray-800/80 font-bold text-[0.85rem] p-1 md:text-lg md:p-0 ;
     }
 
 
-    .main_button {
-        @apply inline-block  text-white  tracking-widest  rounded-full
-        transition-all duration-500
-        border-2 hover:bg-[#ff6700] hover:text-white hover:border-[#ff6700]
-    }
-
-    .checkbox{
+    .checkbox {
         @apply w-5 h-5 cursor-pointer border border-gray-300  rounded-md  checked:bg-no-repeat checked:bg-center checked:bg-[#ff6700]
     }
 
-    .checkbox_span{
+    .checkbox_span {
         @apply text-sm  text-gray-600 ml-2  font-medium
     }
 
-    .checkbox_label{
+    .checkbox_label {
         @apply flex p-3 cursor-pointer  bg-white border-2 border-gray-300 hover:border-orange-500 transition-all rounded-md text-sm flex-shrink-0 w-[20rem] justify-between
     }
 

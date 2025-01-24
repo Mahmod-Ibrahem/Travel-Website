@@ -1,13 +1,6 @@
 <template>
     <div class="managmenet_container">
         <div class="flex flex-col  border-b-2 p-2">
-            <div class="flex  justify-between items-center">
-                <input v-model="search" @change="getCategories(null)" class="relative block max-w-[5rem] md:max-w-fit  px-3 py-2 border border-gray-300 placeholder-gray-500
-                text-gray-900 rounded-md
-                     focus:outline-none
-                     focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Search">
-            </div>
-            <span class="mt-4">Found {{ categories.total }} Categories</span>
         </div>
         <table class="table_tag ">
             <thead>
@@ -107,24 +100,6 @@
             </tr>
             </tbody>
         </table>
-        <div v-if="!categories.loading" class="justify-between items-center mt-5 md:flex p-3">
-            <span>Showing From {{ categories.from }} to {{ categories.to }}</span>
-            <nav v-if="categories.total > categories.limit"
-                 class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px md:flex "
-                 aria-label="pagination">
-                <a v-for="(link, i) of categories.links" :key="i" :disabled="!link.url" href="#"
-                   @click.prevent="    ForPage($event, link)" aria-current="page"
-                   class="relative  items-center px-4 py-2 border text-sm font-medium whitespace-nowrap" :class="[
-                        link.active
-                            ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
-                            : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
-                        i === 0 ? 'rounded-l-md' : '',
-                        i === categories.links.length - 1 ? 'rounded-r-md' : '',
-                        !link.url ? ' bg-gray-100 text-gray-700' : ''
-                    ]" v-html="link.label">
-                </a>
-            </nav>
-        </div>
     </div>
 </template>
 
@@ -153,10 +128,7 @@ const categoryloading = ref('true')
 
 function getCategories(url = null) {
     store.dispatch('getCategories', {
-        url,
-        search: search.value,
-        sortField: sortField.value,
-        sortDirection: sortDirection.value
+        locale:'en'
     }).then(() => {
         categoryloading.value = false
     })

@@ -1,4 +1,5 @@
 import axiosClient from "../axios";
+import {setProducts} from "./mutations.js";
 
 export function getCurrentUser({commit}, data) {
     return axiosClient.get('/user', data)
@@ -25,13 +26,13 @@ export function logout({commit}) {
 
 export function getProducts(
     {commit},
-    {url = null, search = null, sortField, sortDirection,perPage} = {}
+    {url = null, search = null, sortField, sortDirection,perPage,locale} = {}
 ) {
     commit("setProducts", [true]);
     url = url || "/products";
     return axiosClient
         .get(url, {
-            params: {search, sortField, sortDirection,perPage},
+            params: {search, sortField, sortDirection,perPage,locale},
         })
         .then((res) => {
             commit("setProducts", [false, res.data]);
@@ -70,7 +71,6 @@ export function createProduct({commit}, product) {
 
 export function updateProduct({commit}, product) {
     const id = product.id;
-    console.log(product)
     if (product.tour_cover instanceof File) {
         const form = new FormData();
         form.append('group', product.group);
@@ -102,8 +102,8 @@ export function deleteProduct({commit}, id) {
     return axiosClient.delete(`/products/${id}`)
 }
 
-export function getProduct({}, product) {
-    return axiosClient.get(`/products/${product}`)
+export function getProduct({}, {productId,locale}={}) {
+    return axiosClient.get(`/products/${productId}`,{params:{locale}})
 }
 
 
@@ -126,14 +126,15 @@ export function addProductImages({commit}, images) {
 }
 
 
-export function getCategories({commit}) {
-    return axiosClient.get('/categories').then(({data}) => {
+export function getCategories({commit},{locale}={}) {
+    return axiosClient.get('/categories',{params: {locale}}).then(({data}) => {
         commit('setCategories', data)
     })
 }
 
-export function getCategory({commit}, id) {
-    return axiosClient.get(`/categories/${id}`)
+export function getCategory({commit}, {id,locale}={}) {
+    // debugger
+    return axiosClient.get(`/categories/${id}`,{params:{locale}})
 }
 
 export function createCategory({commit}, category) {
@@ -145,9 +146,11 @@ export function createCategory({commit}, category) {
         form.append('description', category.description);
         form.append('name', category.name);
         form.append('image', category.image);
+        form.append('title_meta', category.title_meta);
+        form.append('description_meta', category.description_meta);
+        form.append('locale', category.locale);
         category = form;
     }
-    console.log(category)
     return axiosClient.post('/categories', category)
 }
 
@@ -156,9 +159,16 @@ export function updateCategory({commit}, category) {
     if (category.image instanceof File) {
         const form = new FormData();
         form.append("id", category.id);
-        form.append("name", category.name);
-        form.append("type", category.type);
-        form.append("image", category.image);
+        form.append("categoryTranslationId", category.categoryTranslationId);
+        form.append('type', category.type);
+        form.append('locale',category.locale);
+        form.append('header', category.header);
+        form.append('bg_header', category.bg_header);
+        form.append('description', category.description);
+        form.append('name', category.name);
+        form.append('image', category.image);
+        form.append('title_meta', category.title_meta);
+        form.append('description_meta', category.description_meta);
         form.append("_method", "PUT");//to make laravel understand that it update not post
         category = form;
     } else {
@@ -167,9 +177,90 @@ export function updateCategory({commit}, category) {
     return axiosClient.post(`/categories/${id}`, category);
 }
 
-export function deleteCategory({commit}, id) {
-    return axiosClient.delete(`/categories/${id}`)
+export function getReviews(
+    {commit},
+    {url = null, search = null, sortField, sortDirection,perPage} = {}
+) {
+    // commit("setReviews", [true]);
+    url = url || "/reviews";
+    return axiosClient
+        .get(url, {
+            params: {search, sortField, sortDirection,perPage},
+        })
+        .then((res) => {
+            commit("setReviews", res.data);
+        })
+        .catch(() => {
+        });
+
+}export function getReview({commit}, id) {
+    return axiosClient.get(`/review/${id}`)
 }
+
+export function createReview({commit}, review) {
+    return axiosClient.post('/review', review)
+}
+
+export function updateReview({commit}, review) {
+    const id = review.id;
+    return axiosClient.put(`/review/${id}`, review);
+}
+
+export function deleteReview({commit}, id) {
+    return axiosClient.delete(`/review/${id}`)
+}
+
+export function getNonTranslatedTours({commit}) {
+    return axiosClient.get('/getNonTranslatedTours').then(({data}) => {
+        return data
+    })
+}
+
+export function TranslateNewTour({commit}, product) {
+    return axiosClient.post('/translateNewTour', product)
+}
+
+export function updateTourTranslation({commit}, product) {
+    product['locale']='sp'
+    return axiosClient.put(`/updateTranslationOfTour/${product.tourTranslationId}`, product)
+}
+
+export function getNonTranslatedCategories({commit}) {
+    return axiosClient.get('/getNonTranslatedCategories').then(({data}) => {
+        return data
+    })
+}
+
+export function createCategoryTranslation({commit}, category) {
+    return axiosClient.post('/translateNewCategory', category)
+}
+
+export function updateCategoryTranslation({commit}, category) {
+    return axiosClient.put(`/updateTranslationOfCategory/${category.categoryTranslationId}`, category)
+}
+
+export function getFaqs({commit}) {
+    return axiosClient.get('/faqs').then(({data}) => {
+        commit('setFaqs', data)
+    })
+}
+export function getFaq({commit}, id) {
+    return axiosClient.get(`/faqs/${id}`)
+}
+
+export function createFaq({commit}, faq) {
+    return axiosClient.post('/faqs', faq)
+}
+
+export function updateFaq({commit}, faq) {
+    const id = faq.id;
+    return axiosClient.put(`/faqs/${id}`, faq);
+}
+
+export function deleteFaq({commit}, id) {
+    return axiosClient.delete(`/faqs/${id}`)
+}
+
 
 
 

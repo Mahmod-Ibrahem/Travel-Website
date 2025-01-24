@@ -1,9 +1,9 @@
-@extends('layouts')
+@extends('layout.layouts')
 @section('content')
     <div class="flex items-center justify-center h-screen">
         <div class=" p-6  md:mx-auto">
             <div
-                class="w-12 h-12 rounded-full bg-green-500 p-2 flex items-center justify-center mx-auto mb-3.5">
+                    class="w-12 h-12 rounded-full bg-green-500 p-2 flex items-center justify-center mx-auto mb-3.5">
                 <svg aria-hidden="true" class="w-8 h-8 text-white " fill="currentColor"
                      viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
@@ -22,10 +22,10 @@
     </div>
 @endsection
 <script>
- setTimeout(
-     () => {
-         window.location.href = "{{route($route)}}";
-     },
-     5000
- )
+    setTimeout(
+        () => {
+            window.location.href = "{{route($route)}}";
+        },
+        5000
+    )
 </script>

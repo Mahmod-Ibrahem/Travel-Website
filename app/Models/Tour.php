@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 
 class Tour extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'title', 'description', 'tour_cover', 'itenary_title', 'locations', 'places',
-        'itenary_section', 'included', 'excluded', 'duration', 'price_per_person', 'price_two_five', 'price_six_twenty'];
-
+    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty'];
 
 
+    public function tourTranslations()
+    {
+     return  $this->hasMany(TourTranslation::class, 'tours_id', 'id');
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -27,30 +28,17 @@ class Tour extends Model
         return $this->hasMany(TourImage::class, 'tours_id', 'id');
     }
 
-//    public function url()
-//    {
-//        return Storage::url($this->path);// da aly b generate storage/public url
-//    }
-
-    public function sluggable(): array
+    public function reviews()
     {
-        return [
-            'slug' => [
-                'source' => 'title',
-                'onUpdate' => true, //To Change Slug WhenEver Title Field Is Changed
-            ]
-        ];
-    }
-    public function getRouteKeyName(): string //reslove this model by slug not id
-    {
-        return 'slug';
+        return $this->hasMany(Review::class, 'tour_id', 'id');
     }
 
-    //local query scope for fetching related tours
-
-    public  function scopeRelatedTours(Builder $query,string $location)
+    public function scopeWithTranslations(Builder $query): Builder
     {
-       return $query->whereJsonContains('locations', $location);
+        return $query->with(['category.categoryTranslations', 'tourTranslations'=>function ($query) {
+            $query->where('locale','=',app()->getLocale());
+        }]);
     }
+
 }
 

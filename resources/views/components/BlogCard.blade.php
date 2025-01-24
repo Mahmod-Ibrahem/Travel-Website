@@ -7,7 +7,7 @@
     </div>
     <div class="p-4  md:pl-4 h-[4.5rem]  max-w-[18rem]">
         <a href="{{route($route,['Blog'=>$paramter,'attract'=>$About])}}">
-            <p class="text-[1.05rem] font-bold tracking-wide text-[#ff6700] ">{{$title}}</p>
+            <p class="text-[1.05rem] font-bold tracking-wide text-[#1A2B48] ">{{$title}}</p>
         </a>
     </div>
 </div>

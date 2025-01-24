@@ -15,7 +15,17 @@ const store = {
     },
     categories: {
         data: null,
-        loading: true
+        loading: true,
+        total: null
+    },
+    reviews:{
+        data:null,
+        loading:true,
+        from: null,
+        to: null,
+        total: null,
+        limit:10,
+        link:[]
     },
     toast: {
         show: false,
@@ -27,6 +37,10 @@ const store = {
         message: "",
         delay: 5000,
     },
+    faqs: {
+        data: null,
+        loading: true,
+    }
 };
 
 export default store;

@@ -39,10 +39,8 @@ class BookingController extends Controller
     public function confirm(Tour $tour ,Request $request)
     {
         $data=$request->input('userData');
-//        $categorySlug=$tour->category->slug;
         $tourType=$tour->group;
-//        $tourSlug=$tour->slug;
-        $tour=$tour->toArray();
+        $tour=$tour->load(['tourTranslations','category.categoryTranslations'])->toArray();
         Mail::to('mahmodaborakika2@gmail.com')->send(new \App\Mail\TourBookingMail($data,$tour));
         Mail::to($data['email'])->send(new \App\Mail\InformUserForBookingMail());
 

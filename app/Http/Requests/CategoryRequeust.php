@@ -21,13 +21,23 @@ class CategoryRequeust extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'type' => 'bail|required',
             'header' => 'bail|required',
             'bg_header' => 'bail|required',
             'description' => 'bail|required',
             'name' => 'bail|required',
-            'image' => 'bail|required|image|mimes:jpeg,png,jpg,webp',
+            'title_meta'=> 'bail|required',
+            'description_meta' => 'bail|required',
+            'locale' => 'bail|required|in:en,sp',
         ];
+
+        if($this->isMethod('POST')) {
+            $rules['image'] = 'bail|required|image|mimes:jpeg,png,jpg,webp';
+        }
+        else{
+            $rules['image'] = 'bail|nullable|image|mimes:jpeg,png,jpg,webp';
+        }
+        return $rules;
     }
 }

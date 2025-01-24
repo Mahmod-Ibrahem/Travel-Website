@@ -1,26 +1,13 @@
-@extends('layouts')
+@extends('layout.layouts')
 @section('content')
-    <div class="h-[20rem] md:h-screen w-full ">
-        <div
-            class="md:bg-fixed h-full w-full object-cover bg-top bg-cover"
-            style="background-image: url('{{ asset('Images/TourPackagesBg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-            @component('components.navbar')
-            @endcomponent
-
-            <div
-                class="flex flex-col items-center justify-center md:items-center   h-full bg-[#33333382]
-                  ">
-
-                <div class="Category_titleContainer">
-                    <h1 id="home_title"
-                        class="Category_title">
-                            Exploring The Best Packages Tours With Endless Experiences
-                    </h1>
-                </div>
-            </div>
+    <section class="relative md:bg-fixed md:h-screen h-[50vh]  w-full"
+             style="background-image: url('{{ asset('Images/TourPackagesBg.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;"
+    >
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center px-2">
+            <h1 class="backgroundImageHeader">
+                {{__("Discover Top Tour Packages with Infinite Adventures")}}
+            </h1>
         </div>
-    </div>
+    </section>
     @component('components.Sections.TourPackagesCategory',['categories'=>$category])@endcomponent
 @endsection
-
-

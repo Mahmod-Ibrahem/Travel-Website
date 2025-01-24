@@ -1,77 +1,71 @@
-<article
-    class="TourCard relative select-none">
-    <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}" class="h-72 overflow-hidden cursor-pointer">
-        <img src="{{asset($image)}}"
-             class="h-full w-full object-cover hover:scale-110 transition-all duration-300" alt=""/>
-    </a>
-    <div class="flex flex-col p-4 md:px-3 md:py-4 gap-2">
-        @if($offer ?? false)
-            <a>
+<div class="flex flex-col items-center w-[386px] mx-2 bg-white rounded-3xl overflow-hidden border relative">
+    <div class="p-4 pb-0 w-full h-full">
+        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['category_translations'][0]['slug'],
+        'Tour' => $tour['tour_translations'][0]['slug']]) }}">
+            <div class="w-full h-60 overflow-hidden rounded-3xl hover:cursor-pointer">
+                <img src="{{$image}}"
+                     class="w-full h-full object-cover  hover:scale-110 transition-all duration-[0.5s]"
+                     alt="Tour Card"/>
+            </div>
+        </a>
+    </div>
+    <div class="flex flex-col items-center p-4 w-full h-full ">
+        <a class="mt-[6px] mb-[15px] text-[18px] font-bold text-[#1A2B48] hover:cursor-pointer hover:text-main transition-all duration-1000 w-full line-clamp-2 min-h-[50px]">
+            {{$tour['tour_translations'][0]['title']}}
+        </a>
 
-                <div
-                    class="absolute left-[-40px] top-[30px] bg-[#a30e0e] rotate-[310deg] h-[30px] w-[150px] text-[12px] text-center pt-[6px] font-medium text-white m-0">
-                    {{$offer}}
-                </div>
-            </a>
-        @endif
-            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}"
-               class="text-[#ff6700] md:text-[19px] font-semibold whitespace-normal line-clamp-2 min-h-[50px] hover:text-red-700 transition-all">
-                {{$tour['title']}}
-            </a>
-
-        <p class="text-[14px] font-medium text-Primary w-full whitespace-normal line-clamp-5 leading-6 min-h-[120px]  ">
-            {{$tour['description']}}
+        <p class="text-[14px] text-[#768092] border-b border-black/10 w-full line-clamp-3 leading-6 min-h-[80px] whitespace-normal">
+            {{$tour['tour_translations'][0]['description']}}
         </p>
-        <div class="flex md:flex-row items-center  justify-between">
-            <div class="flex md:flex-row  items-center gap-1  pb-2">
-                <svg height="26px" width="26px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path
-                            d="M12 17V12L13.5 9.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                            stroke="#ff6700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </g>
-                </svg>
-                <p class="font-semibold text-sm">{{$tour['duration']}}</p>
-            </div>
 
-            <div class="flex md:flex-row justify-start items-center gap-1 mb-1">
-                <svg height="24px" width="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 235.517 235.517" fill="#ff6700" stroke="#ff6700">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <g>
-                            <path style="fill:#ff6700;"
-                                  d="M118.1,235.517c7.898,0,14.31-6.032,14.31-13.483c0-7.441,0-13.473,0-13.473 c39.069-3.579,64.932-24.215,64.932-57.785v-0.549c0-34.119-22.012-49.8-65.758-59.977V58.334c6.298,1.539,12.82,3.72,19.194,6.549 c10.258,4.547,22.724,1.697,28.952-8.485c6.233-10.176,2.866-24.47-8.681-29.654c-11.498-5.156-24.117-8.708-38.095-10.236V8.251 c0-4.552-6.402-8.251-14.305-8.251c-7.903,0-14.31,3.514-14.31,7.832c0,4.335,0,7.843,0,7.843 c-42.104,3.03-65.764,25.591-65.764,58.057v0.555c0,34.114,22.561,49.256,66.862,59.427v33.021 c-10.628-1.713-21.033-5.243-31.623-10.65c-11.281-5.755-25.101-3.72-31.938,6.385c-6.842,10.1-4.079,24.449,7.294,30.029 c16.709,8.208,35.593,13.57,54.614,15.518v13.755C103.79,229.36,110.197,235.517,118.1,235.517z M131.301,138.12 c14.316,4.123,18.438,8.257,18.438,15.681v0.555c0,7.979-5.776,12.651-18.438,14.033V138.12z M86.999,70.153v-0.549 c0-7.152,5.232-12.657,18.71-13.755v29.719C90.856,81.439,86.999,77.305,86.999,70.153z"></path>
-                        </g>
-                    </g>
+        <div class="py-[20px] flex justify-between w-full h-full border-b border-black/10 pb-4">
+            <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path fill="#3b71fe"
+                          d="M7.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM7.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM7.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1z"></path>
+                    <path fill="#3b71fe" fill-rule="evenodd"
+                          d="M18.75 3h2.75c1.105 0 2 .895 2 2v17c0 1.105-.895 2-2 2h-19c-1.105 0-2-.895-2-2V5c0-1.105.895-2 2-2H4c.276 0 .5.224.5.5v2.25c0 .414.336.75.75.75S6 6.164 6 5.75V1c0-.552.448-1 1-1s1 .448 1 1v1.751c0 .138.112.249.25.249h6.25c.276 0 .5.224.5.5v2.25c0 .414.336.75.75.75s.75-.336.75-.75V1c0-.552.448-1 1-1s1 .448 1 1v1.75c0 .138.112.25.25.25zm2.75 19c.276 0 .5-.224.5-.5v-12c0-.276-.224-.5-.5-.5h-18c-.276 0-.5.224-.5.5v12c0 .276.224.5.5.5h18z"
+                          clip-rule="evenodd"></path>
                 </svg>
-                <p class="font-medium text-sm">{{$tour['price_per_person']}}/Pax</p>
+                <div class="flex flex-col">
+                    <span class="text-Primary text-[14px] font-medium   ">Duration</span>
+                    <span
+                        class="text-[#889c98] text-[14px] font-[400]">{{$tour['tour_translations'][0]['duration']}}</span>
+                </div>
             </div>
-
-            <div class="flex md:flex-row justify-start items-center gap-1 mb-1">
-                <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="flex gap-2">
+                <svg width="25px" height="25px" viewBox="0 0 24 24" fill="#3b71fe" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                     <g id="SVGRepo_iconCarrier">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                               d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
-                              fill="#ff6700"></path>
+                              fill="#3b71fe"></path>
                         <path fill-rule="evenodd" clip-rule="evenodd"
                               d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
-                              fill="#ff6700"></path>
+                              fill="#3b71fe"></path>
                     </g>
                 </svg>
-                <p class="font-medium text-sm">{{$tour['visit_count']}}</p>
+                <div class="flex flex-col">
+                    <span class="text-Primary text-[14px] font-medium   ">Views</span>
+                    <span class="text-[#889c98] text-[14px] font-[400]">{{$tour['visit_count']}}</span>
+                </div>
             </div>
         </div>
-        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}" class="flex items-center justify-center">
-            <button class="font-medium text-Primary text-[16px] tracking-widest rounded-full transition-all duration-500
-                          bg-[#f9f9f9]  border-2 border-[#ff6700] shadow-md hover:bg-orange-600 hover:text-white px-14 py-2">
-                Explore
-            </button>
-        </a>
+        <div class="flex justify-between items-center w-full h-full  p-4">
+            <span class="text-[#1A2B48] text-[24px] font-medium">${{$tour['price_per_person']}}</span>
+            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['category_translations'][0]['slug'],'Tour' => $tour['tour_translations'][0]['slug']]) }}"
+               class="main_button px-6 py-3 uppercase bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all
+               duration-1000
+             ">Explore</a>
+        </div>
     </div>
-</article>
+    @if($tour['preference'])
+        <a>
+            <div
+                class="absolute left-0 top-[30px] bg-main h-[30px] w-[100px] text-[12px] text-center pt-[6px] font-medium text-white m-0">
+                Recommended
+            </div>
+        </a>
+    @endif
+</div>

@@ -14,7 +14,7 @@ class BlogController extends Controller
 
     public function show(string $Blog)
     {
-        $city=explode('-',$Blog);
+        $city=explode(' ',$Blog);
         $city=$city[0];
         return view('Blog.show',['about'=>$Blog,'city'=>$city]);
     }

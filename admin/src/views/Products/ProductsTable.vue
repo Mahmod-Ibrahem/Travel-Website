@@ -70,7 +70,7 @@
             </thead>
             <tbody v-if="productloading">
             <tr>
-                <td colspan="5">
+                <td colspan="8">
                     <Spinner class="my-4"></Spinner>
 
                 </td>
@@ -82,13 +82,13 @@
                 <td class="border-b p-2 ">{{ product.group }}</td>
 
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.category?.name ||  product.group }}
+                    {{ product.category?.category_translations[0]?.name ||  product.group }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
                     {{ product.preference ?? 'Not Exist' }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.title }}
+                    {{ product.tour_translations[0].title }}
                 </td>
                 <td class="border-b p-2">
                     <img class="w-16 h-16 object-cover" :src="product.tour_cover" :alt="product.title">
@@ -96,7 +96,7 @@
                 <td class="border-b p-2  ">
                     ({{ product.price_per_person }},{{ product.price_two_five }},{{ product.price_six_twenty }})$
                 </td>                <td class="border-b p-2  ">
-                {{product.duration }}
+                {{product.tour_translations[0].duration }}
                 </td>
                 <td class="border-b p-2 ">
                     <Menu as="div" class="relative inline-block text-left">
@@ -207,7 +207,8 @@ function getProducts(url = null) {
         search: search.value,
         perPage: perPage.value,
         sortField: sortField.value,
-        sortDirection: sortDirection.value
+        sortDirection: sortDirection.value,
+        locale: 'en'
     }).then(() => {
         productloading.value = false
     })

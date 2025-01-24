@@ -26,38 +26,8 @@ export function setUser(state, user) {
     }
     state.products.loading = loading;
   }
-  export function setOrders(state, [loading, data = null]) {
 
-    if (data) {
-      state.orders = {
-        ...state.orders,
-        data: data.data,
-        links: data.meta?.links,
-        page: data.meta.current_page,
-        limit: data.meta.per_page,
-        from: data.meta.from,
-        to: data.meta.to,
-        total: data.meta.total,
-      }
-    }
-    state.orders.loading = loading;
-  }
-  export function setUsers(state, [loading, data = null]) {
 
-    if (data) {
-      state.users = {
-        ...state.users,
-        data: data.data,
-        links: data.meta?.links,
-        page: data.meta.current_page,
-        limit: data.meta.per_page,
-        from: data.meta.from,
-        to: data.meta.to,
-        total: data.meta.total,
-      }
-    }
-    state.products.loading = loading;
-  }
   export function showToast(state, message) {
     state.toast.show = true;
     state.toast.message = message;
@@ -81,5 +51,21 @@ export function setCategories(state,data)
 {
     state.categories.data=data.data
     state.categories.loading=false
+}
+
+export function setReviews(state,data)
+{
+    state.reviews.data=data.data
+    state.reviews.loading=false
+    state.reviews.from=data.meta.from
+    state.reviews.to=data.meta.to
+    state.reviews.total=data.meta.total
+    state.reviews.links=data.meta.links
+}
+
+export function setFaqs(state,data)
+{
+    state.faqs.data=data.data
+    state.faqs.loading=false
 }
 

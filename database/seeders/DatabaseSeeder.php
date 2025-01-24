@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tour;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\productFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,10 +16,8 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Boobie',
-            'email' => 'Boogie@Boogie.com',
+            'name' => 'ElGobaya',
+            'email' => 'Hamad@gmail.com',
         ]);
-
-//        Tour::factory(100)->create();
     }
 }

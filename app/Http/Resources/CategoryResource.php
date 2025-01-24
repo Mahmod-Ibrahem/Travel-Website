@@ -17,12 +17,16 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'categoryTranslationId' => $this->categoryTranslations[0]->id,
             'type' => $this->type,
-            'header' => $this->header,
-            'description' => $this->description,
-            'bg_header' => $this->bg_header,
-            'name' => $this->name,
-            'image_url' => $this->image
+            'locale' => $this->categoryTranslations[0]->locale,
+            'header' => $this->categoryTranslations[0]->header,
+            'description' => $this->categoryTranslations[0]->description,
+            'bg_header' => $this->categoryTranslations[0]->bg_header,
+            'name' => $this->categoryTranslations[0]->name,
+            'image_url' => $this->image,
+            'title_meta' => $this->categoryTranslations[0]->title_meta,
+            'description_meta' => $this->categoryTranslations[0]->description_meta
         ];
     }
 }

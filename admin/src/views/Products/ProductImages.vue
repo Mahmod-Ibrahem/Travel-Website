@@ -6,9 +6,9 @@
   </div>
   <div>
     <Spinner v-if="loading"
-             class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+             class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center z-20 h-screen"/>
 
-    <form @submit.prevent="onSubmit">
+    <form v-else @submit.prevent="onSubmit">
       <div class="bg-white px-4 pt-5 pb-4">
         <!-- Tour Groups -->
 
@@ -21,7 +21,7 @@
             transition-all duration-200 cursor-pointer">
               <a>
                 <img class="transition-all duration-300 w-full h-full object-cover"
-                     :src="Image.image_url"/>
+                     :src="Image.path"/>
               </a>
 
               <div @click="removeImage(Image.id)"
@@ -93,7 +93,7 @@ function removeImage(id) {
       .then(res => {
         if (res.status === 200) {
           store.commit('showToast', 'Images has  successfully Deleted')
-          store.dispatch('getProduct', route.params.id).then(response => {
+          store.dispatch('getProduct', {productId:route.params.id, locale: 'en'}).then(response => {
             Images.value = response.data
           })
         }
@@ -114,7 +114,7 @@ function onSubmit($event, close = false) {
           loading.value = false;
           if (response.status === 200) {
             store.commit('showToast', 'Images has  successfully updated')
-            store.dispatch('getProduct', route.params.id).then(response => {
+            store.dispatch('getProduct', {productId:route.params.id, locale: 'en'}).then(response => {
               Images.value = response.data
             })
             if (close) {
@@ -128,7 +128,7 @@ function onSubmit($event, close = false) {
 onMounted(() => {
   if (route.params.id) {
     loading.value = true
-    store.dispatch('getProduct', route.params.id)
+    store.dispatch('getProduct', {productId: route.params.id , locale: 'en'})
         .then((response) => {
           loading.value = false;
           Images.value = response.data

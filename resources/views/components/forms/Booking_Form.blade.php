@@ -1,6 +1,6 @@
-<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96 border-[3px]">
+<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96 border-[3px] border-main/80">
     <h1
-     class="text-xl md:text-3xl font-medium text-[#ff6700] pb-3 mb-6  text-center border-b-2 border-Primary/20">
+     class="text-xl md:text-3xl font-medium text-main pb-3 mb-6  text-center border-b-2 border-Primary/20">
      Booking Form</h1>
 
     <form method="POST" action="{{route('booking.checkout',['tour'=>$tour])}}">
@@ -90,8 +90,7 @@
 
             </div>
       <button type="submit"
-            class="font-medium text-Primary text-[16px] tracking-widest rounded-full transition-all duration-500
-                          bg-[#f9f9f9]  border-2 border-[#ff6700] shadow-md hover:bg-orange-600 hover:text-white px-14 py-2">
+            class="main_button w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all duration-1000 bg-main">
           Confirm
         </button>
        </div>

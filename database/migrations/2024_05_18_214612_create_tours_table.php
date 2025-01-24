@@ -13,19 +13,12 @@ return new class extends Migration {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('slug');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('group');
             $table->text('preference')->default('')->nullable();
-            $table->text('title');
-            $table->text('description');
+            $table->integer('visit_count')->default(0);
             $table->string('tour_cover');
-            $table->text('itenary_title')->nullable();
-            $table->text('itenary_section')->nullable();
-            $table->text('included')->nullable();
-            $table->text('excluded')->nullable();
-                    $table->text('duration')->nullable();
             $table->unsignedBigInteger('price_per_person');
             $table->unsignedBigInteger('price_two_five');
             $table->unsignedBigInteger('price_six_twenty');

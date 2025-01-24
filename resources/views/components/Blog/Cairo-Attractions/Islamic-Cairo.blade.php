@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('layout.layouts')
 @section('title')
     Explore Islamic Cairo | Historic Mosques, Markets, and Landmarks
 @endsection
@@ -10,8 +10,7 @@
         <div
             class="md:bg-fixed h-full w-full object-cover bg-center bg-cover"
             style="background-image: url('{{ asset('Images/Blog/Cairo/Islamic/islamic 3.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-            @component('components.navbar')
-            @endcomponent
+
 
             <div
                 class="flex flex-col items-center justify-center md:items-center   h-full bg-[#33333382]
@@ -27,86 +26,122 @@
         </div>
     </div>
 
-<div class="parent_container max-w-7xl mx-auto py-6">
+    <div class="parent_container max-w-7xl mx-auto py-6">
         <div class="flex flex-col justify-center items-center     overflow-hidden w-full">
-            <p class="destination_p"> Islamic Cairo is a monument to the magnificent buildings and rich cultural legacy of Islamic Egypt.
-                 This historic neighborhood, which is tucked away in the center of Cairo, is home to a mosaic of mosques, madrasas, bazaars,
-                 and monuments that collectively tell the story of the city's colorful past and enduring legacy.
+            <p class="destination_p"> Islamic Cairo is a monument to the magnificent buildings and rich cultural legacy
+                of Islamic Egypt.
+                This historic neighborhood, which is tucked away in the center of Cairo, is home to a mosaic of mosques,
+                madrasas, bazaars,
+                and monuments that collectively tell the story of the city's colorful past and enduring legacy.
             </p>
             <header class="destination_header "> Beit El Sehemy: A Window Into Ottoman Cairo</header>
 
             <p class="destination_p">
-                Located in the maze-like lanes of Islamic Cairo, Beit El Sehemy provides an enthralling look into the luxurious way of life and
-                magnificent architecture of Ottoman-era Egypt. This beautifully restored 17th-century palace is a living example of the artistic
+                Located in the maze-like lanes of Islamic Cairo, Beit El Sehemy provides an enthralling look into the
+                luxurious way of life and
+                magnificent architecture of Ottoman-era Egypt. This beautifully restored 17th-century palace is a living
+                example of the artistic
                 and cultural blend that characterized Cairo's Ottoman era.
-                More than just a window into the past, a trip to Beit El Sehemy offers an immersive cultural experience honoring Egypt's rich
-                 creative and historical heritage. Beit El Sehemy is a window into the fascinating world of Ottoman Cairo,
-                 whether one is interested in viewing the mansion's architectural features, learning about its intriguing history,
-                  or just taking in the peaceful atmosphere of its surroundings.
-                Exploring the Rich Heritage of Islamic Cairo: Nowadays, the place is a must-see when visiting Egypt on Egypt tours.
-                To all of you: this is ancient Cairo’s reserved magic, the beating heart of the Middle Ages personifying richness and spirit. Take a glance at the promised land and let us guide you through the most remarkable attractions in the capital of Egypt and explore the main points of interest of Egyptian tourists, the best places to visit in Egypt, and during Egypt Travel Packages.
-                </p>
-                        <img src="{{asset('Images/Blog/Cairo/Islamic/Islamic 1.jpg')}}" class="md:w-[40rem] mb-4">
+                More than just a window into the past, a trip to Beit El Sehemy offers an immersive cultural experience
+                honoring Egypt's rich
+                creative and historical heritage. Beit El Sehemy is a window into the fascinating world of Ottoman
+                Cairo,
+                whether one is interested in viewing the mansion's architectural features, learning about its intriguing
+                history,
+                or just taking in the peaceful atmosphere of its surroundings.
+                Exploring the Rich Heritage of Islamic Cairo: Nowadays, the place is a must-see when visiting Egypt on
+                Egypt tours.
+                To all of you: this is ancient Cairo’s reserved magic, the beating heart of the Middle Ages personifying
+                richness and spirit. Take a glance at the promised land and let us guide you through the most remarkable
+                attractions in the capital of Egypt and explore the main points of interest of Egyptian tourists, the
+                best places to visit in Egypt, and during Egypt Travel Packages.
+            </p>
+            <img src="{{asset('Images/Blog/Cairo/Islamic/Islamic 1.jpg')}}" class="md:w-[40rem] mb-4">
 
             <header class="destination_header "> Bab Zuweila: The Entrance to Ancient Cairo</header>
             <p class="destination_p">
-                The majestic medieval gate known as Bab Zuweila stands proudly in the center of Cairo and is the gateway to Historic Cairo,
-                 a colorful tapestry of history. This architectural wonder, which dates to the eleventh century, is a monument to the Islamic
-                  civilization's lasting influence in Egypt as well as to centuries of conquests and victories.
-                Bab Zuweila is more than just a doorway; it is a living example of the inventiveness, tenacity, and cultural
-                 diversity of Islamic civilization in Egypt. Visitors enter a time travel where the past and present coexist together and
-                  the vibrancy of the city's rich history endures as they walk through its historic gateways and discover the winding alleyways
-                   of Historic Cairo beyond.
+                The majestic medieval gate known as Bab Zuweila stands proudly in the center of Cairo and is the gateway
+                to Historic Cairo,
+                a colorful tapestry of history. This architectural wonder, which dates to the eleventh century, is a
+                monument to the Islamic
+                civilization's lasting influence in Egypt as well as to centuries of conquests and victories.
+                Bab Zuweila is more than just a doorway; it is a living example of the inventiveness, tenacity, and
+                cultural
+                diversity of Islamic civilization in Egypt. Visitors enter a time travel where the past and present
+                coexist together and
+                the vibrancy of the city's rich history endures as they walk through its historic gateways and discover
+                the winding alleyways
+                of Historic Cairo beyond.
             </p>
 
             <p class="destination_p">
                 Egypt Tours: Your Gateway to Islamic Cairo
-                At Happy Egypt, we specialize in creating unforgettable Cairo tours and Egypt classic tours that showcase the
-                best of this fascinating country. Whether you're exploring the ancient pyramids, cruising the Nile, or delving into
-                 the rich heritage of Islamic Cairo, our tours are designed to immerse you in the wonders of Egypt.</p>
-                <img src="{{asset('Images/Blog/Cairo/Islamic/Islamic 2.jpg')}}" class="md:w-[40rem] mb-4">
+                At Happy Egypt, we specialize in creating unforgettable Cairo tours and Egypt classic tours that
+                showcase the
+                best of this fascinating country. Whether you're exploring the ancient pyramids, cruising the Nile, or
+                delving into
+                the rich heritage of Islamic Cairo, our tours are designed to immerse you in the wonders of Egypt.</p>
+            <img src="{{asset('Images/Blog/Cairo/Islamic/Islamic 2.jpg')}}" class="md:w-[40rem] mb-4">
 
             <header class="destination_header">Al-Muizz Street: Walking Through Medieval Cairo</header>
 
             <p class="destination_p">
-                A bustling thoroughfare that winds through the center of Historic Cairo, Al-Muizz Street transports visitors to the medieval
+                A bustling thoroughfare that winds through the center of Historic Cairo, Al-Muizz Street transports
+                visitors to the medieval
                 era of Egypt's illustrious history. This historic street is a living museum of Islamic architecture,
-                culture, and legacy, lined with grand mosques, elaborate palaces, busy souks, and hidden treasures just waiting to be found.
+                culture, and legacy, lined with grand mosques, elaborate palaces, busy souks, and hidden treasures just
+                waiting to be found.
                 Al-Muizz Street has a rich historical background spanning more than a millennium, having seen the rise
-                and fall of empires, the ebb and flow of trade routes, and the development of Islamic culture and civilization.
-                Every Cairoian dynasty, from the Fatimids and Ayyubids to the Mamluks and Ottomans, left their imprint on the city,
-                 influencing the street's architectural style and cultural character.
+                and fall of empires, the ebb and flow of trade routes, and the development of Islamic culture and
+                civilization.
+                Every Cairoian dynasty, from the Fatimids and Ayyubids to the Mamluks and Ottomans, left their imprint
+                on the city,
+                influencing the street's architectural style and cultural character.
                 Khan El Khalili Bazaar: The Lummi Native American chefs’ narrative A Feast for the Senses.
-                Sancoch Khan EL Khalili Bazaar is one of the ideal places for shopping and that too one should not miss while visiting Islamic
-                 Cairo. For food lovers, you will get a chance to savour traditional dishes and shop for exotic spices and other
-                  food products; art lovers will be attracted to handcrafted utensils, decorations, and ornaments;
-                  clothing enthusiasts will be fascinated by the colorful scarfs, shawls, and tubs brought from local looms.
-                   You will get lost in this vibrant market in terms of its displays, noise, and smells.</p>
-                    <img src="{{asset('Images/Blog/Cairo/Islamic/islamic 3.jpg')}}" class="md:w-[40rem] mb-4">
+                Sancoch Khan EL Khalili Bazaar is one of the ideal places for shopping and that too one should not miss
+                while visiting Islamic
+                Cairo. For food lovers, you will get a chance to savour traditional dishes and shop for exotic spices
+                and other
+                food products; art lovers will be attracted to handcrafted utensils, decorations, and ornaments;
+                clothing enthusiasts will be fascinated by the colorful scarfs, shawls, and tubs brought from local
+                looms.
+                You will get lost in this vibrant market in terms of its displays, noise, and smells.</p>
+            <img src="{{asset('Images/Blog/Cairo/Islamic/islamic 3.jpg')}}" class="md:w-[40rem] mb-4">
 
             <header class="destination_header">Ibn Tulun Mosque: Age-Old Magnificence in Stone and Brick</header>
 
             <p class="destination_p">
-                The Ibn Tulun Mosque is a timeless example of the architectural mastery and cultural depth of Egypt's Islamic history,
-                 tucked away amid the busy streets of Islamic Cairo. Constructed in the ninth century by Ahmad ibn Tulun, the progenitor
-                 of Egypt's Tulunid dynasty, this imposing mosque is widely recognized for its distinctive architecture, astounding splendor,
-                 and profound religious significance.
-                during your Egypt tours Immerse yourself in the ancient grandeur and spiritual calm of the Ibn Tulun Mosque, which is a
-                timeless tribute to the continuing history of Egypt's Islamic tradition. A trip through time, where the past and present
-                 coexist peacefully and the spirit of Islamic civilization endures, awaits visitors to the Ibn Tulun Mosque, whether they
-                  are taking in its architectural wonders, meandering through its serene courtyards, or reflecting on its rich history.</p>
-                  <img src="{{asset('Images/Blog/Cairo/Islamic/islamic 4.jpg')}}" class="md:w-[40rem] mb-4">
+                The Ibn Tulun Mosque is a timeless example of the architectural mastery and cultural depth of Egypt's
+                Islamic history,
+                tucked away amid the busy streets of Islamic Cairo. Constructed in the ninth century by Ahmad ibn Tulun,
+                the progenitor
+                of Egypt's Tulunid dynasty, this imposing mosque is widely recognized for its distinctive architecture,
+                astounding splendor,
+                and profound religious significance.
+                during your Egypt tours Immerse yourself in the ancient grandeur and spiritual calm of the Ibn Tulun
+                Mosque, which is a
+                timeless tribute to the continuing history of Egypt's Islamic tradition. A trip through time, where the
+                past and present
+                coexist peacefully and the spirit of Islamic civilization endures, awaits visitors to the Ibn Tulun
+                Mosque, whether they
+                are taking in its architectural wonders, meandering through its serene courtyards, or reflecting on its
+                rich history.</p>
+            <img src="{{asset('Images/Blog/Cairo/Islamic/islamic 4.jpg')}}" class="md:w-[40rem] mb-4">
 
-                  <header class="destination_header">The Gayer-Anderson Museum: An Intimate Look at Cairo' History</header>
+            <header class="destination_header">The Gayer-Anderson Museum: An Intimate Look at Cairo' History</header>
 
-                  <p class="destination_p">
-                    The Gayer-Anderson Museum, tucked away in Cairo's historic center, provides guests with an enthralling look into the city's
-                    colorful past. This unusual museum offers a view into the lives and times of Cairo's citizens during the Ottoman era.
-                    It is housed within two adjacent 17th-century homes. discover it during Cairo day tours.
-                    A trip through time is offered by a visit to the Gayer-Anderson Museum, where a rich tapestry of historical relics,
-                    buildings, and displays bring the past to life. Its ageless appeal and evocative ambiance will capture visitors whether
-                     they are exploring the intricately adorned rooms, meandering through the peaceful courtyards,
-                     or marveling at the secret treasures locked away behind its walls.</p>
+            <p class="destination_p">
+                The Gayer-Anderson Museum, tucked away in Cairo's historic center, provides guests with an enthralling
+                look into the city's
+                colorful past. This unusual museum offers a view into the lives and times of Cairo's citizens during the
+                Ottoman era.
+                It is housed within two adjacent 17th-century homes. discover it during Cairo day tours.
+                A trip through time is offered by a visit to the Gayer-Anderson Museum, where a rich tapestry of
+                historical relics,
+                buildings, and displays bring the past to life. Its ageless appeal and evocative ambiance will capture
+                visitors whether
+                they are exploring the intricately adorned rooms, meandering through the peaceful courtyards,
+                or marveling at the secret treasures locked away behind its walls.</p>
         </div>
     </div>
 @endsection

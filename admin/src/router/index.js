@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 import store from "../store";
 import AppLayout from "../components/AppLayout.vue";
 import Login from "../views/Login.vue";
@@ -7,6 +7,14 @@ import Products from "../views/Products/products.vue";
 import Categories from "../views/Category/Categories.vue";
 import CategoryForm from "../views/Category/CategoryForm.vue";
 import ProductImages from "../views/Products/ProductImages.vue";
+import Reviews from "../views/Reviews/Reviews.vue";
+import ReviewForm from "../views/Reviews/ReviewForm.vue";
+import ToursGer from "../views/TourSP/ToursSP.vue";
+import ToursFormGer from "../views/TourSP/ToursFormSP.vue";
+import CategoriesSp from "../views/CategorySp/CategoriesSp.vue";
+import CategoryFormSp from "../views/CategorySp/CategoryFormSp.vue";
+import Faqs from "../views/Faq/Faqs.vue";
+import FaqForm from "../views/Faq/FaqForm.vue";
 
 const routes = [
     {
@@ -58,6 +66,68 @@ const routes = [
                 component: CategoryForm,
 
             },
+            {
+                path: "categories/spanish",
+                name: "app.categories.sp",
+                component: CategoriesSp,
+            },
+            {
+                path: "categories/sp/create",
+                name: "app.categories.sp.create",
+                component: CategoryFormSp,
+            },
+            {
+                path: "categories/sp/:id",
+                name: "app.categories.sp.edit",
+                component: CategoryFormSp,
+
+            },
+            {
+                path: 'reviews',
+                name: 'app.reviews',
+                component: Reviews
+            },
+            {
+                path: 'reviews/create',
+                name: 'app.reviews.create',
+                component: ReviewForm
+            },
+            {
+                path: 'reviews/:id',
+                name: 'app.reviews.edit',
+                component: ReviewForm
+            },
+            {
+                path: 'faqs',
+                name: 'app.faqs',
+                component: Faqs
+            },
+            {
+                path: 'faq/create',
+                name: 'app.faq.create',
+                component: FaqForm
+            },
+            {
+                path: 'faqs/:id',
+                name: 'app.faq.edit',
+                component: FaqForm
+            },
+            {
+                path: 'tours/de',
+                name: 'app.tours.ger',
+                component: ToursGer
+            },
+            {
+                path: 'tours/de/create',
+                name: 'app.tours.de.create',
+                component: ToursFormGer
+            },
+            {
+                path: 'tours/GER/:id',
+                name: 'app.tours.ger.edit',
+                component: ToursFormGer
+            }
+
         ],
     },
 
@@ -78,9 +148,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth && !store.state.user.token) {
-        next({ name: "login" });
+        next({name: "login"});
     } else if (to.meta.requireGuest && store.state.user.token) {
-        next({ name: "app.dashboard" });
+        next({name: "app.dashboard"});
     } else {
         next();
     }

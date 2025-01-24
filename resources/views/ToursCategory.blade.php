@@ -3,10 +3,10 @@
         <div
             class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-4">
             <h1 class="text-Primary font-semibold text-xl md:text-2xl">
-                {{ $tours[0]['category']['header'] ?? 'Soon' }}
+                {{ $tours[0]['category']['category_translations'][0]['header'] ?? 'Soon' }}
             </h1>
             <p class="font-medium text-Primary/75">
-                {{ $tours[0]['category']['description'] ??'Soon' }}
+                {{ $tours[0]['category']['category_translations'][0]['description'] ??'Soon' }}
             </p>
         </div>
 
@@ -19,8 +19,7 @@
                     @endslot
                 @endcomponent
             @empty
-                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">We Are Maintaining
-                    This Section </p>
+                <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">Soon</p>
             @endforelse
 
 

@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('layout.layouts')
 @section('title')
     Uncover the Secrets of Ancient Egypt and Tutankhamun's Mother with Desert Storm Egypt  Tours
 @endsection
@@ -10,7 +10,7 @@
         <div
             class="md:bg-fixed h-full w-full object-cover bg-center bg-cover"
             style="background-image: url('{{ asset('Images/Blog/Hidden Gems/cover.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
-            @component('components.navbar')
+            @component('layout.navbar')
             @endcomponent
 
             <div
@@ -30,7 +30,9 @@
     <div class="parent_container max-w-7xl mx-auto">
         <div class="flex flex-col justify-center items-center     overflow-hidden w-full">
             <p class="destination_p"> The mummy known as “The Younger Lady”, formally identified as the mother of king
-                Tutankhamun and full biological sister of the mummy known as KV55 <a href="{{route('TourPackages.Tour',['Category' => 'egypt-nile-cruise','tour' => '4-days-3-nights-nile-cruise-from-cairo-by-flight'])}}" class="text-[#ff6700]">Valley Of the Queens</a> (believed by some
+                Tutankhamun and full biological sister of the mummy known as KV55 <a
+                    href="{{route('TourPackages.Tour',['Category' => 'egypt-nile-cruise','tour' => '4-days-3-nights-nile-cruise-from-cairo-by-flight'])}}"
+                    class="text-[#ff6700]">Valley Of the Queens</a> (believed by some
                 scholars to be that of Akhenaten but not officially certified), is a daughter of king Amenhotep III and
                 his Great Royal Wife, Tiye.
             </p>

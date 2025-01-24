@@ -15,7 +15,7 @@
             </main>
         </div>
     </div>
-    <div v-else class="flex min-h-full items-center justify-center text-center">
+    <div v-else class="flex min-h-screen items-center justify-center text-center">
       <Spinner></Spinner>
       </div>
       <Toast />

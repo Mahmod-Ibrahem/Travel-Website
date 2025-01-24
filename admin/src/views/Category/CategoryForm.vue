@@ -4,11 +4,11 @@
             {{ category.id ? `Update Category: "${category.name}"` : 'Create New Category' }}
         </h1>
     </div>
-    <div class="">
+    <div>
         <Spinner v-if="loading"
                  class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
 
-        <form @submit.prevent="onSubmit">
+        <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <select name="type" v-model="category.type"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500">
@@ -16,11 +16,13 @@
                     <option value="DayTours">Day Tours</option>
                     <option value="TourPackages">Tour Packages</option>
                 </select>
-                <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header"/>
-                <CustomInput class="mb-2" v-model="category.header" label="Category Header"/>
-                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description"/>
-                <CustomInput class="mb-2" v-model="category.name" label="Category Name"/>
-                <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file"/>
+                <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
+                <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header" :errors="errors.bg_header"/>
+                <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
+                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description"/>
+                <CustomInput type="textarea" class="mb-2" v-model="category.title_meta" label="Title Keyword" :errors="errors.title_meta"/>
+                <CustomInput type="textarea" class="mb-2" v-model="category.description_meta" label="Description Keyword" :errors="errors.description_meta"/>
+                <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file" :errors="errors.image"/>
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="submit"
@@ -56,55 +58,57 @@ const loading = ref(false)
 const category = ref({
     id: null,
     header: '',
+    categoryTranslationId: '',
     description: '',
     bg_header: '',
     type: '',
     name: '',
     image: '',
+    locale:'en',
+    title_meta: '',
+    description_meta: ''
 })
 
-/* 2ol mra byrender byst5m al get method 34an ya5od al value mn al parent y assignha ll show we lma ay t8ir y7sl  t8ir fi al show by7sl emit event
-34an  y notify al parent b al new value di */
-
+const errors = ref({
+})
 
 function onSubmit($event, close = false) {
-    loading.value = true
-    if (category.value.id) {
-        store.dispatch('updateCategory', category.value)
-            .then(response => {
-                loading.value = false;
-                if (response.status === 200) {
-                    store.commit('showToast', 'Category has  successfully updated')
-                    store.dispatch('getCategories')
-                    if (close) {
-                        router.push({name: 'app.categories'})
-                    }
-                }
-            })
-    } else {
-        store.dispatch('createCategory', category.value)
-            .then(response => {
-                loading.value = false;
-                if (response.status === 201) {
-                    store.commit('showToast', 'Cateogry has  successfully created')
-                    store.dispatch('getCategories')
-                    if (close) {
-                        router.push({name: 'app.categories'})
-                    } else {
-                        router.push({name: 'app.categories.edit', params: {id: response.data.id}})
-                    }
-                }
-            })
-            .catch(err => {
-                loading.value = false;
-            })
-    }
-}
+    loading.value = true;
+    errors.value={}
+    const action = category.value.id ? 'updateCategory' : 'createCategory';
+    const successStatus = action === 'updateCategory' ? 200 : 201;
+    const successMessage = action === 'updateCategory' ? 'Category has successfully updated' : 'Category has successfully created';
 
+    store.dispatch(action, category.value)
+        .then(response => {
+            loading.value = false;
+            if (response.status === successStatus) {
+                store.commit('showToast', successMessage);
+                store.dispatch('getCategories');
+                if (close) {
+                    router.push({ name: 'app.categories' });
+                } else if (action === 'createCategory') {
+                    category.value=response.data
+                    router.push({ name: 'app.categories.edit', params: { id: response.data.id } });
+                }
+            }
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors;
+                console.log(errors.value)
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message);
+            } else {
+                store.commit('showErrorToast', 'An error occurred while submitting the form.');
+            }
+        });
+}
 onMounted(() => {
     if (route.params.id) {
         loading.value = true
-        store.dispatch('getCategory', route.params.id)
+        store.dispatch('getCategory', {id:route.params.id, locale: 'en'})
             .then((response) => {
                 loading.value = false;
                 category.value = response.data

@@ -14,7 +14,11 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@primevue/themes": "^4.2.5",
         "@vitejs/plugin-vue": "^5.0.4",
-        "vue": "^3.4.25"
+        "@vueup/vue-quill": "^1.2.0",
+        "primevue": "^4.2.5",
+        "vue": "^3.4.25",
+        "vue-quill": "^1.5.1"
     }
 }

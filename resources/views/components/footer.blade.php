@@ -1,4 +1,4 @@
-<footer class="w-full bg-[#323232]">
+<footer class="w-full">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!--Grid-->
         <div
@@ -19,23 +19,24 @@
                     <div class="h-10 group space-y-2">
 
                                 <span class="flex    pb-2">
-                                    <svg class="h-6 w-6 text-[#ff6700]"
+                                    <svg class="h-6 w-6 text-link-color"
                                          width="24" height="24" viewBox="0 0 24 24"
                                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                          stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path
                                         d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>  <path
                                             d="M15 7a2 2 0 0 1 2 2"/>  <path d="M15 3a6 6 0 0 1 6 6"/></svg>
-                                    <span class="pl-3 text-white">+201114746395</span>
+                                    <span class="pl-3 text-link-color">+201101833336</span>
                                 </span>
 
                         <span class="flex">
-                                    <svg class="h-6 w-6 text-[#ff6700]" fill="none" viewBox="0 0 24 24"
+                                    <svg class="h-6 w-6 text-link-color" fill="none" viewBox="0 0 24 24"
                                          stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                       </svg>
-                                      <span class="pl-3 mb-1 text-white">info@example.com </span>
+
+                                      <span class="pl-3 mb-1 text-link-color">info@mregypttours.com</span>
                                 </span>
                     </div>
                 </div>
@@ -57,28 +58,29 @@
                     <li class="footer_anchor"><a href="{{route('DayTours.index')}}">Day Tours</a></li>
 
                     <li class="footer_anchor"><a href="{{route('TourPackages.index')}}">Tour Packages</a></li>
-
-                    <li class="footer_anchor"><a href="{{route('SafariAdventures.index')}}">Safari Adventures</a></li>
-
-                    <li class="footer_anchor"><a href="{{route('SeaShoreTours.index')}}">Sea Shore Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('LayoverTours.index')}}">Layover Tours</a></li>
                 </ul>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left ">
                 <h4 class="footer_main">Day Tours</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Cairo'])}}">Cairo Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Luxor'])}}">Luxor Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Aswan'])}}">Aswan Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">Alexandria Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Cairo'])}}">Cairo
+                            Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Luxor'])}}">Luxor
+                            Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Aswan'])}}">Aswan
+                            Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">Alexandria
+                            Tours</a></li>
                 </ul>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left ">
                 <h4 class="footer_main">Tour Packages</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">Egypt Classic Tours</a></li>
+                    <li class="footer_anchor"><a
+                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">Egypt Classic
+                            Tours</a></li>
                     <li class="footer_anchor"><a href="javascript:;">Luxury Egypt Tours</a></li>
                     <li class="footer_anchor"><a href="javascript:;">Red Sea Packages</a></li>
                     <li class="footer_anchor"><a href="javascript:;">Alexandria Tours</a></li>
@@ -90,19 +92,11 @@
         <!--Grid-->
         <div class="py-7 border-t border-gray-200">
             <div class="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-                <span class="text-sm text-white ">©<a href="https://www.facebook.com/profile.php?id=61553867837462&locale=ar_AR"
-                                                      class="text-[#ff6700]">Mahmoud Ibrahem</a> 2024, All rights reserved.</span>
+                <span class="text-sm font-medium ">©<a
+                        href="https://www.facebook    .com/profile.php?id=61553867837462&locale=ar_AR"
+                        class="text-main hover:text-link-color">Mahmoud Ibrahem</a> 2024, All rights reserved.</span>
                 <div class="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
-                    {{--                    <a href="javascript:;"--}}
-                    {{--                       class="w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#33CCFF] hover:bg-gray-900">--}}
-                    {{--                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">--}}
-                    {{--                            <g id="Social Media">--}}
-                    {{--                                <path id="Vector"--}}
-                    {{--                                      d="M11.3214 8.93666L16.4919 3.05566H15.2667L10.7772 8.16205L7.1914 3.05566H3.05566L8.47803 10.7774L3.05566 16.9446H4.28097L9.022 11.552L12.8088 16.9446H16.9446L11.3211 8.93666H11.3214ZM9.64322 10.8455L9.09382 10.0765L4.72246 3.95821H6.60445L10.1322 8.8959L10.6816 9.66481L15.2672 16.083H13.3852L9.64322 10.8458V10.8455Z"--}}
-                    {{--                                      fill="white"/>--}}
-                    {{--                            </g>--}}
-                    {{--                        </svg>--}}
-                    {{--                    </a>--}}
+
                     <a href="javascript:;" class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[linear-gradient(45deg,#FEE411_6.9%,#FEDB16_10.98%,#FEC125_17.77%,#FE983D_26.42%,#FE5F5E_36.5%,#FE2181_46.24%,#9000DC_85.57%)]  hover:bg-gradient-to-b from-gray-900 to-gray-900
                         ">
                         <svg class="w-[1.25rem] h-[1.125rem] text-white" viewBox="0 0 16 16" fill="none"
