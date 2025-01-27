@@ -17,26 +17,13 @@
     </section>
     <div class="parent_container py-6 bg-[#f9f9f9] md:mt-0">
         <div class="child_container ">
-            @component('components.BlogCard',
-            ['About'=>'Cairo-Attractions',
-            'title'=>'Cairo Attractions',
-            'route'=>'Blog.show',
-            'url'=>asset('/Images/Blog/Cairo/Cairo Main.jpg'),'paramter'=>'Cairo-Attractions'])
-            @endcomponent
-            @component('components.BlogCard',
-            ['About'=>'Luxor-Attractions',
-             'title'=>'Luxor-Attractions',
-            'route'=>'Blog.show',
-            'url'=>asset('Images/Blog/Luxor/Luxor Main.jpg'),'paramter'=>'Luxor-Attractions'])
-            @endcomponent
+            @forelse($cities as $city)
+                @component('components.CityCard',['city'=>$city])
+                @endcomponent
+            @empty
+                Soon
+            @endforelse
 
-            @component('components.BlogCard',
-['About'=>'Hidden-Gems',
-'title'=>'Hidden Gems In Egypt',
-'route'=>'Blog.show',
-'url'=>asset('Images/Blog/Hidden Gems/Main.jpg'),
-'paramter'=>'Hidden-Gems'])
-            @endcomponent
         </div>
     </div>
 @endsection

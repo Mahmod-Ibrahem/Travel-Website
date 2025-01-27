@@ -1,7 +1,7 @@
 <div class="group relative    border-2 border-dotted bg-white
  rounded-lg mr-4 shadow hover:cursor-pointer mb-7  w-[18rem]">
     <div class="w-[18rem] h-[18rem]  overflow-hidden">
-    <a href="{{route('Blog.attraction',['city'=>$attraction->city,'blog'=>$attraction->slug])}}">
+    <a href="{{route('Blog.attraction',['city'=>$attraction->city,'blog'=>$attraction])}}">
         <img class=" transition-all duration-300 hover:scale-110 w-[18rem] h-[18rem]"
      src="{{$attraction->image}}" alt="Product Image"></a>
     </div>

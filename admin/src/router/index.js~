@@ -17,8 +17,6 @@ import Faqs from "../views/Faq/Faqs.vue";
 import FaqForm from "../views/Faq/FaqForm.vue";
 import Cities from "../views/City/Cities.vue";
 import CityForm from "../views/City/CityForm.vue";
-import Blogs from "../views/Blogs/Blogs.vue";
-import BlogsForm from "../views/Blogs/BlogsForm.vue";
 
 const routes = [
     {
@@ -154,12 +152,12 @@ const routes = [
             {
                 path:'blog/create',
                 name:'app.blogs.create',
-                component: BlogsForm
+                component: BlogForm
             },
             {
                 path:'blog/:id',
                 name:'app.blogs.edit',
-                component: BlogsForm
+                component: BlogForm
             },
 
         ],

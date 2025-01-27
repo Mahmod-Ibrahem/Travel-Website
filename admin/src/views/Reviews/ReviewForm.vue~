@@ -10,7 +10,7 @@
 
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
-                <!-- Tour -->
+                <!-- Tour Groups -->
                 <div class=" mb-2">
                     <select
                         name="type" v-model="review.tour_id"

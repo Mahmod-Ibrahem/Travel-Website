@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     /* Citys*/
     Route::apiResource('/city', \App\Http\Controllers\Api\CityApiController::class);
     /*Blogs*/
-    Route::apiResource('/blog', \App\Http\Controllers\Api\BlogApiController::class);
+    Route::apiResource('/blog:slug', \App\Http\Controllers\Api\BlogApiController::class);
 });
 
 Route::post('/login', [AuthController::class, 'login']);

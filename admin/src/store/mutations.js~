@@ -75,6 +75,6 @@ export function setCities(state,data)
 }
 export function setBlogs(state,data)
 {
-    state.blogs.data=data.data
-    state.blogs.loading=false
+    state.cities.data=data.data
+    state.cities.loading=false
 }

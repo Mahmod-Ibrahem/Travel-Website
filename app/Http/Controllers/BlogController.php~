@@ -24,7 +24,7 @@ class BlogController extends Controller
 
     public function Attraction(City $city,Blog $blog)
     {
-        return view('Blog.blog',compact('city','blog'));
+        return view('Blog.attraction',compact('city','blog'));
     }
 }
 

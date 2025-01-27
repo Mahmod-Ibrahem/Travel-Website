@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div class="child_container py-6 md:py-12">
+    <div class="child_container">
     @forelse($cityAttractions as $attraction)
         @component('components.BlogCard' ,['attraction'=>$attraction])@endcomponent
     @empty

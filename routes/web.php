@@ -48,7 +48,8 @@ Route::post('/checkout/{tour}',[\App\Http\Controllers\BookingController::class,'
 Route::post('/checkout/{tour}/confirm',[\App\Http\Controllers\BookingController::class,'confirm'])->name('booking.confirm');
 
 /*Blog*/
-Route::resource('/Blog',BlogController::class)->only(['index','show']);
-Route::get('/Blog/{Blog}/{attract}',[BlogController::class,'Attraction'])->name('Attraction');
+Route::get('/Blog',[BlogController::class,'index'])->name('Blog.index');
+Route::get('/Blog/{city:slug}',[BlogController::class,'show'])->name('Blog.show');
+Route::get('/Blog/{city:slug}/{blog:slug}',[BlogController::class,'Attraction'])->name('Blog.attraction');
 
 

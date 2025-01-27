@@ -48,6 +48,12 @@ const store = {
     blogs: {
         loading: false,
         data: [],
+        links: [],
+        from: null,
+        to: null,
+        page: 1,
+        limit: 10,
+        total: null,
     },
 };
 

@@ -336,9 +336,6 @@ export function updateBlog({commit}, blog) {
     }
     return axiosClient.post(`/blog/${id}`, blog);
 }
-export function deleteBlog({commit}, id) {
-    return axiosClient.delete(`/blog/${id}`)
-}
 
 
 
