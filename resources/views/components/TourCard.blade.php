@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center w-[386px] mx-2 bg-white rounded-3xl overflow-hidden border relative">
+<div class="flex flex-col items-center w-[380px] mx-3 bg-white rounded-3xl overflow-hidden border relative">
     <div class="p-4 pb-0 w-full h-full">
         <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['category_translations'][0]['slug'],
         'Tour' => $tour['tour_translations'][0]['slug']]) }}">

@@ -30,6 +30,7 @@ class BlogApiController extends Controller
         $validatedRequestData = $request->validated();
         $storedBlogImage = $this->storeImage($validatedRequestData['image'], 'title');
         $validatedRequestData['image']=$storedBlogImage;
+        $validatedRequestData['blog']=str_replace('target="_blank"', '', $validatedRequestData['blog']);
         $createdBlog=Blog::create($validatedRequestData);
         return new BlogResource($createdBlog);
     }
@@ -60,6 +61,7 @@ class BlogApiController extends Controller
         {
             $blogValidatedData['image'] = $blog['image']; //34an lma agy 23ml insert myb2a5 null lo mfi4 image asln
         }
+        $blogValidatedData['blog']=str_replace('target="_blank"', '', $blogValidatedData['blog']);
         $blog->update($blogValidatedData);
         return new BlogResource($blog);
     }

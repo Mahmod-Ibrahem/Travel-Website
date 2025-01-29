@@ -19,8 +19,8 @@
         </div>
     </div>
     <div class="parent_container max-w-7xl mx-auto">
-        <div class="flex flex-col justify-center items-center overflow-hidden w-full prose max-w-none prose-a:no-underline prose-a:!text-[#ff6700] prose-p:my-1
-         prose-h2:m-0 prose-img:my-1">
+        <div class="flex flex-col justify-center items-center text-start overflow-hidden w-full prose max-w-none prose-a:no-underline prose-a:!text-main prose-p:my-1
+         prose-h2:m-0 prose-img:my-1 px-2 prose-p:w-full prose-img:mx-auto md:prose-img:w-1/2 md:prose-img:h-1/2">
             {!! $blog->blog !!}
         </div>
     </div>

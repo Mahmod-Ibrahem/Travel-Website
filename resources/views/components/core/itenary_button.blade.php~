@@ -16,9 +16,9 @@
 
 <div  id="descr_{{$id}}" class="flex-col  space-y-3 w-full  hidden mt-3 transition-all overflow-hidden rounded-lg bg-white shadow">
 
-                <div class="py-3 px-4 font-semibold pl-3 m tracking-wide leading-5 whitespace-normal  break-words bg-white text-xs md:text-[0.90rem] capitalize ">
+{{--                <p class="py-3 px-4 font-semibold pl-3 m tracking-wide leading-5 whitespace-normal  break-words bg-white text-xs md:text-[0.90rem] capitalize ">--}}
                     {!! $itenary !!}
-                </div>
+{{--                </p>--}}
 
 </div>
 

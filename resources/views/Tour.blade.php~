@@ -110,7 +110,7 @@
                             @endphp
                             @forelse($itenary_title as $index => $title)
                                 @component('components.core.itenary_button',['id'=>$index,'text'=>$title,
-                                    'itenary'=>$itenary_section ??'Some Thing Went Wrong'])
+                                    'itenary'=>$itenary_section[$index] ??'Some Thing Went Wrong'])
                                 @endcomponent
                             @empty
 

@@ -79,6 +79,7 @@
                              :errors="errors.itenary_section"
                              label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>
 <!--                <Editor v-model="product.itenary_section" editorStyle="height: 320px" />-->
+
                 <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"
                              :errors="errors.places"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration" :errors="errors.duration"/>
