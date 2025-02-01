@@ -19,7 +19,8 @@
                 <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
                 <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header" :errors="errors.bg_header"/>
                 <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
-                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description"/>
+<!--                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description"/>-->
+                <Editor v-model="category.description" editorStyle="height: 200px" placeholder="Category Description" />
                 <CustomInput type="textarea" class="mb-2" v-model="category.title_meta" label="Title Keyword" :errors="errors.title_meta"/>
                 <CustomInput type="textarea" class="mb-2" v-model="category.description_meta" label="Description Keyword" :errors="errors.description_meta"/>
                 <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file" :errors="errors.image"/>
@@ -49,6 +50,7 @@ import {ref, onMounted} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import store from "../../store/index.js"
 import CustomInput from '../../components/Core/CustomInput.vue';
+import Editor from 'primevue/editor';
 
 const emit = defineEmits(['update:modelValue', 'close'])
 const route = useRoute()

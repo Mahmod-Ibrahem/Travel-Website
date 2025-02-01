@@ -179,36 +179,24 @@
         @if($reviews ?? false)
             @component('components.Sections.TourTestimonials',['reviews'=>$reviews])@endcomponent
         @endif
-        {{--        @if(!$relatedTours->isEmpty())--}}
-        {{--            <div class="parent_container md:gap-4 select-none">--}}
-        {{--                <h1 class="text-center text-Primary text-3xl font-bold md:text-4xl mt-7 mb-5  md:my-7 select-none">--}}
-        {{--                    Related Tours</h1>--}}
-
-        {{--                <div class="flex items-center gap-3">--}}
-
-        {{--                </div>--}}
-        {{--                <div class="child_container gap-9">--}}
-        {{--                    @forelse($relatedTours as $tour)--}}
-        {{--                        @if($tour['group'] != 'SafariAdventures' && $tour['group'] != 'SeaShoreTours' && $tour['group'] != 'LayoverTours')--}}
-        {{--                            @component('components.TourCard', ['tour' => $tour])--}}
-        {{--                                @slot('image')--}}
-        {{--                                    {{ asset($tour['tour_cover']) }}--}}
-        {{--                                @endslot--}}
-        {{--                            @endcomponent--}}
-        {{--                        @else--}}
-        {{--                            @component('components.SafariSeaTourCard', ['tour' => $tour])--}}
-        {{--                                @slot('image')--}}
-        {{--                                    {{ asset($tour['tour_cover']) }}--}}
-        {{--                                @endslot--}}
-        {{--                            @endcomponent--}}
-        {{--                        @endif--}}
-        {{--                    @empty--}}
-        {{--                        <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">Comming--}}
-        {{--                            Soon </p>--}}
-        {{--                    @endforelse--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        @endif--}}
+        @if(count($relatedTours))
+            <div class="parent_container  text-gray-900 pb-4 mt-0 bg-[#f5f3f3]">
+                <h1 class="text-center text-Primary text-3xl font-bold md:text-4xl mt-7 mb-5  md:my-7 select-none">
+                    Related Tours</h1>
+                <div class="child_container gap-9">
+                    @forelse($relatedTours as $tour)
+                        @component('components.TourCard', ['tour' => $tour])
+                            @slot('image')
+                                {{ asset($tour['tour_cover']) }}
+                            @endslot
+                        @endcomponent
+                    @empty
+                        <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">Comming
+                            Soon </p>
+                    @endforelse
+                </div>
+            </div>
+        @endif
     </div>
 
 

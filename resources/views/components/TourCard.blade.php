@@ -14,7 +14,7 @@
             {{$tour['tour_translations'][0]['title']}}
         </a>
 
-        <p class="text-[14px] text-[#768092] border-b border-black/10 w-full line-clamp-3 leading-6 min-h-[80px] whitespace-normal">
+        <p class="text-[14px] text-[#4A5568] border-b border-black/10 w-full line-clamp-3 leading-6 min-h-[80px] whitespace-normal">
             {{$tour['tour_translations'][0]['description']}}
         </p>
 
@@ -30,7 +30,7 @@
                 <div class="flex flex-col">
                     <span class="text-Primary text-[14px] font-medium   ">Duration</span>
                     <span
-                        class="text-[#889c98] text-[14px] font-[400]">{{$tour['tour_translations'][0]['duration']}}</span>
+                        class="text-[#6B7280] text-[14px] font-[400]">{{$tour['tour_translations'][0]['duration']}}</span>
                 </div>
             </div>
             <div class="flex gap-2">
@@ -48,7 +48,7 @@
                 </svg>
                 <div class="flex flex-col">
                     <span class="text-Primary text-[14px] font-medium   ">Views</span>
-                    <span class="text-[#889c98] text-[14px] font-[400]">{{$tour['visit_count']}}</span>
+                    <span class="text-[#6B7280] text-[14px] font-[400]">{{$tour['visit_count']}}</span>
                 </div>
             </div>
         </div>

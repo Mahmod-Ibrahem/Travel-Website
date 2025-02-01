@@ -84,7 +84,7 @@ class CategoryController extends Controller
         {
             $data['image'] = $category['image']; //34an lma agy 23ml insert myb2a5 null lo mfi4 image asln
         }
-        $data['description']=str_replace('target="_blank"', '', $data['description']);
+        $validatedCategoryData['description']=str_replace('target="_blank"', '', $validatedCategoryData['description']);
         $category->update($data);
         $this->updatecategoryTranslation($data, $data['categoryTranslationId']);
         return response()->json(['message' => 'Category updated successfully'], 200);

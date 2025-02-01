@@ -5,9 +5,9 @@
             <h1 class="text-Primary font-semibold text-xl md:text-2xl">
                 {{ $tours[0]['category']['category_translations'][0]['header'] ?? 'Soon' }}
             </h1>
-            <div class="capitalize prose max-w-none prose-a:no-underline prose-a:!text-main !text-black prose-p:my-1 prose-h2:m-0">
+            <p class="capitalize prose max-w-none prose-a:no-underline prose-a:!text-main !text-black prose-p:my-1 prose-h2:m-0">
                 {!! $tours[0]['category']['category_translations'][0]['description'] ??'Soon'!!}
-            </div>
+            </p>
         </div>
 
 

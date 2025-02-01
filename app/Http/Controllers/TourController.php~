@@ -61,12 +61,27 @@ class TourController extends Controller
             $query->where('locale', app()->getLocale());
             $query->where('slug', $Tour);
         })->with(['images', 'category', 'tourTranslations'])->first();
-
+        $locations=json_decode( $tour->tourTranslations[0]->locations);
         $tour->tourTranslations[0]->locations = implode('-', json_decode($tour->tourTranslations[0]->locations));
         $this->storeIp(Request()->ip(), $tour->id);
-        $reviews = $this->getTourReviews($tour->id);
-        dd($tour->tourTranslations[0]->itenary_section);
-        return view('Tour', compact('tour', 'reviews'));
+        $reviews = Review::take(10)->get();
+        $relatedTours=$this->getRelatedTours($locations,$tour->id,$tour->group);
+        return view('Tour', compact('tour', 'reviews', 'relatedTours'));
+    }
+    public function getRelatedTours($locations, $id, $group)
+    {
+        return Tour::whereHas('tourTranslations', function ($query) use ($locations, $group) {
+            foreach($locations as $location)
+            {
+                $query->whereJsonContains('locations',$location);
+            }
+        })
+            ->where('group', $group)
+            ->where('id', '!=', $id)
+            ->WithTranslations()
+            ->inRandomOrder()
+            ->get()
+            ->toArray();
     }
 
 }
