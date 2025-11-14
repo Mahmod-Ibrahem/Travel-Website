@@ -1,5 +1,6 @@
 {
     "City": true,
     "Blog": true,
-    "Faq": true
+    "Faq": true,
+    "Home": true
 }

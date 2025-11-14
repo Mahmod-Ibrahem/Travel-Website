@@ -5,10 +5,8 @@ use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TourController;
-use App\Http\Controllers\HomeController;
 
-Route::get('/', [HomeController::class, 'home'])
-    ->name('home');
+
     /* DayTours Controller*/
 Route::get('/Daytours', [TourController::class, 'index'])
     ->name('DayTours.index');

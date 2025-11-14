@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Home\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
 use App\Models\Review;
 use App\Models\Tour;
-use Illuminate\Http\Request;
+use Modules\Faq\Entities\Faq;
 
 class HomeController extends Controller
 {
@@ -29,8 +28,6 @@ class HomeController extends Controller
             ->WithTranslations()->get()->toArray();
         $reviews = Review::where('tour_id', '=', null)->get();
         $faqs=Faq::with('translations')->get();
-        return view('HomeView.HomePage', compact('recommendedDayTours', 'recommendedTourPackages', 'limitedOffersTorus', 'reviews', 'faqs'));
-
-
+        return view('home::index', compact('recommendedDayTours', 'recommendedTourPackages', 'limitedOffersTorus', 'reviews', 'faqs'));
     }
 }

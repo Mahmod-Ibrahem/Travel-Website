@@ -23,22 +23,22 @@
                     {{asset('Images/Best Destination/Aswan.jpg')}}
                 @endslot
             @endcomponent
-                @component('components.core.DestinationCard', ['destination' => 'Alexandria'])
+            @component('components.core.DestinationCard', ['destination' => 'Alexandria'])
                 @slot('image')
                     {{asset('Images/Best Destination/Alexandria.jpg')}}
                 @endslot
             @endcomponent
-                @component('components.core.DestinationCard', ['destination' => 'Sharm El-Sheikh'])
+            @component('components.core.DestinationCard', ['destination' => 'Sharm El-Sheikh'])
                 @slot('image')
                     {{asset('Images/Best Destination/Sharm.jpg')}}
                 @endslot
             @endcomponent
-                @component('components.core.DestinationCard', ['destination' => 'Hurghada'])
+            @component('components.core.DestinationCard', ['destination' => 'Hurghada'])
                 @slot('image')
                     {{asset('Images/Best Destination/Hurghada.jpg')}}
                 @endslot
             @endcomponent
-                @component('components.core.DestinationCard', ['destination' => 'Al-Faiyum'])
+            @component('components.core.DestinationCard', ['destination' => 'Al-Faiyum'])
                 @slot('image')
                     {{asset('Images/Best Destination/Faiyum.jpg')}}
                 @endslot
