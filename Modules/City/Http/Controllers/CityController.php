@@ -3,9 +3,9 @@
 namespace Modules\City\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\City;
 use App\Traits\ImagesUtility;
 use Illuminate\Support\Facades\Storage;
+use Modules\City\Entities\City;
 use Modules\City\Http\Requests\CityRequest;
 use Modules\City\Transformers\CityResource;
 

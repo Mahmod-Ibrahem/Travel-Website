@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TailorMadeController;
 use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
@@ -47,9 +46,6 @@ Route::post('/checkout/{tour}',[\App\Http\Controllers\BookingController::class,'
 
 Route::post('/checkout/{tour}/confirm',[\App\Http\Controllers\BookingController::class,'confirm'])->name('booking.confirm');
 
-/*Blog*/
-Route::get('/Blog',[BlogController::class,'index'])->name('Blog.index');
-Route::get('/Blog/{city:slug}',[BlogController::class,'show'])->name('Blog.show');
-Route::get('/Blog/{city:slug}/{blog:slug}',[BlogController::class,'Attraction'])->name('Blog.attraction');
+
 
 

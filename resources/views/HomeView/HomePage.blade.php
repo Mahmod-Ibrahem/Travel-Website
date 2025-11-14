@@ -48,12 +48,12 @@
 {{--                <div class="child_container">--}}
 {{--                <iframe class="w-[370px] md:w-[450px] md:h-[315px]"--}}
 {{--                        src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player"--}}
-{{--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"--}}
+{{--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share"--}}
 {{--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>--}}
 
 {{--                    <iframe class="w-[370px] md:w-[450px] md:h-[315px]"--}}
 {{--                            src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player"--}}
-{{--                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"--}}
+{{--                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share"--}}
 {{--                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>--}}
 {{--            </div>--}}
 {{--        </div>--}}

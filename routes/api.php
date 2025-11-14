@@ -25,10 +25,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/updateTranslationOfTour/{id}', [ProductController::class, 'receiveAndUpdateTourTranslation']);
     /* Faq*/
     Route::apiResource('/faqs', \App\Http\Controllers\Api\FaqController::class);
-    /* Citys*/
-//     Route::apiResource('/city', \App\Http\Controllers\Api\CityApiController::class);
-    /*Blogs*/
-    Route::apiResource('/blog', \App\Http\Controllers\Api\BlogApiController::class);
 });
 
 Route::post('/login', [AuthController::class, 'login']);

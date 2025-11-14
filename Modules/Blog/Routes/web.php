@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\City\Http\Controllers\CityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +14,8 @@ use Modules\City\Http\Controllers\CityController;
 */
 
 Route::group([], function () {
-    Route::resource('city', CityController::class)->names('city');
+    /*Blog*/
+    Route::get('/Blog', [\Modules\Blog\Http\Controllers\Web\BlogController::class, 'index'])->name('Blog.index');
+    Route::get('/Blog/{city:slug}', [\Modules\Blog\Http\Controllers\Web\BlogController::class, 'show'])->name('Blog.show');
+    Route::get('/Blog/{city:slug}/{blog:slug}', [\Modules\Blog\Http\Controllers\Web\BlogController::class, 'Attraction'])->name('Blog.attraction');
 });
