@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public $test;
     public function home()
     {
         $recommendedDayTours = Tour::where('preference', 'recommended')->where('group', 'DayTours')

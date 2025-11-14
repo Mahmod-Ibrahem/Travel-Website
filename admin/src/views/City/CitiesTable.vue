@@ -2,7 +2,7 @@
     <div class="managmenet_container">
         <div class="flex flex-col  border-b-2 p-2">
         </div>
-        <table class="table_tag ">
+        <table class="table_tag">
             <thead>
             <tr>
                 <TableHeadingCell  class="border-b-2 p-2 text-left " field="Id"

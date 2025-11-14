@@ -9,6 +9,7 @@
         @apply flex flex-col items-center justify-center
     }
 
+
     .child_container {
         @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap
     }

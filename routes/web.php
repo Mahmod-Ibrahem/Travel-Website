@@ -17,8 +17,8 @@ Route::get('/Daytours/{Category:slug}', [TourController::class, 'view'])->name('
 Route::get('/Daytours/{Category:slug}/{Tour:title}', [TourController::class, 'Tour'])->name('DayTours.Tour');
 /* TourPackages Controller*/
 
-Route::get('/TourPackages', [\App\Http\Controllers\TourController::class, 'index'])->name('TourPackages.index');
-Route::get('/TourPackages/{Category:slug}', [\App\Http\Controllers\TourController::class, 'view'])->name('TourPackages.view');
+Route::get('/TourPackages', [TourController::class, 'index'])->name('TourPackages.index');
+Route::get('/TourPackages/{Category:slug}', [TourController::class, 'view'])->name('TourPackages.view');
 Route::get('/TourPackages/{Category:slug}/{Tour:title}', [\App\Http\Controllers\TourController::class, 'Tour'])->name('TourPackages.Tour');
 
 

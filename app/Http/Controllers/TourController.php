@@ -18,21 +18,24 @@ class TourController extends Controller
 
     public function index()
     {
-        $CategoryType=\request('type');
+        $CategoryType = \request('type');
         $category = Category::whereHas('categoryTranslations', function ($query) {
             $query->where('locale', app()->getLocale());
         })->where('type', '=', $CategoryType)
-            ->with(['categoryTranslations'=>function ($query) {
-                $query->where('locale', app()->getLocale());
-            }])
-            ->withCount(['tours' => function ($query) {
-                $query->whereHas('tourTranslations', function ($query) {
+            ->with([
+                'categoryTranslations' => function ($query) {
                     $query->where('locale', app()->getLocale());
-                });
-            }])->get()->toArray();
+                }
+            ])
+            ->withCount([
+                'tours' => function ($query) {
+                    $query->whereHas('tourTranslations', function ($query) {
+                        $query->where('locale', app()->getLocale());
+                    });
+                }
+            ])->get()->toArray();
 
-        if($CategoryType=='tourPackages')
-        {
+        if ($CategoryType == 'tourPackages') {
             return view('TourPackage.index', compact('category'));
         }
         return view('Tours.index', compact('category'));
@@ -61,19 +64,18 @@ class TourController extends Controller
             $query->where('locale', app()->getLocale());
             $query->where('slug', $Tour);
         })->with(['images', 'category', 'tourTranslations'])->first();
-        $locations=json_decode( $tour->tourTranslations[0]->locations);
+        $locations = json_decode($tour->tourTranslations[0]->locations);
         $tour->tourTranslations[0]->locations = implode('-', json_decode($tour->tourTranslations[0]->locations));
         $this->storeIp(Request()->ip(), $tour->id);
         $reviews = Review::take(20)->get();
-        $relatedTours=$this->getRelatedTours($locations,$tour->id,$tour->group);
+        $relatedTours = $this->getRelatedTours($locations, $tour->id, $tour->group);
         return view('Tour', compact('tour', 'reviews', 'relatedTours'));
     }
     public function getRelatedTours($locations, $id, $group)
     {
         return Tour::whereHas('tourTranslations', function ($query) use ($locations, $group) {
-            foreach($locations as $location)
-            {
-                $query->whereJsonContains('locations',$location);
+            foreach ($locations as $location) {
+                $query->whereJsonContains('locations', $location);
             }
         })
             ->where('group', $group)

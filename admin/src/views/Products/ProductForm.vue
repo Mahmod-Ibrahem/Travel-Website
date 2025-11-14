@@ -4,7 +4,6 @@
             {{ product.id ? `Update Tour: ${product.title}` : 'Create New Tour' }}
         </h1>
     </div>
-    <div class="">
         <Spinner v-if="loading"
                  class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
 
@@ -138,7 +137,6 @@
                 </RouterLink>
             </footer>
         </form>
-    </div>
 </template>
 
 <script setup>

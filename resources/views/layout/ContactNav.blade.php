@@ -1,5 +1,4 @@
 <div class="flex gap-3 bg-[#1a2b48] py-3 justify-between flex-wrap items-center">
-
     <div class="flex gap-1  md:ml-6 mr-1">
         <span class="flex items-center gap-1 border-r pr-1 border-[#374969] ">
                                     <svg class="md:h-5 md:w-5 h-4 w-4 text-[#ffffff]" fill="none" viewBox="0 0 24 24"
