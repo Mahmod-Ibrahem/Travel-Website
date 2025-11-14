@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\City\Providers;
+namespace Modules\Faq\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "Web" routes for the application.
+     * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
      */
@@ -41,7 +41,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('City', '/routes/web.php'));
+            ->group(module_path('Faq', '/routes/web.php'));
     }
 
     /**
@@ -54,6 +54,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('City', '/routes/api.php'));
+            ->group(module_path('Faq', '/routes/api.php'));
     }
 }

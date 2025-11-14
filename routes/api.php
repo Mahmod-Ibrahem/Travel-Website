@@ -24,7 +24,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/translateNewTour', [ProductController::class, 'translateNewTour']);
     Route::put('/updateTranslationOfTour/{id}', [ProductController::class, 'receiveAndUpdateTourTranslation']);
     /* Faq*/
-    Route::apiResource('/faqs', \App\Http\Controllers\Api\FaqController::class);
 });
 
 Route::post('/login', [AuthController::class, 'login']);

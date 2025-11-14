@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Faq\Entities;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\FaqTranslation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faq extends Model
 {

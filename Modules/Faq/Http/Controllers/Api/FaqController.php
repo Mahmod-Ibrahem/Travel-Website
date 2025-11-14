@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace Modules\Faq\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FAQRequest;
-use App\Http\Resources\FaqListResource;
-use App\Http\Resources\FaqResource;
-use App\Models\Faq;
 use App\Models\FaqTranslation;
+use Modules\Faq\Entities\Faq;
+use Modules\Faq\Http\Requests\FAQRequest;
+use Modules\Faq\Transformers\FaqListResource;
+use Modules\Faq\Transformers\FaqResource;
 
 class FaqController extends Controller
 {
