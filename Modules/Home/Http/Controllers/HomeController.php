@@ -27,7 +27,7 @@ class HomeController extends Controller
             })
             ->WithTranslations()->get()->toArray();
         $reviews = Review::where('tour_id', '=', null)->get();
-        $faqs=Faq::with('translations')->get();
+        $faqs = Faq::with('translations')->get();
         return view('home::index', compact('recommendedDayTours', 'recommendedTourPackages', 'limitedOffersTorus', 'reviews', 'faqs'));
     }
 }

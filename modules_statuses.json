@@ -2,5 +2,6 @@
     "City": true,
     "Blog": true,
     "Faq": true,
-    "Home": true
+    "Home": true,
+    "Review": true
 }

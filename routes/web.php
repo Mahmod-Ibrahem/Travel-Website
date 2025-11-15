@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\TailorMadeController;
-use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TourController;
@@ -32,10 +31,6 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-/* TransferService */
-
-Route::get("/TransferService",[TransferController::class,'index'])->name('Transfer.index');
-Route::post("/TransferService/submit",[TransferController::class,'submitting'])->name('Transfer.post');
 /* Contact Form */
 Route::get('/Contact',[\App\Http\Controllers\ContactController::class,'index'])->name('Contact.index');
 Route::post('/Contact/submit',[\App\Http\Controllers\ContactController::class,'submitting'])->name('Contact.post');

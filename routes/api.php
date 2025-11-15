@@ -13,11 +13,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/translateNewCategory', [CategoryController::class, 'translateNewCategory']);
     Route::put('/updateTranslationOfCategory/{id}', [CategoryController::class, 'receiveAndUpdateCategoryTranslation']);
     Route::apiResource('/products', ProductController::class);
-    Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'getReviews']);
-    Route::get('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'getReview']);
-    Route::post('/review', [\App\Http\Controllers\ReviewController::class, 'create']);
-    Route::put('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'updateReview']);
-    Route::delete('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'deleteReview']);
     Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
     Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
     Route::get('/getNonTranslatedTours', [ProductController::class, 'getNonTranslatedTours']);
