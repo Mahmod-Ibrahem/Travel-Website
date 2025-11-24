@@ -78,3 +78,8 @@ export function setBlogs(state,data)
     state.blogs.data=data.data
     state.blogs.loading=false
 }
+
+export function setLocations(state, data) {
+    state.locations.data = data.data
+    state.locations.loading = false
+}

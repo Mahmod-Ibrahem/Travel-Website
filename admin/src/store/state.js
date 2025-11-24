@@ -49,6 +49,10 @@ const store = {
         loading: false,
         data: [],
     },
+    locations: {
+        data: null,
+        loading: true
+    },
 };
 
 export default store;

@@ -3,5 +3,9 @@
     "Blog": true,
     "Faq": true,
     "Home": true,
-    "Review": true
+    "Review": true,
+    "Tour": true,
+    "Category": true,
+    "Location": true,
+    "Contact": true
 }

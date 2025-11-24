@@ -6,11 +6,7 @@
         </div>
         <div class="child_container gap-9">
             @forelse($tours as $tour)
-                    @component('components.TourCard', ['tour' => $tour])
-                        @slot('image')
-                            {{ asset($tour['tour_cover']) }}
-                        @endslot
-                    @endcomponent
+                @include('tour::components.tour-card', ['tour' => $tour , 'image'=>asset($tour['tour_cover'])])
             @empty
             @endforelse
 

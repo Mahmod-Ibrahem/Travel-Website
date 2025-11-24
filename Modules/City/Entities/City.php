@@ -2,16 +2,16 @@
 
 namespace Modules\City\Entities;
 
-use App\Models\Blog;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Blog\Entities\Blog;
 
 class City extends Model
 {
-    use HasFactory ,Sluggable;
+    use HasFactory, Sluggable;
 
-    protected $fillable=['name','slug','image'];
+    protected $fillable = ['name', 'slug', 'image'];
 
     public function blogs()
     {
@@ -30,5 +30,4 @@ class City extends Model
     {
         return 'slug';
     }
-
 }

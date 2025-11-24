@@ -10,22 +10,18 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $cities=City::all();
-        return view('blog::index',['cities' => $cities]);
+        $cities = City::all();
+        return view('blog::index', ['cities' => $cities]);
     }
 
     public function show(City $city)
     {
-        $cityAttractions=Blog::where('city_id', $city->id)->get();
-        $city=$city->name;
-        return view('blog::show',compact('cityAttractions','city'));
+        $cityAttractions = Blog::where('city_id', $city->id)->get();
+        return view('blog::show', compact('cityAttractions', 'city'));
     }
 
-    public function Attraction(City $city,Blog $blog)
+    public function Attraction(City $city, Blog $blog)
     {
-        return view('blog::blog',compact('city','blog'));
+        return view('blog::blog', compact('city', 'blog'));
     }
 }
-
-
-

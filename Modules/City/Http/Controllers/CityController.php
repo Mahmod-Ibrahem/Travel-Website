@@ -38,16 +38,18 @@ class CityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(City $city)
+    public function show(string $city)
     {
+        $city = City::findOrFail($city);
         return new CityResource($city);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CityRequest $request, City $city)
+    public function update(CityRequest $request, string $city)
     {
+        $city = City::findOrFail($city);
         $validatedCityData = $request->validated();
         if ($validatedCityData['image'] ?? false) {
             if ($city->image ?? false) {
@@ -65,9 +67,9 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public function destroy(string $city)
     {
-        $city->delete();
+        City::findOrFail($city)->delete();
         return response()->noContent();
     }
 }

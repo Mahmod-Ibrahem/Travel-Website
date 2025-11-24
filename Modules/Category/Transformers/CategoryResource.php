@@ -1,0 +1,33 @@
+<?php
+
+namespace Modules\Category\Transformers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class CategoryResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public static $wrap = false;
+    public function toArray(Request $request): array
+    {
+        $locale = request('locale', 'en');
+        return [
+            'id' => $this->id,
+            'categoryTranslationId' => null,
+            'type' => $this->type,
+            'locale' => $locale,
+            'header' => $this->getTranslation('header', $locale),
+            'description' => $this->getTranslation('description', $locale),
+            'bg_header' => $this->getTranslation('bg_header', $locale),
+            'name' => $this->getTranslation('name', $locale),
+            'image_url' => $this->image,
+            'title_meta' => $this->getTranslation('title_meta', $locale),
+            'description_meta' => $this->getTranslation('description_meta', $locale)
+        ];
+    }
+}

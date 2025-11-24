@@ -26,13 +26,13 @@ export function logout({commit}) {
 
 export function getProducts(
     {commit},
-    {url = null, search = null, sortField, sortDirection,perPage,locale} = {}
+    {url = null, search = null, sortField, sortDirection, perPage, locale} = {}
 ) {
     commit("setProducts", [true]);
     url = url || "/products";
     return axiosClient
         .get(url, {
-            params: {search, sortField, sortDirection,perPage,locale},
+            params: {search, sortField, sortDirection, perPage, locale},
         })
         .then((res) => {
             commit("setProducts", [false, res.data]);
@@ -46,14 +46,15 @@ export function createProduct({commit}, product) {
     if (product.tour_cover instanceof File) {
         const form = new FormData();
         form.append('group', product.group);
-        form.append('category_id', product.category_id);
         form.append('preference', product.preference);
         form.append('title', product.title);
         form.append('description', product.description);
         form.append('itenary_title', product.itenary_title);
         form.append('itenary_section', product.itenary_section);
         form.append('places', product.places);
-        form.append('locations', product.locations || '');
+        product.locations.forEach((location, index) => {
+            form.append(`locations[${index}]`, location);
+        })
         form.append('included', product.included);
         form.append('excluded', product.excluded);
         form.append('duration', product.duration);
@@ -62,7 +63,7 @@ export function createProduct({commit}, product) {
         form.append('price_six_twenty', product.price_six_twenty);
         form.append('tour_cover', product.tour_cover);
         product.tour_images.forEach((file, index) => {
-                form.append(`tour_images[${index}]`, file); // Add each file to FormData
+            form.append(`tour_images[${index}]`, file); // Add each file to FormData
         });
         product = form;
     }
@@ -71,10 +72,9 @@ export function createProduct({commit}, product) {
 
 export function updateProduct({commit}, product) {
     const id = product.id;
-    if (product.tour_cover instanceof File) {
+    if (product.tour_cover instanceof File || Array.isArray(product.tour_images)) {
         const form = new FormData();
         form.append('group', product.group);
-        form.append('category_id', product.category_id);
         form.append('preference', product.preference);
         form.append('title', product.title);
         form.append('description', product.description);
@@ -89,8 +89,14 @@ export function updateProduct({commit}, product) {
         form.append('price_two_five', product.price_two_five);
         form.append('price_six_twenty', product.price_six_twenty);
         form.append('tour_cover', product.tour_cover);
+        product.tour_images.forEach((file, index) => {
+            form.append(`tour_images[${index}]`, file); // Add each file to FormData
+        });
+        product.deleted_images_ids?.forEach((id, index) => {
+            form.append(`deleted_images_ids[${index}]`, id);
+        });
         form.append('_method', 'PUT');
-        product=form
+        product = form
     } else {
         product._method = "PUT";
     }
@@ -102,39 +108,38 @@ export function deleteProduct({commit}, id) {
     return axiosClient.delete(`/products/${id}`)
 }
 
-export function getProduct({}, {productId,locale}={}) {
-    return axiosClient.get(`/products/${productId}`,{params:{locale}})
+export function getProduct({}, {productId, locale} = {}) {
+    return axiosClient.get(`/products/${productId}`, {params: {locale}})
 }
 
 
-export function deleteProductImage({commit},id) {
-    //Images hena hya kol al product with image ana 8lt fi al def bta3ha
+export function deleteProductImage({commit}, id) {
     return axiosClient.delete(`/products/deleteImage/${id}`)
 }
 
 export function addProductImages({commit}, images) {
     const id = images.id
-    const form=new FormData();
+    const form = new FormData();
     images.tour_images.forEach((file, index) => {
         form.append(`tour_images[${index}]`, file); // Add each file to FormData
     });
     form.append('group', images.group);
     form.append('title', images.title);
     form.append('_method', 'PUT');
-    images=form
+    images = form
     return axiosClient.post(`/addImageToTour/${id}`, images)
 }
 
 
-export function getCategories({commit},{locale}={}) {
-    return axiosClient.get('/categories',{params: {locale}}).then(({data}) => {
+export function getCategories({commit}, {locale} = {}) {
+    return axiosClient.get('/categories', {params: {locale}}).then(({data}) => {
         commit('setCategories', data)
     })
 }
 
-export function getCategory({commit}, {id,locale}={}) {
+export function getCategory({commit}, {id, locale} = {}) {
     // debugger
-    return axiosClient.get(`/categories/${id}`,{params:{locale}})
+    return axiosClient.get(`/categories/${id}`, {params: {locale}})
 }
 
 export function createCategory({commit}, category) {
@@ -161,7 +166,7 @@ export function updateCategory({commit}, category) {
         form.append("id", category.id);
         form.append("categoryTranslationId", category.categoryTranslationId);
         form.append('type', category.type);
-        form.append('locale',category.locale);
+        form.append('locale', category.locale);
         form.append('header', category.header);
         form.append('bg_header', category.bg_header);
         form.append('description', category.description);
@@ -179,13 +184,13 @@ export function updateCategory({commit}, category) {
 
 export function getReviews(
     {commit},
-    {url = null, search = null, sortField, sortDirection,perPage} = {}
+    {url = null, search = null, sortField, sortDirection, perPage} = {}
 ) {
     // commit("setReviews", [true]);
     url = url || "/reviews";
     return axiosClient
         .get(url, {
-            params: {search, sortField, sortDirection,perPage},
+            params: {search, sortField, sortDirection, perPage},
         })
         .then((res) => {
             commit("setReviews", res.data);
@@ -193,7 +198,9 @@ export function getReviews(
         .catch(() => {
         });
 
-}export function getReview({commit}, id) {
+}
+
+export function getReview({commit}, id) {
     return axiosClient.get(`/review/${id}`)
 }
 
@@ -221,7 +228,7 @@ export function TranslateNewTour({commit}, product) {
 }
 
 export function updateTourTranslation({commit}, product) {
-    product['locale']='sp'
+    product['locale'] = 'sp'
     return axiosClient.put(`/updateTranslationOfTour/${product.tourTranslationId}`, product)
 }
 
@@ -244,6 +251,7 @@ export function getFaqs({commit}) {
         commit('setFaqs', data)
     })
 }
+
 export function getFaq({commit}, id) {
     return axiosClient.get(`/faqs/${id}`)
 }
@@ -260,6 +268,7 @@ export function updateFaq({commit}, faq) {
 export function deleteFaq({commit}, id) {
     return axiosClient.delete(`/faqs/${id}`)
 }
+
 /*Cities*/
 export function getCities({commit}) {
     return axiosClient.get('/city').then(({data}) => {
@@ -271,6 +280,7 @@ export function getCity({commit}, {cityId}) {
     console.log(cityId)
     return axiosClient.get(`/city/${cityId}`)
 }
+
 export function createCity({commit}, city) {
     if (city.image instanceof File) {
         const form = new FormData();
@@ -280,6 +290,7 @@ export function createCity({commit}, city) {
     }
     return axiosClient.post('/city', city)
 }
+
 export function updateCity({commit}, city) {
     const id = city.id;
     if (city.image instanceof File) {
@@ -294,12 +305,14 @@ export function updateCity({commit}, city) {
     }
     return axiosClient.post(`/city/${id}`, city);
 }
+
 export function deleteCity({commit}, id) {
     return axiosClient.delete(`/city/${id}`)
 }
+
 /* Blogs*/
-export function getBlogs({commit,state}) {
-    state.blogs.loading=true
+export function getBlogs({commit, state}) {
+    state.blogs.loading = true
     return axiosClient.get('/blog').then(({data}) => {
         commit('setBlogs', data)
     })
@@ -308,6 +321,7 @@ export function getBlogs({commit,state}) {
 export function getBlog({commit}, id) {
     return axiosClient.get(`/blog/${id}`)
 }
+
 export function createBlog({commit}, blog) {
     if (blog.image instanceof File) {
         const form = new FormData();
@@ -336,8 +350,57 @@ export function updateBlog({commit}, blog) {
     }
     return axiosClient.post(`/blog/${id}`, blog);
 }
+
 export function deleteBlog({commit}, id) {
     return axiosClient.delete(`/blog/${id}`)
+}
+
+export function createLocation({commit}, location) {
+    if (location.image instanceof File) {
+        const form = new FormData();
+        form.append('name', location.name);
+        form.append('image', location.image);
+        form.append('position', location.position);
+        location = form
+    }
+    return axiosClient.post('/locations', location)
+}
+
+export function getLocations({commit}) {
+    return axiosClient.get('/locations').then(({data}) => {
+        commit('setLocations', data)
+    })
+}
+
+export function getLocation({commit}, id) {
+    return axiosClient.get(`/locations/${id}`)
+}
+
+export function updateLocation({commit}, location) {
+    const id = location.id;
+    if (location.image instanceof File) {
+        const form = new FormData();
+        form.append('name', location.name);
+        form.append('image', location.image);
+        form.append('position', location.position);
+        form.append('_method', 'PUT');
+        location = form
+    } else {
+        location._method = "PUT"
+    }
+    return axiosClient.post(`/locations/${id}`, location);
+}
+
+export function deleteLocation({commit}, id) {
+    return axiosClient.delete(`/locations/${id}`)
+}
+
+export function getLocationForTranslation(__, id) {
+    return axiosClient.get(`/get-location-for-translation/${id}`)
+}
+
+export function createLocationTranslation(__, location) {
+    return axiosClient.put(`/create-location-translation/${location.id}`, location)
 }
 
 

@@ -13,7 +13,3 @@ use Modules\Faq\Http\Controllers\FaqController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::group([], function () {
-    Route::resource('faq', FaqController::class)->names('faq');
-});

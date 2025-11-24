@@ -12,14 +12,15 @@ class FaqResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public static $wrap=false;
+    public static $wrap = false;
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->translations[0]->id,
-            'question' => $this->translations[0]->question,
-            'answer' => $this->translations[0]->answer,
-            'locale' => $this->translations[0]->locale
+            'id' => $this->id,
+            'question' => $this->question,
+            'answer' => $this->answer,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

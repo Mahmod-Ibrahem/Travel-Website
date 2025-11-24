@@ -1,37 +1,37 @@
 <template>
     <div class="w-[200px]  transition-all bg-indigo-700 text-white py-4 px-2">
-        <RouterLink :to="{name:'app.categories'}"  class="sidebar_router">
+        <!-- <RouterLink :to="{name:'app.categories'}"  class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
             <span class="text-xs">
                 Categories
             </span>
-        </RouterLink>
-        <RouterLink :to="{name:'app.categories.sp'}"  class="sidebar_router">
-            <span class="mr-2 text-gray-300">
-                <ListBulletIcon class="w-5"></ListBulletIcon>
-            </span>
-            <span class="text-xs">
-                Categories (SP)
-            </span>
-        </RouterLink>
+        </RouterLink> -->
+<!--        <RouterLink :to="{name:'app.categories.sp'}"  class="sidebar_router">-->
+<!--            <span class="mr-2 text-gray-300">-->
+<!--                <ListBulletIcon class="w-5"></ListBulletIcon>-->
+<!--            </span>-->
+<!--            <span class="text-xs">-->
+<!--                Categories (SP)-->
+<!--            </span>-->
+<!--        </RouterLink>-->
         <RouterLink :to="{name:'app.products'}"  class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
             <span class="text-xs">
-                Tours Main (EN)
+                Tours
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.tours.ger'}"  class="sidebar_router">
-            <span class="mr-2 text-gray-300">
-                <ListBulletIcon class="w-5"></ListBulletIcon>
-            </span>
-            <span class="text-xs">
-                Tours (SP)
-            </span>
-        </RouterLink>
+<!--        <RouterLink :to="{name:'app.tours.ger'}"  class="sidebar_router">-->
+<!--            <span class="mr-2 text-gray-300">-->
+<!--                <ListBulletIcon class="w-5"></ListBulletIcon>-->
+<!--            </span>-->
+<!--            <span class="text-xs">-->
+<!--                Tours (SP)-->
+<!--            </span>-->
+<!--        </RouterLink>-->
         <RouterLink :to="{name:'app.reviews'}" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
@@ -62,6 +62,14 @@
             </span>
             <span class="text-xs">
                Blogs
+            </span>
+        </RouterLink>
+        <RouterLink :to="{name:'app.locations'}" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+               Locations
             </span>
         </RouterLink>
     </div>

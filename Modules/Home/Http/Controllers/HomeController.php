@@ -3,31 +3,25 @@
 namespace Modules\Home\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Review;
-use App\Models\Tour;
 use Modules\Faq\Entities\Faq;
+use Modules\Location\Entities\Location;
+use Modules\Review\Entities\Review;
+use Modules\Tour\Entities\Tour;
+use Modules\Tour\Service\TourService;
 
 class HomeController extends Controller
 {
+
+    public function __construct(protected TourService $tourService) {}
+
     public function home()
     {
-        $recommendedDayTours = Tour::where('preference', 'recommended')->where('group', 'DayTours')
-            ->whereHas('tourTranslations', function ($query) {
-                $query->where('locale', app()->getLocale());
-            })
-            ->WithTranslations()->get()->toArray();
-        $recommendedTourPackages = Tour::where('preference', 'recommended')->where('group', 'TourPackages')
-            ->whereHas('tourTranslations', function ($query) {
-                $query->where('locale', app()->getLocale());
-            })
-            ->WithTranslations()->get()->toArray();
-        $limitedOffersTorus = Tour::where('preference', 'limited_offers')
-            ->whereHas('tourTranslations', function ($query) {
-                $query->where('locale', app()->getLocale());
-            })
-            ->WithTranslations()->get()->toArray();
+        $recommendedDayTours = $this->tourService->getTourByPreferenceAndGroup('recommended', 'day-tours');
+        $recommendedTourPackages = $this->tourService->getTourByPreferenceAndGroup('recommended', 'tour-packages');
+        $locations = Location::all();
         $reviews = Review::where('tour_id', '=', null)->get();
         $faqs = Faq::with('translations')->get();
-        return view('home::index', compact('recommendedDayTours', 'recommendedTourPackages', 'limitedOffersTorus', 'reviews', 'faqs'));
+
+        return view('home::index', compact('recommendedDayTours', 'recommendedTourPackages', 'reviews', 'faqs', 'locations'));
     }
 }

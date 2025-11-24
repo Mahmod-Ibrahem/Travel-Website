@@ -82,13 +82,13 @@
                     <td class="border-b p-2 ">{{ product.group }}</td>
 
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                        {{ product.category?.category_translations[0]?.name || product.group }}
+                        {{ product.category?.name || product.group }}
                     </td>
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
                         {{ product.preference ?? 'Not Exist' }}
                     </td>
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                        {{ product.tour_translations[0].title }}
+                        {{ product.title }}
                     </td>
                     <td class="border-b p-2">
                         <img class="w-16 h-16 object-cover" :src="product.tour_cover" :alt="product.title">
@@ -97,7 +97,7 @@
                         ({{ product.price_per_person }},{{ product.price_two_five }},{{ product.price_six_twenty }})$
                     </td>
                     <td class="border-b p-2  ">
-                        {{ product.tour_translations[0].duration }}
+                        {{ product.duration }}
                     </td>
                     <td class="border-b p-2 ">
                         <Menu as="div" class="relative inline-block text-left">
@@ -126,17 +126,6 @@
                                             <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
                                                 aria-hidden="true" />
                                             Edit
-                                        </RouterLink>
-                                        </MenuItem>
-                                        <MenuItem v-slot="{ active }">
-                                        <RouterLink :to="{ name: 'app.products.view', params: { id: product.id } }"
-                                            :class="[
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                            ]">
-                                            <ChevronDoubleRightIcon :active="active"
-                                                class="mr-2 h-5 w-5 text-indigo-400" aria-hidden="true" />
-                                            Tour Images
                                         </RouterLink>
                                         </MenuItem>
                                         <MenuItem v-slot="{ active }">

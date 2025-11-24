@@ -2,12 +2,9 @@
 
 namespace App\Traits;
 
-use App\Models\IpTable;
-use App\Models\Review;
-use App\Models\Tour;
+
 use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Log;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -22,7 +19,7 @@ trait ImagesUtility
 
         $this->makeDirectory($directoryPath);
 
-        $uniqueName = $this->generateUniqueImageName($image, $type);
+        $uniqueName = $this->generateUniqueImageName();
         $manager = new ImageManager(new Driver());
         try {
             $img = $manager->read($image);
@@ -57,27 +54,21 @@ trait ImagesUtility
         return str_replace(url('storage'), '', $path);
     }
 
-    function generatePath($type): string|array
+    function generatePath($type): string
     {
-        return match ($type) {
-            'category' => 'Images/Category/',
-            'tour', 'tourCover' =>
-               'Images/Tour/',
-            default => 'Images/Default/',
-        };
+        return "Images/" . $type . "/";
     }
 
-    function generateUniqueImageName($image, $type): string|array
+    function generateUniqueImageName(): string
     {
-        $imageOriginalName = $image->getClientOriginalName(); // Get the original name of the image
-        $imageExtension = $image->getClientOriginalExtension(); // Get the file extension
-        return $imageOriginalName . '.' . uniqid() . $imageExtension;
+        return uniqid() . '.webp';
     }
 
     function resizeImage($image, $type)
     {
         return match ($type) {
             'tour' => $image->resize(864, 525),
+            'location' => $image->scaleDown(width: 1024),
             'tourCover' => $image->resize(1024, null),
             default => $image
         };

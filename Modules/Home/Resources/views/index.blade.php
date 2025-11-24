@@ -1,12 +1,17 @@
 @extends('layout.layouts')
 @section('title')
+    Mr Egypt Tours | Discover Authentic Egypt with Unforgettable Tours
+@endsection
+@section('description')
+    Explore the wonders of Egypt with Mr Egypt Tours. Offering personalized and unforgettable travel experiences across
+    iconic destinations like Cairo, Luxor, and the pyramids. Your adventure awaits!
+@endsection
+@section('title')
     MrEgyptTorus
 @endsection
 @section('content')
-
     <div class="h-[25rem] md:h-screen w-full ">
-        <div
-            class="md:bg-fixed h-full w-full "
+        <div class="md:bg-fixed h-full w-full "
             style="background-image: url('{{ asset('Images/Home.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
             <div class="flex flex-col items-center justify-center  w-full h-full bg-black/10 pt-10">
                 <h1
@@ -18,9 +23,9 @@
                 <p class="text-[20px] font-medium md:text-[40px] select-none text-center   text-white">With Endless
                     Possibility</p>
                 <div class="flex flex-col md:flex-row items-center justify-center gap-5 mt-5">
-                    <a href="{{route('DayTours.index')}}" class="h-fit overflow-hidden">
+                    <a href="{{ route('day-tours.index') }}" class="h-fit overflow-hidden">
                         <button type="button" id="title_button"
-                                class="main_button font-medium text-[15px]  md:text-[18px] tracking-wide px-5 py-2 md:px-10 md:py-3 border-2 border-white hover:bg-main hover:border-main">
+                            class="main_button font-medium text-[15px]  md:text-[18px] tracking-wide px-5 py-2 md:px-10 md:py-3 border-2 border-white hover:bg-main hover:border-main">
                             Book Your Tour !
                         </button>
                     </a>
@@ -28,41 +33,35 @@
             </div>
         </div>
     </div>
-    @component('home::best-destination')@endcomponent
-    @component('home::TourByCategory')@endcomponent
-    @component('home::Services')@endcomponent
-    @if(!$reviews->isEmpty())
-        @component('home::Testimonials',['reviews' => $reviews])@endcomponent
+    @include('home::best-destination', ['locations' => $locations])
+    @include('home::TourByCategory')
+    @include('home::Services')
+    @if (!$reviews->isEmpty())
+        @include('home::Testimonials', ['reviews' => $reviews])
     @endif
-    @component('home::TailorMade')@endcomponent
-    @if($recommendedDayTours ?? false)
-        @component('home::RecommendedDayTours',['tours' => $recommendedDayTours])@endcomponent
+    @if ($recommendedDayTours ?? false)
+        @include('home::RecommendedDayTours', ['tours' => $recommendedDayTours])
     @endif
-    @if($recommendedTourPackages ?? false)
-        @component('home::RecommendedDayTours',['tours' => $recommendedTourPackages])@endcomponent
+    @if ($recommendedTourPackages ?? false)
+        @include('home::RecommendedTourPackages', ['tours' => $recommendedTourPackages])
     @endif
-    {{--    <section id="YoutubeVideos" class="pt-6 select-none">--}}
-    {{--        <div class="parent_container">--}}
-    {{--            <h1 class="parent_header">See Egypt Through the Eyes of Our Satisfied Customers!</h1>--}}
+    {{--    <section id="YoutubeVideos" class="pt-6 select-none"> --}}
+    {{--        <div class="parent_container"> --}}
+    {{--            <h1 class="parent_header">See Egypt Through the Eyes of Our Satisfied Customers!</h1> --}}
 
-    {{--                <div class="child_container">--}}
-    {{--                <iframe class="w-[370px] md:w-[450px] md:h-[315px]"--}}
-    {{--                        src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player"--}}
-    {{--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share"--}}
-    {{--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>--}}
+    {{--                <div class="child_container"> --}}
+    {{--                <iframe class="w-[370px] md:w-[450px] md:h-[315px]" --}}
+    {{--                        src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player" --}}
+    {{--                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share" --}}
+    {{--                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> --}}
 
-    {{--                    <iframe class="w-[370px] md:w-[450px] md:h-[315px]"--}}
-    {{--                            src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player"--}}
-    {{--                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share"--}}
-    {{--                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
-    @component('home::Faq',['faqs' => $faqs])@endcomponent
-
+    {{--                    <iframe class="w-[370px] md:w-[450px] md:h-[315px]" --}}
+    {{--                            src="https://www.youtube.com/embed/pz2e0zxt-OE?si=89UkT07rOd4-OZxT" title="YouTube video player" --}}
+    {{--                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; Web-share" --}}
+    {{--                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> --}}
+    {{--            </div> --}}
+    {{--        </div> --}}
+    {{--    </section> --}}
+    @component('home::Faq', ['faqs' => $faqs])
+    @endcomponent
 @endsection
-
-
-
-
-

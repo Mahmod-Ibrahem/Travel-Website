@@ -19,6 +19,9 @@ import Cities from "../views/City/Cities.vue";
 import CityForm from "../views/City/CityForm.vue";
 import Blogs from "../views/Blogs/Blogs.vue";
 import BlogsForm from "../views/Blogs/BlogsForm.vue";
+import Locations from "../views/Locations/Locations.vue";
+import LocationForm from "../views/Locations/LocationForm.vue";
+import LocationTranslationForm from "../views/Locations/LocationTranslationForm.vue";
 
 const routes = [
     {
@@ -147,19 +150,39 @@ const routes = [
                 component: ToursFormGer
             },
             {
-                path:'blog',
-                name:'app.blogs',
+                path: 'blog',
+                name: 'app.blogs',
                 component: Blogs
             },
             {
-                path:'blog/create',
-                name:'app.blogs.create',
+                path: 'blog/create',
+                name: 'app.blogs.create',
                 component: BlogsForm
             },
             {
-                path:'blog/:id',
-                name:'app.blogs.edit',
+                path: 'blog/:id',
+                name: 'app.blogs.edit',
                 component: BlogsForm
+            },
+            {
+                path: "locations",
+                name: "app.locations",
+                component: Locations
+            },
+            {
+                path: "locations/create",
+                name: "app.locations.create",
+                component: LocationForm
+            },
+            {
+                path: "locations/:id",
+                name: "app.locations.edit",
+                component: LocationForm
+            },
+            {
+                path: 'location-translation/:id',
+                name: 'app.locations.createTranslation',
+                component: LocationTranslationForm
             },
 
         ],

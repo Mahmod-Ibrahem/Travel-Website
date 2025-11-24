@@ -13,9 +13,9 @@
 @component('layout.ContactNav')@endcomponent
 @component('layout.navbar') @endcomponent
 @yield('content')
-<div class="fixed start-6 bottom-6 group z-50 flex items-center justify-center rounded-full p-2 gap-2 text-white cursor-pointer bg-[#128C7E] hover:bg-[#25D366]
+<div class="fixed start-6 bottom-6 group z-50 flex items-center justify-center rounded-full p-2 gap-2 text-white cursor-pointer
+bg-[#128C7E] hover:bg-[#25D366]
          font-semibold">
-
     <a href="https://api.whatsapp.com/send?phone=201101833336">
         <svg class="w-8 h-8" fill="#ffffff" width="91px" height="91px" viewBox="0 0 64 64"
              xmlns="http://www.w3.org/2000/svg"

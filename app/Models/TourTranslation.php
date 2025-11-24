@@ -10,8 +10,7 @@ class TourTranslation extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable = ['tours_id', 'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations'
-        , 'places'];
+    protected $fillable = ['tours_id', 'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'places'];
 
     public function tour()
     {

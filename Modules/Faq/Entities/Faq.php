@@ -2,22 +2,14 @@
 
 namespace Modules\Faq\Entities;
 
-use App\Models\FaqTranslation;
+use Spatie\Translatable\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faq extends Model
 {
-    use HasFactory;
-    protected $fillable = [];
+    use HasFactory, HasTranslations;
 
-    public function translations()
-    {
-        return $this->hasMany(FaqTranslation::class);
-    }
-
-    public function translation($locale)
-    {
-        return $this->translations()->where('locale', $locale)->first();
-    }
+    protected $fillable = ['question', 'answer'];
+    public $translatable = ['question', 'answer'];
 }

@@ -31,7 +31,7 @@ return [
         'files' => [
             'routes/Web' => 'routes/Web.php',
             'routes/api' => 'routes/api.php',
-            'views/index' => 'resources/views/index.blade.php',
+            'views/index' => 'resources/views/day-tour-index.blade.php',
             'views/master' => 'resources/views/layouts/master.blade.php',
             'scaffold/config' => 'config/config.php',
             'composer' => 'composer.json',
