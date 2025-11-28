@@ -19,9 +19,8 @@
                         <option value="day-tours">Day Tours</option>
                         <option value="tour-packages">Tour Packages</option>
                     </select>
-                    <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0]">{{
-                        errors.group[0]
-                        }}</p>
+                    <p class="text-red-500 text-sm font-semibold" v-if="errors.group && errors.group[0]">
+                        {{ errors.group[0] }}</p>
                 </div>
                 <!-- Tour Preference -->
 
@@ -30,7 +29,6 @@
                     :class="{ 'border-red-500': errors.preference && errors.preference[0] }">
                     <option value="" selected>Select Tour Preference (Optional)</option>
                     <option value="recommended">Recommended</option>
-                    <option value="limited_offers">Limited offers</option>
                 </select>
 
                 <p class="text-red-500 text-sm font-semibold px-3 mb-2"
@@ -46,24 +44,33 @@
                     :class="{ 'border border-red-500': errors.itenary_section && errors.itenary_section[0] }" />
                 <span v-if="errors.itenary_section && errors.itenary_section[0]"
                     class="text-red-500 text-sm font-semibold">{{ errors.itenary_section[0] }}</span>
-                <CustomInput type="textarea" class="mb-2" :errors="errors.included" v-model="product.included"
-                    label="Tour Included" />
-                <CustomInput type="textarea" class="mb-2" :errors="errors.excluded" v-model="product.excluded"
-                    label="Tour Excluded" />
 
                 <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"
                     :errors="errors.places" />
 
-
-                <div class="flex justify-between mt-2 gap-6">
-                    <div class="w-[49%] flex flex-col">
+                <div class="flex flex-col md:flex-row  md:justify-between mt-2 gap-6">
+                    <div class="w-full md:w-[49%] flex flex-col">
                         <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration"
                             :errors="errors.duration" />
                         <div class="mb-2 w-full">
                             <MultiSelect :options="locations" optionLabel="name" optionValue="id" class="w-full"
-                                v-model="product.locations" placeholder="Select Locations" />
+                                :maxSelectedLabels="3" v-model="product.locations" placeholder="Select Locations" />
                             <p v-if="errors.locations" class="text-red-500 text-xs font-semibold mb-2">
                                 {{ errors.locations[0] }}
+                            </p>
+                        </div>
+                        <div class="mb-2 w-full">
+                            <MultiSelect :options="included" optionLabel="title" optionValue="id" class="w-full"
+                                :maxSelectedLabels="3" v-model="product.included" placeholder="Select Included" />
+                            <p v-if="errors.included" class="text-red-500 text-xs font-semibold mb-2">
+                                {{ errors.included[0] }}
+                            </p>
+                        </div>
+                        <div class="mb-2 w-full">
+                            <MultiSelect :options="excluded" optionLabel="title" optionValue="id" class="w-full"
+                                :maxSelectedLabels="3" v-model="product.excluded" placeholder="Select Excluded" />
+                            <p v-if="errors.excluded" class="text-red-500 text-xs font-semibold mb-2">
+                                {{ errors.excluded[0] }}
                             </p>
                         </div>
                         <CustomInput type="number" class="mb-2" v-model="product.price_per_person"
@@ -71,7 +78,7 @@
                         <CustomInput type="number" class="mb-2" v-model="product.price_two_five" label="Price From 2-5"
                             :errors="errors.price_two_five" prepend="$" />
                         <CustomInput type="number" class="mb-2" v-model="product.price_six_twenty"
-                            label="price From 6-20" :errors="errors.price_six_twenty" prepend="$" />
+                            label="Price From 6-12" :errors="errors.price_six_twenty" prepend="$" />
                         <!-- Product Image -->
                         <CustomInput type="file" class="mb-2 bg-white" label="Product Image"
                             @change="file => handleFileChange(file)" :errors="errors.tour_cover" />
@@ -90,7 +97,8 @@
                     </div>
 
 
-                    <div class="flex flex-col gap-1 items-center justify-center flex-wrap flex-shrink-0 w-[49%]  ">
+                    <div
+                        class="flex flex-col gap-1 items-center justify-center flex-wrap flex-shrink-0 w-full md:w-[49%]  ">
                         <!-- Tour Cover Image Preview -->
                         <img v-if="imagePreview" :src="imagePreview" alt="Image Preview"
                             class=" object-fit border rounded-md h-96 " />
@@ -181,6 +189,8 @@ const errors = ref({
 })
 
 const locations = computed(() => store.state.locations.data)
+const included = computed(() => store.state.inclusions.data)
+const excluded = computed(() => store.state.exclusions.data)
 const imagePreview = ref(null)
 
 function handleProductImages(event) {
@@ -247,8 +257,10 @@ onMounted(() => {
     if (route.params.id) {
         Promise.all([
             store.dispatch('getProduct', { productId: route.params.id, locale: 'en' }),
+            store.dispatch('getInclusions'),
+            store.dispatch('getExclusions'),
             store.dispatch('getLocations')
-        ]).then(([productResponse, locationsResponse]) => {
+        ]).then(([productResponse]) => {
             product.value = productResponse.data
             // productImagesPreview.value = product.value.tour_images.map(image => ({
             //     type: 'db',
@@ -262,10 +274,13 @@ onMounted(() => {
         })
     }
     else {
-        store.dispatch('getLocations')
-            .finally(() => {
-                loading.value = false
-            })
+        Promise.all([
+            store.dispatch('getInclusions'),
+            store.dispatch('getExclusions'),
+            store.dispatch('getLocations')
+        ]).finally(() => {
+            loading.value = false
+        })
     }
 })
 </script>

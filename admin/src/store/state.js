@@ -53,6 +53,24 @@ const store = {
         data: null,
         loading: true
     },
+    inclusions: {
+        data: [],
+        loading: true,
+        from: null,
+        to: null,
+        total: null,
+        per_page: 20,
+        links: []
+    },
+    exclusions: {
+        data: [],
+        loading: true,
+        from: null,
+        to: null,
+        total: null,
+        per_page: 20,
+        links: []
+    },
 };
 
 export default store;

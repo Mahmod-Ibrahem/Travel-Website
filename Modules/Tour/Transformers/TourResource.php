@@ -16,25 +16,24 @@ class TourResource extends JsonResource
 
     public function toArray(Request $request): array
     {
-        $locale = request('locale', 'en');
         return [
             'id' => $this->id,
             'group' => $this->group,
             'category_id' => $this->category->id ?? null,
             'preference' => $this->preference,
-            'title' => $this->getTranslation('title', $locale),
-            'description' => $this->getTranslation('description', $locale),
-            'places' => $this->getTranslation('places', $locale),
-            'included' => $this->getTranslation('included', $locale),
-            'excluded' => $this->getTranslation('excluded', $locale),
+            'title' => $this->title,
+            'description' => $this->description,
+            'places' => $this->places,
+            'included' => $this->inclusions->pluck('id'),
+            'excluded' => $this->exclusions->pluck('id'),
             'locations' => $this->locations->pluck('id'),
-            'itenary_title' => $this->getTranslation('itenary_title', $locale),
-            'itenary_section' => $this->getTranslation('itenary_section', $locale),
+            'itenary_title' => $this->itenary_title,
+            'itenary_section' => $this->itenary_section,
             'price_per_person' => $this->price_per_person,
             'tour_cover' => $this->tour_cover,
             'price_two_five' => $this->price_two_five,
             'price_six_twenty' => $this->price_six_twenty,
-            'duration' => $this->getTranslation('duration', $locale),
+            'duration' => $this->duration,
             'tour_images' => $this->images,
         ];
     }

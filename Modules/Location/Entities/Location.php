@@ -30,4 +30,9 @@ class Location extends Model
             ]
         ];
     }
+
+    protected static function newFactory()
+    {
+        return \Modules\Location\Database\factories\LocationFactory::new();
+    }
 }

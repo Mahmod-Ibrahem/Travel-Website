@@ -1,22 +1,6 @@
 <template>
     <div class="w-[200px]  transition-all bg-indigo-700 text-white py-4 px-2">
-        <!-- <RouterLink :to="{name:'app.categories'}"  class="sidebar_router">
-            <span class="mr-2 text-gray-300">
-                <ListBulletIcon class="w-5"></ListBulletIcon>
-            </span>
-            <span class="text-xs">
-                Categories
-            </span>
-        </RouterLink> -->
-<!--        <RouterLink :to="{name:'app.categories.sp'}"  class="sidebar_router">-->
-<!--            <span class="mr-2 text-gray-300">-->
-<!--                <ListBulletIcon class="w-5"></ListBulletIcon>-->
-<!--            </span>-->
-<!--            <span class="text-xs">-->
-<!--                Categories (SP)-->
-<!--            </span>-->
-<!--        </RouterLink>-->
-        <RouterLink :to="{name:'app.products'}"  class="sidebar_router">
+        <RouterLink :to="{ name: 'app.products' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -24,15 +8,8 @@
                 Tours
             </span>
         </RouterLink>
-<!--        <RouterLink :to="{name:'app.tours.ger'}"  class="sidebar_router">-->
-<!--            <span class="mr-2 text-gray-300">-->
-<!--                <ListBulletIcon class="w-5"></ListBulletIcon>-->
-<!--            </span>-->
-<!--            <span class="text-xs">-->
-<!--                Tours (SP)-->
-<!--            </span>-->
-<!--        </RouterLink>-->
-        <RouterLink :to="{name:'app.reviews'}" class="sidebar_router">
+
+        <RouterLink :to="{ name: 'app.reviews' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -40,7 +17,7 @@
                 Reviews
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.faqs'}" class="sidebar_router">
+        <RouterLink :to="{ name: 'app.faqs' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -48,7 +25,7 @@
                 Faqs
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.cities'}" class="sidebar_router">
+        <RouterLink :to="{ name: 'app.cities' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -56,20 +33,36 @@
                 Blog Cities
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.blogs'}" class="sidebar_router">
+        <RouterLink :to="{ name: 'app.blogs' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
             <span class="text-xs">
-               Blogs
+                Blogs
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.locations'}" class="sidebar_router">
+        <RouterLink :to="{ name: 'app.locations' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
             <span class="text-xs">
-               Locations
+                Locations
+            </span>
+        </RouterLink>
+        <RouterLink :to="{ name: 'app.inclusions' }" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+                Inclusions
+            </span>
+        </RouterLink>
+        <RouterLink :to="{ name: 'app.exclusions' }" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+                Exclusions
             </span>
         </RouterLink>
     </div>
@@ -79,8 +72,8 @@
 import {
     HomeIcon, ListBulletIcon, UsersIcon, ChartBarIcon, DocumentChartBarIcon
 } from '@heroicons/vue/24/outline'
-import {computed} from 'vue';
-import {RouterLink} from 'vue-router';
+import { computed } from 'vue';
+import { RouterLink } from 'vue-router';
 import store from "../store";
 const user = computed(() => store.state.user.data)
 

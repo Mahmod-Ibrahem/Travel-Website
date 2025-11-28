@@ -13,7 +13,3 @@ use Modules\City\Http\Controllers\CityController;
 | contains the "Web" middleware group. Now create something great!
 |
 */
-
-Route::group([], function () {
-    Route::resource('city', CityController::class)->names('city');
-});

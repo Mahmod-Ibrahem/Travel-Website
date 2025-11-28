@@ -1,0 +1,11 @@
+{
+    "name": "Exclusion",
+    "alias": "exclusion",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Exclusion\\Providers\\ExclusionServiceProvider"
+    ],
+    "files": []
+}

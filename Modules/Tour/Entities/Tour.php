@@ -17,8 +17,8 @@ class Tour extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty', 'slug', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'places'];
-    public $translatable = ['slug', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'places'];
+    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty', 'slug', 'title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
+    public $translatable = ['slug', 'title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
 
     public function category()
     {
@@ -38,6 +38,16 @@ class Tour extends Model
     public function locations()
     {
         return $this->belongsToMany(Location::class, 'tour_locations', 'tour_id', 'location_id');
+    }
+
+    public function inclusions()
+    {
+        return $this->belongsToMany(\Modules\Inclusion\Entities\Inclusion::class, 'inclusion_tour');
+    }
+
+    public function exclusions()
+    {
+        return $this->belongsToMany(\Modules\Exclusion\Entities\Exclusion::class, 'exclusion_tour');
     }
 
     public function scopeWithTranslations(Builder $query): Builder

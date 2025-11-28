@@ -19,7 +19,7 @@
         @forelse($tours as $tour)
             @include('tour::components.tour-card', ['tour' => $tour])
         @empty
-            <p class="px-3 py-2 shadow-md rounded-lg text-center w-full font-semibold md:text-xl">Soon</p>
+            <p class="px-3 py-2 rounded-lg text-center w-full font-semibold md:text-xl">Soon</p>
         @endforelse
     </div>
 @endsection

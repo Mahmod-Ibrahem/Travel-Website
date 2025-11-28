@@ -83,3 +83,23 @@ export function setLocations(state, data) {
     state.locations.data = data.data
     state.locations.loading = false
 }
+
+export function setInclusions(state, data) {
+    state.inclusions.data = data.data
+    state.inclusions.loading = false
+    state.inclusions.from = data.meta?.from
+    state.inclusions.to = data.meta?.to
+    state.inclusions.total = data.meta?.total
+    state.inclusions.per_page = data.meta?.per_page
+    state.inclusions.links = data.meta?.links
+}
+
+export function setExclusions(state, data) {
+    state.exclusions.data = data.data
+    state.exclusions.loading = false
+    state.exclusions.from = data.meta?.from
+    state.exclusions.to = data.meta?.to
+    state.exclusions.total = data.meta?.total
+    state.exclusions.per_page = data.meta?.per_page
+    state.exclusions.links = data.meta?.links
+}

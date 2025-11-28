@@ -1,0 +1,23 @@
+<?php
+
+namespace Modules\Inclusion\Transformers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class InclusionResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     */
+
+    public static $wrap  = false;
+    
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+        ];
+    }
+}

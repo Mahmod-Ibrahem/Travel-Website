@@ -57,7 +57,7 @@ class TourController extends Controller
         $data['tour_cover'] = $this->storeImage($data['tour_cover'], 'tourCover'); //store public path
 
         $tour = new Tour();
-        $tour->category_id = $data['category_id'];
+        $tour->category_id = $data['category_id'] ?? null;
         $tour->group = $data['group'];
         $tour->preference = $data['preference'];
         $tour->tour_cover = $data['tour_cover'];
@@ -67,17 +67,20 @@ class TourController extends Controller
 
         $locale = $data['locale'] ?? 'en';
         $this->setTranslations($tour, $data, $locale);
-
         $tour->save();
-
         $tour->locations()->attach($data['locations']);
+        $tour->inclusions()->attach($data['included']);
+        $tour->exclusions()->attach($data['excluded']);
 
         //handling Tour Images
         $tourImages = $data['tour_images'];
 
         $this->tourService->attachImage($tourImages, $tour->id);
 
-        return $this->showError('Tour created successfully', 201);
+        return response()->json([
+            'message' => 'Tour created successfully',
+            'tour' => new TourResource($tour)
+        ], 201);
     }
 
     /**
@@ -117,6 +120,8 @@ class TourController extends Controller
         $tour->save();
 
         $tour->locations()->sync($data['locations']);
+        $tour->inclusions()->sync($data['inclusions']);
+        $tour->exclusions()->sync($data['exclusions']);
 
         return response()->json(['message' => 'Tour updated successfully'], 200);
     }
@@ -151,7 +156,7 @@ class TourController extends Controller
 
     private function setTranslations(Tour $tour, array $data, string $locale)
     {
-        $translatableFields = ['title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'places'];
+        $translatableFields = ['title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
 
         if (isset($data['title'])) {
             $slug = \Illuminate\Support\Str::slug($data['title']);

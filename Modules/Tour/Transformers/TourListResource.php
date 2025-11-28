@@ -17,18 +17,14 @@ class TourListResource extends JsonResource
         $locale = request('locale', 'en');
         return [
             'id' => $this->id,
-            'title' => $this->getTranslation('title', $locale),
+            'title' => $this->title,
             'group' => $this->group,
-            'category' => [
-                'id' => $this->category->id ?? null,
-                'name' => $this->category ? $this->category->getTranslation('name', $locale) : null,
-            ],
             'preference' => $this->preference,
             'tour_cover' => $this->tour_cover,
             'price_per_person' => $this->price_per_person,
             'price_two_five' => $this->price_two_five,
             'price_six_twenty' => $this->price_six_twenty,
-            'duration' => $this->getTranslation('duration', $locale),
+            'duration' => $this->duration,
         ];
     }
 }

@@ -6,7 +6,7 @@
     {{ $tour->description }}
 @endsection
 @section('content')
-    <div class="h-[20rem] md:h-auto  w-screen ">
+    <div class="h-[20rem] md:h-auto  w-full ">
         <div class="md:bg-fixed md:h-[75%]  w-full object-cover bg-center bg-cover"
             style="background-image: url('{{ $tour->tour_cover }}');">
             <div class="flex flex-col items-center justify-center md:items-center h-full bg-[#33333382]
@@ -297,6 +297,90 @@
                 slideIndex = index
             });
         });
+
+        // Touch/Swipe functionality for mobile and touchpad
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+
+        imagesContainer.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            isDragging = true;
+        }, {
+            passive: true
+        });
+
+        imagesContainer.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            touchEndX = e.changedTouches[0].screenX;
+        }, {
+            passive: true
+        });
+
+        imagesContainer.addEventListener('touchend', function() {
+            if (!isDragging) return;
+            isDragging = false;
+            handleSwipe();
+        });
+
+        // Mouse drag for desktop touchpad
+        let mouseStartX = 0;
+        let mouseEndX = 0;
+        let isMouseDragging = false;
+
+        imagesContainer.addEventListener('mousedown', function(e) {
+            mouseStartX = e.screenX;
+            isMouseDragging = true;
+            imagesContainer.style.cursor = 'grabbing';
+        });
+
+        imagesContainer.addEventListener('mousemove', function(e) {
+            if (!isMouseDragging) return;
+            mouseEndX = e.screenX;
+        });
+
+        imagesContainer.addEventListener('mouseup', function() {
+            if (!isMouseDragging) return;
+            isMouseDragging = false;
+            imagesContainer.style.cursor = 'grab';
+            touchStartX = mouseStartX;
+            touchEndX = mouseEndX;
+            handleSwipe();
+        });
+
+        imagesContainer.addEventListener('mouseleave', function() {
+            if (isMouseDragging) {
+                isMouseDragging = false;
+                imagesContainer.style.cursor = 'grab';
+            }
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // minimum distance for a swipe
+            const difference = touchStartX - touchEndX;
+
+            if (Math.abs(difference) < swipeThreshold) {
+                return; // Not a swipe, ignore
+            }
+
+            if (difference > 0) {
+                // Swiped left - go to next slide
+                ScrollHorizontal(1);
+            } else {
+                // Swiped right - go to previous slide
+                ScrollHorizontal(-1);
+            }
+
+            // Reset values
+            touchStartX = 0;
+            touchEndX = 0;
+            mouseStartX = 0;
+            mouseEndX = 0;
+        }
+
+        // Set initial cursor style
+        imagesContainer.style.cursor = 'grab';
+
 
     })
 </script>

@@ -55,8 +55,12 @@ export function createProduct({commit}, product) {
         product.locations.forEach((location, index) => {
             form.append(`locations[${index}]`, location);
         })
-        form.append('included', product.included);
-        form.append('excluded', product.excluded);
+        product.included.forEach((included,index)=>{
+            form.append(`included[${index}]`,included)
+        })
+        product.excluded.forEach((excluded,index)=>{
+            form.append(`excluded[${index}]`,excluded)
+        })
         form.append('duration', product.duration);
         form.append('price_per_person', product.price_per_person);
         form.append('price_two_five', product.price_two_five);
@@ -403,6 +407,58 @@ export function createLocationTranslation(__, location) {
     return axiosClient.put(`/create-location-translation/${location.id}`, location)
 }
 
+/* Inclusions */
+export function getInclusions({commit}, {url = null, perPage = 20} = {}) {
+    url = url || '/inclusions';
+    return axiosClient.get(url, {
+        params: {perPage}
+    }).then(({data}) => {
+        commit('setInclusions', data)
+    })
+}
 
+export function getInclusion({commit}, {inclusionId}) {
+    return axiosClient.get(`/inclusions/${inclusionId}`)
+}
 
+export function createInclusion({commit}, inclusion) {
+    return axiosClient.post('/inclusions', inclusion)
+}
 
+export function updateInclusion({commit}, inclusion) {
+    const id = inclusion.id;
+    inclusion._method = "PUT";
+    return axiosClient.post(`/inclusions/${id}`, inclusion);
+}
+
+export function deleteInclusion({commit}, id) {
+    return axiosClient.delete(`/inclusions/${id}`)
+}
+
+/* Exclusions */
+export function getExclusions({commit}, {url = null, perPage = 20} = {}) {
+    url = url || '/exclusions';
+    return axiosClient.get(url, {
+        params: {perPage}
+    }).then(({data}) => {
+        commit('setExclusions', data)
+    })
+}
+
+export function getExclusion({commit}, {exclusionId}) {
+    return axiosClient.get(`/exclusions/${exclusionId}`)
+}
+
+export function createExclusion({commit}, exclusion) {
+    return axiosClient.post('/exclusions', exclusion)
+}
+
+export function updateExclusion({commit}, exclusion) {
+    const id = exclusion.id;
+    exclusion._method = "PUT";
+    return axiosClient.post(`/exclusions/${id}`, exclusion);
+}
+
+export function deleteExclusion({commit}, id) {
+    return axiosClient.delete(`/exclusions/${id}`)
+}

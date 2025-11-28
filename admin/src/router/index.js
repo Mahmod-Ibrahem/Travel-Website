@@ -9,10 +9,6 @@ import CategoryForm from "../views/Category/CategoryForm.vue";
 import ProductImages from "../views/Products/ProductImages.vue";
 import Reviews from "../views/Reviews/Reviews.vue";
 import ReviewForm from "../views/Reviews/ReviewForm.vue";
-import ToursGer from "../views/TourSP/ToursSP.vue";
-import ToursFormGer from "../views/TourSP/ToursFormSP.vue";
-import CategoriesSp from "../views/CategorySp/CategoriesSp.vue";
-import CategoryFormSp from "../views/CategorySp/CategoryFormSp.vue";
 import Faqs from "../views/Faq/Faqs.vue";
 import FaqForm from "../views/Faq/FaqForm.vue";
 import Cities from "../views/City/Cities.vue";
@@ -22,6 +18,10 @@ import BlogsForm from "../views/Blogs/BlogsForm.vue";
 import Locations from "../views/Locations/Locations.vue";
 import LocationForm from "../views/Locations/LocationForm.vue";
 import LocationTranslationForm from "../views/Locations/LocationTranslationForm.vue";
+import Inclusions from "../views/Inclusion/Inclusions.vue";
+import InclusionForm from "../views/Inclusion/InclusionForm.vue";
+import Exclusions from "../views/Exclusion/Exclusions.vue";
+import ExclusionForm from "../views/Exclusion/ExclusionForm.vue";
 
 const routes = [
     {
@@ -74,22 +74,6 @@ const routes = [
 
             },
             {
-                path: "categories/spanish",
-                name: "app.categories.sp",
-                component: CategoriesSp,
-            },
-            {
-                path: "categories/sp/create",
-                name: "app.categories.sp.create",
-                component: CategoryFormSp,
-            },
-            {
-                path: "categories/sp/:id",
-                name: "app.categories.sp.edit",
-                component: CategoryFormSp,
-
-            },
-            {
                 path: 'reviews',
                 name: 'app.reviews',
                 component: Reviews
@@ -135,21 +119,6 @@ const routes = [
                 component: CityForm
             },
             {
-                path: 'tours/de',
-                name: 'app.tours.ger',
-                component: ToursGer
-            },
-            {
-                path: 'tours/de/create',
-                name: 'app.tours.de.create',
-                component: ToursFormGer
-            },
-            {
-                path: 'tours/GER/:id',
-                name: 'app.tours.ger.edit',
-                component: ToursFormGer
-            },
-            {
                 path: 'blog',
                 name: 'app.blogs',
                 component: Blogs
@@ -183,6 +152,36 @@ const routes = [
                 path: 'location-translation/:id',
                 name: 'app.locations.createTranslation',
                 component: LocationTranslationForm
+            },
+            {
+                path: 'inclusions',
+                name: 'app.inclusions',
+                component: Inclusions
+            },
+            {
+                path: 'inclusions/create',
+                name: 'app.inclusions.create',
+                component: InclusionForm
+            },
+            {
+                path: 'inclusions/:id',
+                name: 'app.inclusions.edit',
+                component: InclusionForm
+            },
+            {
+                path: 'exclusions',
+                name: 'app.exclusions',
+                component: Exclusions
+            },
+            {
+                path: 'exclusions/create',
+                name: 'app.exclusions.create',
+                component: ExclusionForm
+            },
+            {
+                path: 'exclusions/:id',
+                name: 'app.exclusions.edit',
+                component: ExclusionForm
             },
 
         ],

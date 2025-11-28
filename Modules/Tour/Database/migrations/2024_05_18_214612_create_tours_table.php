@@ -12,6 +12,13 @@ return new class extends Migration {
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->json('slug')->nullable();
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->json('itenary_title')->nullable();
+            $table->json('itenary_section')->nullable();
+            $table->json('duration')->nullable();
+            $table->json('places')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');

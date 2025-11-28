@@ -13,7 +13,3 @@ use Modules\Review\Http\Controllers\Api\ReviewController;
  * is assigned the "api" middleware group. Enjoy building your API!
  *
 */
-
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::apiResource('reviews', ReviewController::class)->names('review');
-});

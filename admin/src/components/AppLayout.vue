@@ -4,22 +4,22 @@
         <SideBar :class="{ '-ml-[200px]': !sidebarOpened }"></SideBar>
         <!--End OF SideBar-->
         <!--Nav Bar-->
-        <div class="flex-1">
+        <div class="w-screen overflow-x-auto">
             <NavBar @toggle-sidebar="toggleSideBar"></NavBar>
             <!-- End ofNav Bar-->
             <!--Content-->
-            <main class="p-6">
-                <div class="p-4 rounded bg-white shadow">
+            <main class="p-2">
+                <div class="p-2 rounded bg-white shadow overflow-x-auto">
                     <router-view></router-view>
                 </div>
             </main>
         </div>
     </div>
     <div v-else class="flex min-h-screen items-center justify-center text-center">
-      <Spinner></Spinner>
-      </div>
-      <Toast />
-        <ErrorToast></ErrorToast>
+        <Spinner></Spinner>
+    </div>
+    <Toast />
+    <ErrorToast></ErrorToast>
 
 </template>
 
@@ -40,21 +40,21 @@ function toggleSideBar() {
     sidebarOpened.value = !sidebarOpened.value
 }
 onMounted(() => {
-  store.dispatch('getCurrentUser')
+    store.dispatch('getCurrentUser')
     store.dispatch('getCategories')
     handleSidebar()
-    window.addEventListener('resize',handleSidebar)
+    window.addEventListener('resize', handleSidebar)
 })
-onUnmounted(()=>{
-    window.removeEventListener('resize',handleSidebar)
+onUnmounted(() => {
+    window.removeEventListener('resize', handleSidebar)
 })
 function handleSidebar() {
     sidebarOpened.value = window.outerWidth > 768
 }
 
-const userName=computed(()=>{
+const userName = computed(() => {
 
-return  store.state.user.data
+    return store.state.user.data
 })
 </script>
 

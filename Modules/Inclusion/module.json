@@ -1,0 +1,11 @@
+{
+    "name": "Inclusion",
+    "alias": "inclusion",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Inclusion\\Providers\\InclusionServiceProvider"
+    ],
+    "files": []
+}
