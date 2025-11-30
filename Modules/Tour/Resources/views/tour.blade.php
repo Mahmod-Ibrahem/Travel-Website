@@ -141,23 +141,15 @@
 
                         <div id="tabContent_Include" class="tourDetail_container">
                             <h2 class="tour_details_h">What's Include</h2>
-                            @foreach (explode('/', $tour->included) as $included)
-                                @component('tour::components.include')
-                                    @slot('text')
-                                        {{ $included }}
-                                    @endslot
-                                @endcomponent
+                            @foreach ($tour->inclusions as $included)
+                                @include('tour::components.include', ['included' => $included->title])
                             @endforeach
                         </div>
                     </div>
                     <div id="tabContent_Exclude" class="tourDetail_container">
                         <h2 class="tour_details_h">What's Excluded</h2>
-                        @foreach (explode('/', $tour->excluded) as $excluded)
-                            @component('tour::components.exclude')
-                                @slot('text')
-                                    {{ $excluded }}
-                                @endslot
-                            @endcomponent
+                        @foreach ($tour->exclusions as $excluded)
+                            @include('tour::components.exclude', ['excluded' => $excluded->title])
                         @endforeach
                     </div>
 

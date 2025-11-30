@@ -22,14 +22,6 @@
                 </h1>
                 <p class="text-[20px] font-medium md:text-[40px] select-none text-center   text-white">With Endless
                     Possibility</p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-5 mt-5">
-                    <a href="{{ route('day-tours.index') }}" class="h-fit overflow-hidden">
-                        <button type="button" id="title_button"
-                            class="main_button font-medium text-[15px]  md:text-[18px] tracking-wide px-5 py-2 md:px-10 md:py-3 border-2 border-white hover:bg-main hover:border-main">
-                            Book Your Tour !
-                        </button>
-                    </a>
-                </div>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ class TourService
     public function getTourBySlug($slug)
     {
         return Tour::whereJsonContains('slug->' . app()->getLocale(), $slug)
-            ->with(['images', 'category'])->first();
+            ->with(['images', 'category', 'locations', 'inclusions', 'exclusions'])->first();
     }
 
     public function getToursByGroup($group)
