@@ -22,6 +22,8 @@ import Inclusions from "../views/Inclusion/Inclusions.vue";
 import InclusionForm from "../views/Inclusion/InclusionForm.vue";
 import Exclusions from "../views/Exclusion/Exclusions.vue";
 import ExclusionForm from "../views/Exclusion/ExclusionForm.vue";
+import Settings from "../views/Setting/Settings.vue";
+import SettingForm from "../views/Setting/SettingForm.vue";
 
 const routes = [
     {
@@ -182,6 +184,21 @@ const routes = [
                 path: 'exclusions/:id',
                 name: 'app.exclusions.edit',
                 component: ExclusionForm
+            },
+            {
+                path: 'settings',
+                name: 'app.settings',
+                component: Settings
+            },
+            {
+                path: 'settings/create',
+                name: 'app.settings.create',
+                component: SettingForm
+            },
+            {
+                path: 'settings/:id',
+                name: 'app.settings.edit',
+                component: SettingForm
             },
 
         ],

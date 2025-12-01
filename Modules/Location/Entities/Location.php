@@ -35,4 +35,14 @@ class Location extends Model
     {
         return \Modules\Location\Database\factories\LocationFactory::new();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($location) {
+            $max = Location::max('position');
+            $location->position = $max + 10 ? $max + 10 : 10;
+        });
+    }
 }

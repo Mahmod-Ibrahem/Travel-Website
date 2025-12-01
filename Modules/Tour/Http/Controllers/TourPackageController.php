@@ -31,12 +31,8 @@ class TourPackageController extends Controller
 
     public function view($Tour)
     {
-        $tour = Tour::whereHas('tourTranslations', function ($query) use ($Tour) {
-            $query->where('locale', app()->getLocale());
-            $query->where('slug', $Tour);
-        })->with(['images', 'category', 'tourTranslations'])->first();
-        //        $locations = json_decode($tour->tourTranslations[0]->locations);
-        //        $tour->tourTranslations[0]->locations = implode('-', json_decode($tour->tourTranslations[0]->locations));
+        $tour = $this->tourService->getTourBySlug($Tour);
+
         $this->storeIp(Request()->ip(), $tour->id);
         $reviews = Review::take(20)->get();
         return view('tour::tour', compact('tour', 'reviews'));

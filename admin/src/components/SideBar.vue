@@ -65,6 +65,14 @@
                 Exclusions
             </span>
         </RouterLink>
+        <RouterLink :to="{ name: 'app.settings' }" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+                Settings
+            </span>
+        </RouterLink>
     </div>
 </template>
 

@@ -53,7 +53,7 @@ class BookingController extends Controller
 
     private function createBooking(array $data, Tour $tour): void
     {
-        TourBooking::create([
+        $booking = TourBooking::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
@@ -82,6 +82,8 @@ class BookingController extends Controller
         if (isset($response['id'])) {
             return redirect()->to(($response['links'][1]['href']));
         }
+        dd($response);
+
         return redirect()->back()->with('error', 'Something went wrong try again');
     }
 

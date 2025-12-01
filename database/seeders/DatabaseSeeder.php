@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Modules\Exclusion\Database\seeders\ExclusionSeeder;
 use Modules\Inclusion\Database\seeders\InclusionSeeder;
 use Modules\Location\Database\seeders\LocationSeeder;
+use Modules\Setting\Database\seeders\SettingSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             LocationSeeder::class,
             InclusionSeeder::class,
             ExclusionSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

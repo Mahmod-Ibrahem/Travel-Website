@@ -462,3 +462,29 @@ export function updateExclusion({commit}, exclusion) {
 export function deleteExclusion({commit}, id) {
     return axiosClient.delete(`/exclusions/${id}`)
 }
+
+/* Settings */
+export function getSettings({commit}) {
+    return axiosClient.get('/setting').then(({data}) => {
+        commit('setSettings', data)
+    })
+}
+
+export function getSetting({commit}, {settingId}) {
+    return axiosClient.get(`/setting/${settingId}`)
+}
+
+export function createSetting({commit}, setting) {
+    return axiosClient.post('/setting', setting)
+}
+
+export function updateSetting({commit}, setting) {
+    const id = setting.id;
+    setting._method = "PUT";
+    return axiosClient.post(`/setting/${id}`, setting);
+}
+
+export function deleteSetting({commit}, id) {
+    return axiosClient.delete(`/setting/${id}`)
+}
+

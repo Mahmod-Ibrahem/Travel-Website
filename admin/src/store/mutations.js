@@ -103,3 +103,9 @@ export function setExclusions(state, data) {
     state.exclusions.per_page = data.meta?.per_page
     state.exclusions.links = data.meta?.links
 }
+
+export function setSettings(state, data) {
+    state.settings.data = data.data
+    state.settings.loading = false
+}
+

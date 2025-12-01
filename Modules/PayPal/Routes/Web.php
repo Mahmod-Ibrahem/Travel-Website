@@ -14,6 +14,8 @@ use Modules\PayPal\Http\Controllers\PayPalController;
 |
 */
 
-Route::get('/payment/{id}', [PaypalController::class, 'createPayment'])->name('paypal.create');
-Route::get('/paypal/success', [PaypalController::class, 'successPayment'])->name('paypal.success');
-Route::get('/paypal/cancel', [PaypalController::class, 'cancelPayment'])->name('paypal.cancel');
+Route::middleware('paypal.config')->group(function () {
+    Route::get('/payment/{id}', [PaypalController::class, 'createPayment'])->name('paypal.create');
+    Route::get('/paypal/success', [PaypalController::class, 'successPayment'])->name('paypal.success');
+    Route::get('/paypal/cancel', [PaypalController::class, 'cancelPayment'])->name('paypal.cancel');
+});

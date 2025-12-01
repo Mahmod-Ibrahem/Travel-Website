@@ -17,6 +17,6 @@ use Modules\Booking\Http\Controllers\BookingController;
 
 /*Booking Controller*/
 
-Route::post('/checkout/{tour}', [BookingController::class, 'store'])->name('booking.checkout'); //tour should be as paramater passed to controller
-
-Route::post('/checkout/{tour}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
+Route::post('/checkout/{tour}', [BookingController::class, 'store'])
+    ->middleware('paypal.config')
+    ->name('booking.checkout'); //tour should be as paramater passed to controller

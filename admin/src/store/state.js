@@ -71,6 +71,10 @@ const store = {
         per_page: 20,
         links: []
     },
+    settings: {
+        data: null,
+        loading: true,
+    },
 };
 
 export default store;

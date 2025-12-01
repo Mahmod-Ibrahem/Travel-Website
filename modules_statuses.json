@@ -11,5 +11,6 @@
     "PayPal": true,
     "Booking": true,
     "Inclusion": true,
-    "Exclusion": true
+    "Exclusion": true,
+    "Setting": true
 }
