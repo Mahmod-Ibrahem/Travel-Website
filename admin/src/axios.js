@@ -3,8 +3,8 @@ import store from "./store"
 import router from "./router/index.js";
 
 const axiosClient = axios.create({
-        // baseURL: 'https://mregypttours.com/api/',
-        baseURL: 'http://127.0.0.1:8000/api/',
+        baseURL: 'https://mregypttours.com/api/',
+        // baseURL: 'http://127.0.0.1:8000/api/',
 });
 
 axiosClient.interceptors.request.use(config=>{
