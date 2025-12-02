@@ -32,6 +32,6 @@ class ContactController extends Controller
         $text = "Your Message Has Been Sent !";
         $thanks = "Thanks For Contacting Us";
         $route = 'contact.index';
-        return view('landing.Responding', compact('text', 'thanks', 'route'));
+        return view('contact::success', compact('text', 'thanks', 'route'));
     }
 }
