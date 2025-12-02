@@ -5,6 +5,7 @@ namespace Modules\Tour\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Traits\ImagesUtility;
 use App\Traits\TourUtility;
+use Illuminate\Support\Facades\Storage;
 use Modules\Tour\Entities\Tour;
 use Modules\Tour\Http\Requests\TourRequest;
 use Modules\Tour\Service\TourService;
