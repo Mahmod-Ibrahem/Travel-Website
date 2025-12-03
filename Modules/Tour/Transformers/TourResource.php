@@ -4,6 +4,7 @@ namespace Modules\Tour\Transformers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Itenary\Transformers\ItenaryResource;
 
 class TourResource extends JsonResource
 {
@@ -27,8 +28,7 @@ class TourResource extends JsonResource
             'included' => $this->inclusions->pluck('id'),
             'excluded' => $this->exclusions->pluck('id'),
             'locations' => $this->locations->pluck('id'),
-            'itenary_title' => $this->itenary_title,
-            'itenary_section' => $this->itenary_section,
+            'itenary' => ItenaryResource::collection($this->itenaries),
             'price_per_person' => $this->price_per_person,
             'tour_cover' => $this->tour_cover,
             'price_two_five' => $this->price_two_five,

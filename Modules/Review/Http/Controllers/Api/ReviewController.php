@@ -58,7 +58,7 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(StoreReviewRequest $request)
+    public function store(StoreReviewRequest $request)
     {
         $data = $request->validated();
         $review = Review::create($data);

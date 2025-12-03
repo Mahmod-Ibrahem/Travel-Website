@@ -4,7 +4,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Tours
             </span>
         </RouterLink>
@@ -13,7 +13,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Reviews
             </span>
         </RouterLink>
@@ -21,7 +21,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Faqs
             </span>
         </RouterLink>
@@ -29,7 +29,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Blog Cities
             </span>
         </RouterLink>
@@ -37,7 +37,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Blogs
             </span>
         </RouterLink>
@@ -45,7 +45,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Locations
             </span>
         </RouterLink>
@@ -53,7 +53,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Inclusions
             </span>
         </RouterLink>
@@ -61,7 +61,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Exclusions
             </span>
         </RouterLink>
@@ -69,7 +69,7 @@
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
-            <span class="text-xs">
+            <span class="text-xs font-medium">
                 Settings
             </span>
         </RouterLink>

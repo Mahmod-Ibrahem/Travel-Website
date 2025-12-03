@@ -2,9 +2,9 @@
 
 namespace Modules\Review\Entities;
 
-use App\Models\Tour;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Tour\Entities\Tour;
 
 class Review extends Model
 {

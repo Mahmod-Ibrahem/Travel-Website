@@ -2,69 +2,29 @@
   <div>
     <label class="sr-only">{{ label }}</label>
     <div class="mt-1 flex rounded-md shadow-sm">
-      <span v-if="prepend"
-            class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-        {{ prepend }}
-      </span>
-      <template v-if="type === 'select'">
-        <select :name="name"
-                :required="required"
-                :value="props.modelValue"
-                :class="inputClasses"
-                @change="onChange($event.target.value)">
-          <option v-for="option of selectOptions" :value="option.key">{{option.text}}</option>
-        </select>
-      </template>
-      <template v-else-if="type === 'textarea'">
-      <textarea :name="name"
-                :required="required"
-                :value="props.modelValue"
-                @input="emit('update:modelValue', $event.target.value)"
-                :class="inputClasses"
-                :placeholder="label"></textarea>
-      </template>
-
-      <template v-else-if="type === 'file'">
-        <input :type="type"
-               :name="name"
-               :required="required"
-               :value="props.modelValue"
-               @input="emit('change', $event.target.files[0])"
-               :class="inputClasses"
-               :placeholder="label"/>
-      </template>
-      <template v-else-if="type === 'checkbox'">
-        <input :id="id"
-               :name="name"
-               :type="type"
-               :checked="props.modelValue"
-               :required="required"
-               @change="emit('update:modelValue', $event.target.checked)"
-               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"/>
-        <label :for="id" class="ml-2 block text-sm text-gray-900"> {{ label }} </label>
-      </template>
-      <template v-else>
-        <input :type="type"
-               :name="name"
-               :required="required"
-               :value="props.modelValue"
-               @input="emit('update:modelValue', $event.target.value)"
-               :class="inputClasses"
-               :placeholder="label"
-               step="0.01"/>
-      </template>
+      <textarea v-if="type === 'textarea'" :name="name" :required="required" :value="props.modelValue"
+        @input="emit('update:modelValue', $event.target.value)" :class="inputClasses"
+        :placeholder="placeholder"></textarea>
+      <input v-else :type="type" :name="name" :required="required" :value="props.modelValue"
+        @input="emit('update:modelValue', $event.target.value)" :class="inputClasses" :placeholder="placeholder" />
       <span v-if="append"
-            class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+        class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
         {{ append }}
       </span>
     </div>
-      <p class="text-red-600 text-sm font-semibold" v-if="errors && errors[0]">{{errors[0]}}</p>
+    <p class="mt-1.5 text-red-500 text-sm flex items-center gap-1" v-if="errors && errors[0]"> <svg class="w-4 h-4"
+        fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+          clip-rule="evenodd" />
+      </svg>
+      {{ errors[0] }}</p>
   </div>
 </template>
 
 <script setup>
 
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 
 const props = defineProps({
   modelValue: [String, Number, File],
@@ -84,10 +44,14 @@ const props = defineProps({
     default: ''
   },
   selectOptions: Array,
-    errors:{
-     type: Array,
-      required:false,
-    }
+  errors: {
+    type: Array,
+    required: false,
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  }
 })
 
 const id = computed(() => {
@@ -97,8 +61,9 @@ const id = computed(() => {
 })
 const inputClasses = computed(() => {
   const cls = [
-    `block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500
-    focus:z-10`,
+    `w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl 
+                   focus:border-indigo-500 
+                  transition-all duration-200 text-slate-700`,
   ];
 
   if (props.append && !props.prepend) {
@@ -108,9 +73,8 @@ const inputClasses = computed(() => {
   } else if (!props.prepend && !props.append) {
     cls.push('rounded-md')
   }
-   if (props.errors && props.errors[0])
-  {
-      cls.push('border-red-600 focus:border-red-600')
+  if (props.errors && props.errors[0]) {
+    cls.push('border-red-600 focus:border-red-600')
   }
   return cls.join(' ')
 })
@@ -123,6 +87,4 @@ function onChange(value) {
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -43,14 +43,13 @@ export function getProducts(
 }
 
 export function createProduct({commit}, product) {
+    console.log(product)
     if (product.tour_cover instanceof File) {
         const form = new FormData();
         form.append('group', product.group);
         form.append('preference', product.preference);
         form.append('title', product.title);
         form.append('description', product.description);
-        form.append('itenary_title', product.itenary_title);
-        form.append('itenary_section', product.itenary_section);
         form.append('places', product.places);
         product.locations.forEach((location, index) => {
             form.append(`locations[${index}]`, location);
@@ -60,6 +59,10 @@ export function createProduct({commit}, product) {
         })
         product.excluded.forEach((excluded,index)=>{
             form.append(`excluded[${index}]`,excluded)
+        })
+        product.itenary.forEach((itenary,index)=>{
+            form.append(`itenary[${index}][title]`,itenary.title)
+            form.append(`itenary[${index}][description]`,itenary.description)
         })
         form.append('duration', product.duration);
         form.append('price_per_person', product.price_per_person);
@@ -82,13 +85,21 @@ export function updateProduct({commit}, product) {
         form.append('preference', product.preference);
         form.append('title', product.title);
         form.append('description', product.description);
-        form.append('itenary_title', product.itenary_title);
-        form.append('locations', product.locations);
         form.append('places', product.places);
-        form.append('itenary_section', product.itenary_section);
-        form.append('included', product.included);
-        form.append('excluded', product.excluded);
         form.append('duration', product.duration);
+                product.locations.forEach((location, index) => {
+            form.append(`locations[${index}]`, location);
+        })
+        product.included.forEach((included,index)=>{
+            form.append(`included[${index}]`,included)
+        })
+        product.excluded.forEach((excluded,index)=>{
+            form.append(`excluded[${index}]`,excluded)
+        })
+        product.itenary.forEach((itenary,index)=>{
+            form.append(`itenary[${index}][title]`,itenary.title)
+            form.append(`itenary[${index}][description]`,itenary.description)
+        })
         form.append('price_per_person', product.price_per_person);
         form.append('price_two_five', product.price_two_five);
         form.append('price_six_twenty', product.price_six_twenty);
@@ -168,7 +179,6 @@ export function updateCategory({commit}, category) {
     if (category.image instanceof File) {
         const form = new FormData();
         form.append("id", category.id);
-        form.append("categoryTranslationId", category.categoryTranslationId);
         form.append('type', category.type);
         form.append('locale', category.locale);
         form.append('header', category.header);
@@ -205,49 +215,20 @@ export function getReviews(
 }
 
 export function getReview({commit}, id) {
-    return axiosClient.get(`/review/${id}`)
+    return axiosClient.get(`/reviews/${id}`)
 }
 
 export function createReview({commit}, review) {
-    return axiosClient.post('/review', review)
+    return axiosClient.post('/reviews', review)
 }
 
 export function updateReview({commit}, review) {
     const id = review.id;
-    return axiosClient.put(`/review/${id}`, review);
+    return axiosClient.put(`/reviews/${id}`, review);
 }
 
 export function deleteReview({commit}, id) {
-    return axiosClient.delete(`/review/${id}`)
-}
-
-export function getNonTranslatedTours({commit}) {
-    return axiosClient.get('/getNonTranslatedTours').then(({data}) => {
-        return data
-    })
-}
-
-export function TranslateNewTour({commit}, product) {
-    return axiosClient.post('/translateNewTour', product)
-}
-
-export function updateTourTranslation({commit}, product) {
-    product['locale'] = 'sp'
-    return axiosClient.put(`/updateTranslationOfTour/${product.tourTranslationId}`, product)
-}
-
-export function getNonTranslatedCategories({commit}) {
-    return axiosClient.get('/getNonTranslatedCategories').then(({data}) => {
-        return data
-    })
-}
-
-export function createCategoryTranslation({commit}, category) {
-    return axiosClient.post('/translateNewCategory', category)
-}
-
-export function updateCategoryTranslation({commit}, category) {
-    return axiosClient.put(`/updateTranslationOfCategory/${category.categoryTranslationId}`, category)
+    return axiosClient.delete(`/reviews/${id}`)
 }
 
 export function getFaqs({commit}) {
@@ -397,14 +378,6 @@ export function updateLocation({commit}, location) {
 
 export function deleteLocation({commit}, id) {
     return axiosClient.delete(`/locations/${id}`)
-}
-
-export function getLocationForTranslation(__, id) {
-    return axiosClient.get(`/get-location-for-translation/${id}`)
-}
-
-export function createLocationTranslation(__, location) {
-    return axiosClient.put(`/create-location-translation/${location.id}`, location)
 }
 
 /* Inclusions */

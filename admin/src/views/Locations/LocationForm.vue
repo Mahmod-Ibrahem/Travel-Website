@@ -5,40 +5,21 @@
         </h1>
     </div>
     <div>
-        <Spinner
-            v-if="loading"
-            class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"
-        />
+        <Spinner v-if="loading"
+            class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" />
 
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <!-- name (default locale) -->
-                <CustomInput
-                    class="mb-2"
-                    v-model="location.name"
-                    label="Location Name"
-                    :errors="errors.name"
-                />
+                <CustomInput class="mb-2" v-model="location.name" placeholder="Location Name" :errors="errors.name" />
 
                 <!-- position (sortable index) -->
-                <CustomInput
-                    class="mb-2"
-                    type="number"
-                    v-model.number="location.position"
-                    label="Position"
-                    placeholder="e.g. 1"
-                    :errors="errors.position"
-                    min="0"
-                />
+                <CustomInput class="mb-2" type="number" v-model.number="location.position" placeholder="e.g. 1"
+                    :errors="errors.position" min="0" />
 
                 <!-- image -->
-                <CustomInput
-                    type="file"
-                    class="mb-2"
-                    label="Location Image"
-                    @change="file => (location.image = file)"
-                    :errors="errors.image"
-                />
+                <CustomInput type="file" class="mb-2" label="Location Image" @change="file => (location.image = file)"
+                    :errors="errors.image" />
 
                 <!-- optional preview if editing and backend returns image_url -->
                 <div v-if="location.image_url" class="mt-2">
@@ -47,13 +28,12 @@
             </div>
 
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button"
-                        @click="onSubmit($event,true)"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
+                <button type="button" @click="onSubmit($event, true)"
+                    class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
                     Save
                 </button>
                 <RouterLink :to="{ name: 'app.locations' }" type="button"
-                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     Cancel
                 </RouterLink>
             </footer>

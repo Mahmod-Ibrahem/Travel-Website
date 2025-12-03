@@ -12,5 +12,7 @@
     "Booking": true,
     "Inclusion": true,
     "Exclusion": true,
-    "Setting": true
+    "Setting": true,
+    "Itenary": true,
+    "Test": true
 }

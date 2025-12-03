@@ -6,35 +6,27 @@
     </div>
     <div>
         <Spinner v-if="loading"
-                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+            class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" />
 
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <div class=" mb-2">
-                    <select
-                        name="type" v-model="blog.city_id"
-                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
-                        <option value="" selected>اختار المدينه اللي انت عايز تحطلها بلوج</option>
-                        <option v-for="city in cities" :value="city.id" :selected="blog.city_id===city.id">
-                            {{ city.name }}
-                        </option>
-                    </select>
+                    <Select name="type" v-model="blog.city_id" class="w-full px-3 rounded-md" :options="cities"
+                        optionLabel="name" optionValue="id" placeholder="Select City" />
                 </div>
-                <CustomInput class="mb-2" v-model="blog.title" label="Blog Name" :errors="errors.title"/>
+                <CustomInput class="mb-2" v-model="blog.title" placeholder="Blog Name" :errors="errors.title" />
                 <Editor v-model="blog.blog" editorStyle="height: 320px" :errors="errors.blog" />
-                <CustomInput type="file" class="mb-2" label="blog Image" @change="file => blog.image = file"
-                             :errors="errors.image"/>
+                <CustomInput type="file" class="mb-2" placeholder="blog Image" @change="file => blog.image = file"
+                    :errors="errors.image" />
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
 
-                <button type="button"
-                        @click="onSubmit($event,true)"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
+                <button type="button" @click="onSubmit($event, true)" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
                         focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
                     Save
                 </button>
                 <RouterLink :to="{ name: 'app.blogs' }" type="button"
-                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     Cancel
                 </RouterLink>
             </footer>
@@ -44,12 +36,12 @@
 
 <script setup>
 import Spinner from './../../components/Core/Spinner.vue'
-import {ref, onMounted, computed} from 'vue'
-import {useRoute, useRouter} from "vue-router";
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from "vue-router";
 import store from "../../store/index.js"
 import CustomInput from '../../components/Core/CustomInput.vue';
 import Editor from "primevue/editor";
-
+import { Select } from 'primevue';
 const emit = defineEmits(['update:modelValue', 'close'])
 const route = useRoute()
 const router = useRouter()
@@ -58,7 +50,7 @@ const loading = ref(false)
 const blog = ref({
     id: null,
     title: '',
-    blog:'',
+    blog: '',
     image: null,
     city_id: ''
 })
@@ -80,10 +72,10 @@ function onSubmit($event, close = false) {
             if (response.status === successStatus) {
                 store.commit('showToast', successMessage);
                 if (close) {
-                    router.push({name: 'app.blogs'});
+                    router.push({ name: 'app.blogs' });
                 } else if (action === 'createBlog') {
                     blog.value = response.data
-                    router.push({name: 'app.blogs.edit', params: {id: response.data.id}});
+                    router.push({ name: 'app.blogs.edit', params: { id: response.data.id } });
                 }
             }
         })
@@ -126,10 +118,10 @@ onMounted(() => {
 <style scoped>
 ::v-deep(.ql-editor a) {
     text-decoration: none !important;
-    color:#ff6700 !important;
+    color: #ff6700 !important;
 }
+
 .ql-editor a {
     color: #ff6700 !important;
 }
 </style>
-

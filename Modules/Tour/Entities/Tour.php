@@ -17,8 +17,8 @@ class Tour extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty', 'slug', 'title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
-    public $translatable = ['slug', 'title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
+    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty', 'slug', 'title', 'description', 'duration', 'places'];
+    public $translatable = ['slug', 'title', 'description', 'duration', 'places'];
 
     public function category()
     {
@@ -48,6 +48,11 @@ class Tour extends Model
     public function exclusions()
     {
         return $this->belongsToMany(\Modules\Exclusion\Entities\Exclusion::class, 'exclusion_tour');
+    }
+
+    public function itenaries()
+    {
+        return $this->hasMany(\Modules\Itenary\Entities\Itenary::class);
     }
 
     public function scopeWithTranslations(Builder $query): Builder

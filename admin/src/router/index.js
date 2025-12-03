@@ -17,7 +17,6 @@ import Blogs from "../views/Blogs/Blogs.vue";
 import BlogsForm from "../views/Blogs/BlogsForm.vue";
 import Locations from "../views/Locations/Locations.vue";
 import LocationForm from "../views/Locations/LocationForm.vue";
-import LocationTranslationForm from "../views/Locations/LocationTranslationForm.vue";
 import Inclusions from "../views/Inclusion/Inclusions.vue";
 import InclusionForm from "../views/Inclusion/InclusionForm.vue";
 import Exclusions from "../views/Exclusion/Exclusions.vue";
@@ -149,11 +148,6 @@ const routes = [
                 path: "locations/:id",
                 name: "app.locations.edit",
                 component: LocationForm
-            },
-            {
-                path: 'location-translation/:id',
-                name: 'app.locations.createTranslation',
-                component: LocationTranslationForm
             },
             {
                 path: 'inclusions',

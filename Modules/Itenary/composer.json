@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/itenary",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Itenary\\": "app/",
+            "Modules\\Itenary\\Database\\Factories\\": "database/factories/",
+            "Modules\\Itenary\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Itenary\\Tests\\": "tests/"
+        }
+    }
+}

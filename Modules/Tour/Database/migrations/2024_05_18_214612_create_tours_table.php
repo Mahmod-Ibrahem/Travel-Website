@@ -15,8 +15,6 @@ return new class extends Migration {
             $table->json('slug')->nullable();
             $table->json('title')->nullable();
             $table->json('description')->nullable();
-            $table->json('itenary_title')->nullable();
-            $table->json('itenary_section')->nullable();
             $table->json('duration')->nullable();
             $table->json('places')->nullable();
             $table->timestamps();

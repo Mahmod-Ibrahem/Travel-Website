@@ -13,3 +13,5 @@ use Modules\Review\Http\Controllers\Api\ReviewController;
  * is assigned the "api" middleware group. Enjoy building your API!
  *
 */
+
+Route::apiResource('reviews', ReviewController::class);

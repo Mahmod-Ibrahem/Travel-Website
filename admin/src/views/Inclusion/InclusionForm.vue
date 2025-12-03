@@ -10,7 +10,8 @@
 
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
-                <CustomInput class="mb-2" v-model="inclusion.title" label="Inclusion Title" :errors="errors.title" />
+                <CustomInput class="mb-2" v-model="inclusion.title" placeholder="Inclusion Title"
+                    :errors="errors.title" />
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="button" @click="onSubmit($event, true)"

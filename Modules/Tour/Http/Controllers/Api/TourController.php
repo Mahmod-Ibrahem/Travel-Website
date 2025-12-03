@@ -57,21 +57,11 @@ class TourController extends Controller
         }
         $data['tour_cover'] = $this->storeImage($data['tour_cover'], 'tourCover'); //store public path
 
-        $tour = new Tour();
-        $tour->category_id = $data['category_id'] ?? null;
-        $tour->group = $data['group'];
-        $tour->preference = $data['preference'];
-        $tour->tour_cover = $data['tour_cover'];
-        $tour->price_per_person = $data['price_per_person'];
-        $tour->price_two_five = $data['price_two_five'];
-        $tour->price_six_twenty = $data['price_six_twenty'];
-
-        $locale = $data['locale'] ?? 'en';
-        $this->setTranslations($tour, $data, $locale);
-        $tour->save();
+        $tour = Tour::create($data);
         $tour->locations()->attach($data['locations']);
         $tour->inclusions()->attach($data['included']);
         $tour->exclusions()->attach($data['excluded']);
+        $tour->itenaries()->createMany($data['itenary']);
 
         //handling Tour Images
         $tourImages = $data['tour_images'];
@@ -89,7 +79,7 @@ class TourController extends Controller
      */
     public function show(string $id)
     {
-        $tour = Tour::with('locations')->findOrFail($id);
+        $tour = Tour::with(['locations', 'itenaries'])->findOrFail($id);
         return new TourResource($tour);
     }
 
@@ -118,11 +108,26 @@ class TourController extends Controller
         $locale = $data['locale'] ?? 'en';
         $this->setTranslations($tour, $data, $locale);
 
-        $tour->save();
 
         $tour->locations()->sync($data['locations']);
-        $tour->inclusions()->sync($data['inclusions']);
-        $tour->exclusions()->sync($data['exclusions']);
+        $tour->inclusions()->sync($data['included']);
+        $tour->exclusions()->sync($data['excluded']);
+        $tour->itenaries()->delete();
+        $tour->itenaries()->createMany($data['itenary']);
+        $tour->save();
+
+        // Update Itineraries: delete old ones and create new ones
+        if (isset($data['itenary'])) {
+            $locale = $data['locale'] ?? 'en';
+            $tour->itenaries()->delete();
+            foreach ($data['itenary'] as $itenaryData) {
+                $itenary = new \Modules\Itenary\Entities\Itenary();
+                $itenary->tour_id = $tour->id;
+                $itenary->setTranslation('title', $locale, $itenaryData['title']);
+                $itenary->setTranslation('description', $locale, $itenaryData['description']);
+                $itenary->save();
+            }
+        }
 
         return response()->json(['message' => 'Tour updated successfully'], 200);
     }
@@ -157,7 +162,7 @@ class TourController extends Controller
 
     private function setTranslations(Tour $tour, array $data, string $locale)
     {
-        $translatableFields = ['title', 'description', 'itenary_title', 'itenary_section', 'duration', 'places'];
+        $translatableFields = ['title', 'description', 'duration', 'places'];
 
         if (isset($data['title'])) {
             $slug = \Illuminate\Support\Str::slug($data['title']);

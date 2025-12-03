@@ -1,0 +1,11 @@
+{
+    "name": "Itenary",
+    "alias": "itenary",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Itenary\\Providers\\ItenaryServiceProvider"
+    ],
+    "files": []
+}
