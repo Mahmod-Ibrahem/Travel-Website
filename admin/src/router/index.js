@@ -201,11 +201,6 @@ const routes = [
                 name: 'app.bookings.edit',
                 component: BookingForm
             },
-            {
-                path: 'bookings/:id',
-                name: 'app.bookings.edit',
-                component: BookingForm
-            },
 
         ],
     },

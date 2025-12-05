@@ -128,24 +128,6 @@ export function getProduct({}, {productId, locale} = {}) {
 }
 
 
-export function deleteProductImage({commit}, id) {
-    return axiosClient.delete(`/products/deleteImage/${id}`)
-}
-
-export function addProductImages({commit}, images) {
-    const id = images.id
-    const form = new FormData();
-    images.tour_images.forEach((file, index) => {
-        form.append(`tour_images[${index}]`, file); // Add each file to FormData
-    });
-    form.append('group', images.group);
-    form.append('title', images.title);
-    form.append('_method', 'PUT');
-    images = form
-    return axiosClient.post(`/addImageToTour/${id}`, images)
-}
-
-
 export function getCategories({commit}, {locale} = {}) {
     return axiosClient.get('/categories', {params: {locale}}).then(({data}) => {
         commit('setCategories', data)

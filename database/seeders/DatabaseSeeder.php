@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'ElGobaya',
             'email' => 'Hamad@gmail.com',
+            'is_admin' => true,
         ]);
         $this->call([
             LocationSeeder::class,

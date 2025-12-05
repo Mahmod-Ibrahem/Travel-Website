@@ -15,7 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/categories', \Modules\Category\Http\Controllers\Api\CategoryController::class);
-    Route::get('/getNonTranslatedCategories', [\Modules\Category\Http\Controllers\Api\CategoryController::class, 'getNonTranslatedCategories']);
-    Route::post('/translateNewCategory', [\Modules\Category\Http\Controllers\Api\CategoryController::class, 'translateNewCategory']);
-    Route::put('/updateTranslationOfCategory/{id}', [\Modules\Category\Http\Controllers\Api\CategoryController::class, 'receiveAndUpdateCategoryTranslation']);
 });

@@ -4,13 +4,16 @@
 namespace Modules\Booking\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Modules\Booking\Http\Requests\BookingRequest;
 use Modules\Tour\Entities\Tour;
 use Modules\PayPal\Services\PayPalService;
 use DateTime;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Modules\Booking\Entities\TourBooking;
+use Modules\Booking\Notifications\BookingNotification;
 
 class BookingController extends Controller
 {
@@ -29,7 +32,9 @@ class BookingController extends Controller
             $paypalService = app(PayPalService::class);
             return $this->handlePayPalPayment($paypalService, $totalPrice, $tour);
         }
-        $this->createBooking($data, $tour);
+        $booking = $this->createBooking($data, $tour);
+        $users = User::where('is_admin', true)->get();
+        Notification::send($users, new BookingNotification($tour, $booking));
         // Optional: Uncomment if you want to notify
         // Mail::to($data['email'])->send(new \App\Mail\InformUserForBookingMail());
         return view('booking::success', [
@@ -52,9 +57,9 @@ class BookingController extends Controller
         };
     }
 
-    private function createBooking(array $data, Tour $tour): void
+    private function createBooking(array $data, Tour $tour): TourBooking
     {
-        $booking = TourBooking::create([
+        return TourBooking::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],

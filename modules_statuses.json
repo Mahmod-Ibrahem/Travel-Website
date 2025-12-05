@@ -14,5 +14,6 @@
     "Exclusion": true,
     "Setting": true,
     "Itenary": true,
-    "Test": true
+    "Test": true,
+    "Notification": true
 }
