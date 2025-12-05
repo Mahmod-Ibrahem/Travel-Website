@@ -13,7 +13,7 @@
                     </select>
                 </div>
                 <span class="text-sm text-slate-500">Found <span class="font-semibold text-slate-900">{{ reviews.total
-                        }}</span> reviews</span>
+                }}</span> reviews</span>
             </div>
 
             <div class="relative">

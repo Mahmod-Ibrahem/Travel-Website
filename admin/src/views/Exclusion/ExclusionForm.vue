@@ -1,29 +1,79 @@
 <template>
-    <div class="flex items-center justify-between mb-3">
-        <h1 v-if="!loading" class="text-3xl font-semibold">
-            {{ exclusion.id ? `Update Exclusion: "${exclusion.title}"` : 'Create New Exclusion' }}
-        </h1>
-    </div>
-    <div>
-        <Spinner v-if="loading"
-            class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center" />
-
-        <form v-else @submit.prevent="onSubmit">
-            <div class="bg-white px-4 pt-5 pb-4">
-                <CustomInput class="mb-2" v-model="exclusion.title" placeholder="Exclusion Title"
-                    :errors="errors.title" />
+    <div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-8">
+        <!-- Header -->
+        <div class="max-w-7xl mx-auto mb-6">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </div>
+                <h1 v-if="!loading" class="text-2xl md:text-3xl font-bold text-slate-800">
+                    {{ exclusion.id ? `Update Exclusion` : 'Create New Exclusion' }}
+                </h1>
             </div>
-            <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button" @click="onSubmit($event, true)"
-                    class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save
-                </button>
-                <RouterLink :to="{ name: 'app.exclusions' }" type="button"
-                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                    Cancel
-                </RouterLink>
-            </footer>
-        </form>
+            <p v-if="exclusion.id && !loading" class="text-slate-500 ml-13">
+                Editing: <span class="font-medium text-indigo-600">{{ exclusion.title }}</span>
+            </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto">
+            <Spinner v-if="loading"
+                class="fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50" />
+
+            <form v-else @submit.prevent="onSubmit">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-gradient-to-r from-indigo-600 to-indigo-700 px-6 py-4">
+                        <h2 class="text-lg font-semibold text-white flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Exclusion Information
+                        </h2>
+                    </div>
+
+                    <div class="p-6 space-y-6">
+                        <!-- Title Field -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-1.5">
+                                Exclusion Title <span class="text-red-500">*</span>
+                            </label>
+                            <CustomInput v-model="exclusion.title" :errors="errors.title"
+                                placeholder="Enter Exclusion Title" />
+                        </div>
+                    </div>
+                </div>
+                <!-- Actions Footer -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 px-6 py-4 
+                flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-3 mt-6">
+                    <RouterLink :to="{ name: 'app.exclusions' }" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 
+                    text-slate-600 hover:text-slate-800 hover:bg-slate-100 
+                    rounded-xl transition-all duration-200 font-medium">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Cancel
+                    </RouterLink>
+
+                    <div class="flex gap-3">
+                        <button type="button" @click="onSubmit($event, true)" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 
+                        px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 
+                        hover:from-indigo-700 hover:to-indigo-800 text-white 
+                        rounded-xl font-medium shadow-lg shadow-indigo-500/25 
+                        transition-all duration-200">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            Save Exclusion
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -89,4 +139,5 @@ onMounted(() => {
             })
     }
 })
+
 </script>
