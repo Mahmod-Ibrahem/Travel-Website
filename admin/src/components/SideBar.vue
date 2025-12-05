@@ -25,6 +25,14 @@
                 Faqs
             </span>
         </RouterLink>
+        <RouterLink :to="{ name: 'app.bookings' }" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs font-medium">
+                Bookings
+            </span>
+        </RouterLink>
         <RouterLink :to="{ name: 'app.cities' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
@@ -65,6 +73,7 @@
                 Exclusions
             </span>
         </RouterLink>
+
         <RouterLink :to="{ name: 'app.settings' }" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>

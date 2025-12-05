@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    @include('home::best-destination', ['locations' => $locations])
+    {{-- @include('home::best-destination', ['locations' => $locations]) --}}
     @include('home::TourByCategory')
     @include('home::Services')
     @if (!$reviews->isEmpty())

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Booking\Http\Controllers\BookingController;
+use Modules\Booking\Http\Controllers\Api\BookingController;
 
 /*
  *--------------------------------------------------------------------------
@@ -14,6 +14,15 @@ use Modules\Booking\Http\Controllers\BookingController;
  *
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('booking', BookingController::class)->names('booking');
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('bookings', BookingController::class)->names('bookings');
 });
+ 
+// // Routes for admin panel (without auth middleware for now)
+// Route::prefix('bookings')->group(function () {
+//     Route::get('/', [BookingController::class, 'index']);
+//     Route::get('/{id}', [BookingController::class, 'show']);
+//     Route::put('/{id}', [BookingController::class, 'update']);
+//     Route::post('/{id}', [BookingController::class, 'update']); // For _method PUT
+//     Route::delete('/{id}', [BookingController::class, 'destroy']);
+// });

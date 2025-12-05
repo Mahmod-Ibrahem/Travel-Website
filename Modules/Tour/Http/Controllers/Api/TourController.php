@@ -164,10 +164,6 @@ class TourController extends Controller
     {
         $translatableFields = ['title', 'description', 'duration', 'places'];
 
-        if (isset($data['title'])) {
-            $slug = \Illuminate\Support\Str::slug($data['title']);
-            $tour->setTranslation('slug', $locale, $slug);
-        }
 
         foreach ($translatableFields as $field) {
             if (isset($data[$field])) {

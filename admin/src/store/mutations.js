@@ -5,9 +5,9 @@ export function setUser(state, user) {
   export function setToken(state, token) {
     state.user.token = token;
     if (token) {
-      sessionStorage.setItem('TOKEN', token);
+      localStorage.setItem('TOKEN', token);
     } else {
-      sessionStorage.removeItem('TOKEN')
+      localStorage.removeItem('TOKEN')
     }
   }
 
@@ -107,5 +107,15 @@ export function setExclusions(state, data) {
 export function setSettings(state, data) {
     state.settings.data = data.data
     state.settings.loading = false
+}
+
+export function setBookings(state, data) {
+    state.bookings.data = data.data
+    state.bookings.loading = false
+    state.bookings.from = data.meta?.from
+    state.bookings.to = data.meta?.to
+    state.bookings.total = data.meta?.total
+    state.bookings.per_page = data.meta?.per_page
+    state.bookings.links = data.meta?.links
 }
 

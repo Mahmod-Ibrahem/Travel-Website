@@ -107,272 +107,265 @@
                         </div>
 
                         <div id="tabContent_itenary" class="transition-all duration-300 rounded-md  w-full gap-2 ">
-                            @php
-                                $itenary_title = explode('/', $tour->itenary_title);
-                                $itenary_section = explode('###', $tour->itenary_section);
-                            @endphp
-                            @forelse($itenary_title as $index => $title)
-                                @component('tour::components.itenary-button', [
-                                    'id' => $index,
-                                    'text' => $title,
-                                    'itenary' => $itenary_section[$index] ?? 'Some Thing Went Wrong',
+                            @forelse($tour->itenaries as $index => $itenary)
+                                @include('tour::components.itenary-button',['itenary'=>$itenary])
+                                    @empty
+                                    @endforelse
+                                </div>
+
+                                <div id="tabContent_Places" class="tourDetail_container">
+                                    <h2 class="tour_details_h">Places You'll Visit </h2>
+                                    @foreach (explode('/', $tour->places) as $places)
+                                        <div class="flex justify-between gap-4 h-fit mt-2">
+                                            <p class="tour_details_p">
+                                                &bull; {{ $places }}
+                                            </p>
+                                            <svg class="h-6 w-6 text-main" width="24" height="24" viewBox="0 0 24 24"
+                                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <path d="M5 12l5 5l10 -10" />
+                                            </svg>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <div id="tabContent_Include" class="tourDetail_container">
+                                    <h2 class="tour_details_h">What's Include</h2>
+                                    @foreach ($tour->inclusions as $included)
+                                        @include('tour::components.include', [
+                                            'included' => $included->title,
+                                        ])
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div id="tabContent_Exclude" class="tourDetail_container">
+                                <h2 class="tour_details_h">What's Excluded</h2>
+                                @foreach ($tour->exclusions as $excluded)
+                                    @include('tour::components.exclude', ['excluded' => $excluded->title])
+                                @endforeach
+                            </div>
+
+                            <div id="tabContent_PricePlane" class="flex flex-col w-full ">
+                                @component('tour::components.price-plan', [
+                                    'one' => $tour->price_per_person,
+                                    'two' => $tour->price_two_five,
+                                    'three' => $tour->price_six_twenty,
                                 ])
                                 @endcomponent
-                            @empty
-                            @endforelse
+                            </div>
                         </div>
 
-                        <div id="tabContent_Places" class="tourDetail_container">
-                            <h2 class="tour_details_h">Places You'll Visit </h2>
-                            @foreach (explode('/', $tour->places) as $places)
-                                <div class="flex justify-between gap-4 h-fit mt-2">
-                                    <p class="tour_details_p">
-                                        &bull; {{ $places }}
-                                    </p>
-                                    <svg class="h-6 w-6 text-main" width="24" height="24" viewBox="0 0 24 24"
-                                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" />
-                                        <path d="M5 12l5 5l10 -10" />
-                                    </svg>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div id="tabContent_Include" class="tourDetail_container">
-                            <h2 class="tour_details_h">What's Include</h2>
-                            @foreach ($tour->inclusions as $included)
-                                @include('tour::components.include', ['included' => $included->title])
-                            @endforeach
-                        </div>
-                    </div>
-                    <div id="tabContent_Exclude" class="tourDetail_container">
-                        <h2 class="tour_details_h">What's Excluded</h2>
-                        @foreach ($tour->exclusions as $excluded)
-                            @include('tour::components.exclude', ['excluded' => $excluded->title])
-                        @endforeach
                     </div>
 
-                    <div id="tabContent_PricePlane" class="flex flex-col w-full ">
-                        @component('tour::components.price-plan', [
-                            'one' => $tour->price_per_person,
-                            'two' => $tour->price_two_five,
-                            'three' => $tour->price_six_twenty,
-                        ])
-                        @endcomponent
-                    </div>
+                    @component('tour::components.booking-form', ['price' => $tour->price, 'tour' => $tour])
+                    @endcomponent
+
                 </div>
-
+                @if ($reviews ?? false)
+                    @component('tour::components.tour-testimonials', ['reviews' => $reviews])
+                    @endcomponent
+                @endif
             </div>
+            <!--end Of tap-->
+        @endsection('content')
 
-            @component('tour::components.booking-form', ['price' => $tour->price, 'tour' => $tour])
-            @endcomponent
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
 
-        </div>
-        @if ($reviews ?? false)
-            @component('tour::components.tour-testimonials', ['reviews' => $reviews])
-            @endcomponent
-        @endif
-    </div>
-    <!--end Of tap-->
-@endsection('content')
+                let f_tap = 1;
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        let f_tap = 1;
-
-        document.querySelectorAll('[id^="tab_"]').forEach(function(tab, index) {
-            tab.addEventListener('click', function() {
-                openTab(index + 1)
-            })
-        })
+                document.querySelectorAll('[id^="tab_"]').forEach(function(tab, index) {
+                    tab.addEventListener('click', function() {
+                        openTab(index + 1)
+                    })
+                })
 
 
-        openTab(f_tap)
+                openTab(f_tap)
 
 
-        function openTab(tabIndex) {
+                function openTab(tabIndex) {
 
-            const tabContents = document.querySelectorAll('[id^="tabContent"]');
+                    const tabContents = document.querySelectorAll('[id^="tabContent"]');
 
-            const tabContentIds = Array.from(tabContents, tabContent => tabContent.id);
-
-
-            tabContents.forEach(function(tabContent) {
-                tabContent.style.display = "none";
-            });
-
-            // Remove 'text-white' class from all buttons
-            document.querySelectorAll('[id^="tab_"]').forEach(function(button) {
-                button.classList.remove("text-main");
-            });
-
-            // Show the selected tab content
-            document.getElementById(tabContentIds[tabIndex - 1]).style.display = "inline-block";
-
-            document.getElementById("tab_" + tabIndex).classList.add("text-main");
-        }
-
-        const itenaryTitle = document.querySelectorAll('[id^="title_"]')
-        const itenaryDesc = document.querySelectorAll('[id^="descr_"]')
-        const Plus = document.querySelectorAll('[id^="plus_"]');
-        const Minus = document.querySelectorAll('[id^="Minus_"]');
-        itenaryTitle.forEach(function(btn, index) {
-            btn.addEventListener("click", function() {
-                itenaryDesc[index].classList.toggle("hidden"); // setTimeout(() => {
-                itenaryDesc[index].classList.toggle("flex"); // setTimeout(() => {
-                Plus[index].classList.toggle("hidden");
-                Minus[index].classList.toggle("hidden");
-                // }, 150);
-            });
-        });
-
-        /*Image Swipper */
-        const imagesContainer = document.getElementById("images_container");
-        const Next = document.getElementById('next')
-        const Prev = document.getElementById('prev')
-        const imageBar = document.getElementById('Image_bar')
-        let slideIndex = 0
-        Next.addEventListener('click', () => ScrollHorizontal(1))
-        Prev.addEventListener('click', () => ScrollHorizontal(-1))
-        const dots = document.querySelectorAll('[id^="dot"]');
-        ScrollHorizontal(slideIndex)
+                    const tabContentIds = Array.from(tabContents, tabContent => tabContent.id);
 
 
-        function ScrollHorizontal(sign) {
-            if (sign === 1 || sign === 0) {
-                if (slideIndex < dots.length - 1) {
-                    slideIndex = slideIndex + sign
-                } else {
-                    slideIndex = 0
+                    tabContents.forEach(function(tabContent) {
+                        tabContent.style.display = "none";
+                    });
+
+                    // Remove 'text-white' class from all buttons
+                    document.querySelectorAll('[id^="tab_"]').forEach(function(button) {
+                        button.classList.remove("text-main");
+                    });
+
+                    // Show the selected tab content
+                    document.getElementById(tabContentIds[tabIndex - 1]).style.display = "inline-block";
+
+                    document.getElementById("tab_" + tabIndex).classList.add("text-main");
                 }
-            } else {
-                if (slideIndex > 0) {
-                    slideIndex = slideIndex + sign //sign negative hena
-                } else {
-                    slideIndex = dots.length - 1
+
+                const itenaryTitle = document.querySelectorAll('[id^="title_"]')
+                const itenaryDesc = document.querySelectorAll('[id^="descr_"]')
+                const Plus = document.querySelectorAll('[id^="plus_"]');
+                const Minus = document.querySelectorAll('[id^="Minus_"]');
+                itenaryTitle.forEach(function(btn, index) {
+                    btn.addEventListener("click", function() {
+                        itenaryDesc[index].classList.toggle("hidden"); // setTimeout(() => {
+                        itenaryDesc[index].classList.toggle("flex"); // setTimeout(() => {
+                        Plus[index].classList.toggle("hidden");
+                        Minus[index].classList.toggle("hidden");
+                        // }, 150);
+                    });
+                });
+
+                /*Image Swipper */
+                const imagesContainer = document.getElementById("images_container");
+                const Next = document.getElementById('next')
+                const Prev = document.getElementById('prev')
+                const imageBar = document.getElementById('Image_bar')
+                let slideIndex = 0
+                Next.addEventListener('click', () => ScrollHorizontal(1))
+                Prev.addEventListener('click', () => ScrollHorizontal(-1))
+                const dots = document.querySelectorAll('[id^="dot"]');
+                ScrollHorizontal(slideIndex)
+
+
+                function ScrollHorizontal(sign) {
+                    if (sign === 1 || sign === 0) {
+                        if (slideIndex < dots.length - 1) {
+                            slideIndex = slideIndex + sign
+                        } else {
+                            slideIndex = 0
+                        }
+                    } else {
+                        if (slideIndex > 0) {
+                            slideIndex = slideIndex + sign //sign negative hena
+                        } else {
+                            slideIndex = dots.length - 1
+                        }
+                    }
+                    if (window.innerWidth >= 768) {
+                        imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
+                        imageBar.scrollLeft = 130 * slideIndex
+                    } else {
+                        imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
+                        imageBar.scrollLeft = 82 * slideIndex
+                    }
+                    addOpacityToDots()
+                    dots[slideIndex].classList.remove('opacity-50')
+
                 }
-            }
-            if (window.innerWidth >= 768) {
-                imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
-                imageBar.scrollLeft = 130 * slideIndex
-            } else {
-                imagesContainer.scrollLeft = imagesContainer.clientWidth * slideIndex;
-                imageBar.scrollLeft = 82 * slideIndex
-            }
-            addOpacityToDots()
-            dots[slideIndex].classList.remove('opacity-50')
 
-        }
+                //Small Images
 
-        //Small Images
-
-        // Select all dot elements
-        // Add event listeners to each dot element
-        function addOpacityToDots() {
-            dots.forEach(dot => {
-                dot.classList.add('opacity-50')
-            })
-        }
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => {
-                addOpacityToDots()
-                dot.classList.remove('opacity-50') // aly at3ml 3aleh click bs hoa al op 1
-                if (window.innerWidth >= 768) {
-                    imagesContainer.scrollLeft = index * imagesContainer
-                        .clientWidth // exclude border with
-                } else {
-                    imagesContainer.scrollLeft = imagesContainer.clientWidth * index;
+                // Select all dot elements
+                // Add event listeners to each dot element
+                function addOpacityToDots() {
+                    dots.forEach(dot => {
+                        dot.classList.add('opacity-50')
+                    })
                 }
-                slideIndex = index
-            });
-        });
 
-        // Touch/Swipe functionality for mobile and touchpad
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let isDragging = false;
+                dots.forEach((dot, index) => {
+                    dot.addEventListener("click", () => {
+                        addOpacityToDots()
+                        dot.classList.remove('opacity-50') // aly at3ml 3aleh click bs hoa al op 1
+                        if (window.innerWidth >= 768) {
+                            imagesContainer.scrollLeft = index * imagesContainer
+                                .clientWidth // exclude border with
+                        } else {
+                            imagesContainer.scrollLeft = imagesContainer.clientWidth * index;
+                        }
+                        slideIndex = index
+                    });
+                });
 
-        imagesContainer.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-            isDragging = true;
-        }, {
-            passive: true
-        });
+                // Touch/Swipe functionality for mobile and touchpad
+                let touchStartX = 0;
+                let touchEndX = 0;
+                let isDragging = false;
 
-        imagesContainer.addEventListener('touchmove', function(e) {
-            if (!isDragging) return;
-            touchEndX = e.changedTouches[0].screenX;
-        }, {
-            passive: true
-        });
+                imagesContainer.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                    isDragging = true;
+                }, {
+                    passive: true
+                });
 
-        imagesContainer.addEventListener('touchend', function() {
-            if (!isDragging) return;
-            isDragging = false;
-            handleSwipe();
-        });
+                imagesContainer.addEventListener('touchmove', function(e) {
+                    if (!isDragging) return;
+                    touchEndX = e.changedTouches[0].screenX;
+                }, {
+                    passive: true
+                });
 
-        // Mouse drag for desktop touchpad
-        let mouseStartX = 0;
-        let mouseEndX = 0;
-        let isMouseDragging = false;
+                imagesContainer.addEventListener('touchend', function() {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    handleSwipe();
+                });
 
-        imagesContainer.addEventListener('mousedown', function(e) {
-            mouseStartX = e.screenX;
-            isMouseDragging = true;
-            imagesContainer.style.cursor = 'grabbing';
-        });
+                // Mouse drag for desktop touchpad
+                let mouseStartX = 0;
+                let mouseEndX = 0;
+                let isMouseDragging = false;
 
-        imagesContainer.addEventListener('mousemove', function(e) {
-            if (!isMouseDragging) return;
-            mouseEndX = e.screenX;
-        });
+                imagesContainer.addEventListener('mousedown', function(e) {
+                    mouseStartX = e.screenX;
+                    isMouseDragging = true;
+                    imagesContainer.style.cursor = 'grabbing';
+                });
 
-        imagesContainer.addEventListener('mouseup', function() {
-            if (!isMouseDragging) return;
-            isMouseDragging = false;
-            imagesContainer.style.cursor = 'grab';
-            touchStartX = mouseStartX;
-            touchEndX = mouseEndX;
-            handleSwipe();
-        });
+                imagesContainer.addEventListener('mousemove', function(e) {
+                    if (!isMouseDragging) return;
+                    mouseEndX = e.screenX;
+                });
 
-        imagesContainer.addEventListener('mouseleave', function() {
-            if (isMouseDragging) {
-                isMouseDragging = false;
+                imagesContainer.addEventListener('mouseup', function() {
+                    if (!isMouseDragging) return;
+                    isMouseDragging = false;
+                    imagesContainer.style.cursor = 'grab';
+                    touchStartX = mouseStartX;
+                    touchEndX = mouseEndX;
+                    handleSwipe();
+                });
+
+                imagesContainer.addEventListener('mouseleave', function() {
+                    if (isMouseDragging) {
+                        isMouseDragging = false;
+                        imagesContainer.style.cursor = 'grab';
+                    }
+                });
+
+                function handleSwipe() {
+                    const swipeThreshold = 50; // minimum distance for a swipe
+                    const difference = touchStartX - touchEndX;
+
+                    if (Math.abs(difference) < swipeThreshold) {
+                        return; // Not a swipe, ignore
+                    }
+
+                    if (difference > 0) {
+                        // Swiped left - go to next slide
+                        ScrollHorizontal(1);
+                    } else {
+                        // Swiped right - go to previous slide
+                        ScrollHorizontal(-1);
+                    }
+
+                    // Reset values
+                    touchStartX = 0;
+                    touchEndX = 0;
+                    mouseStartX = 0;
+                    mouseEndX = 0;
+                }
+
+                // Set initial cursor style
                 imagesContainer.style.cursor = 'grab';
-            }
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50; // minimum distance for a swipe
-            const difference = touchStartX - touchEndX;
-
-            if (Math.abs(difference) < swipeThreshold) {
-                return; // Not a swipe, ignore
-            }
-
-            if (difference > 0) {
-                // Swiped left - go to next slide
-                ScrollHorizontal(1);
-            } else {
-                // Swiped right - go to previous slide
-                ScrollHorizontal(-1);
-            }
-
-            // Reset values
-            touchStartX = 0;
-            touchEndX = 0;
-            mouseStartX = 0;
-            mouseEndX = 0;
-        }
-
-        // Set initial cursor style
-        imagesContainer.style.cursor = 'grab';
 
 
-    })
-</script>
+            })
+        </script>

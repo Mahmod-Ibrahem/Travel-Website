@@ -14,7 +14,7 @@ use Modules\Booking\Entities\TourBooking;
 
 class BookingController extends Controller
 {
-    public function store(BookingRequest $request, PayPalService $paypalService)
+    public function store(BookingRequest $request)
     {
         $data = $request->validated();
         $tour = Tour::findOrFail($data['tour_id']);
@@ -26,6 +26,7 @@ class BookingController extends Controller
         $data['date'] = (new DateTime($data['date']))->modify('+1 day')->format('Y-m-d');
 
         if ($data['payment_method'] === 'paypal') {
+            $paypalService = app(PayPalService::class);
             return $this->handlePayPalPayment($paypalService, $totalPrice, $tour);
         }
         $this->createBooking($data, $tour);

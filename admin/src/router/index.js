@@ -23,6 +23,8 @@ import Exclusions from "../views/Exclusion/Exclusions.vue";
 import ExclusionForm from "../views/Exclusion/ExclusionForm.vue";
 import Settings from "../views/Setting/Settings.vue";
 import SettingForm from "../views/Setting/SettingForm.vue";
+import Bookings from "../views/Bookings/Bookings.vue";
+import BookingForm from "../views/Bookings/BookingForm.vue";
 
 const routes = [
     {
@@ -39,24 +41,19 @@ const routes = [
         },
         children: [
             {
-                path: "products",
+                path: "tours",
                 name: "app.products",
                 component: Products,
             },
             {
-                path: "products/create",
+                path: "tours/create",
                 name: "app.products.create",
                 component: ProductForm,
             },
             {
-                path: "products/:id",
+                path: "tours/:id",
                 name: "app.products.edit",
                 component: ProductForm,
-            },
-            {
-                path: "products/Images/:id",
-                name: "app.products.view",
-                component: ProductImages,
             },
             {
                 path: "categories",
@@ -193,6 +190,21 @@ const routes = [
                 path: 'settings/:id',
                 name: 'app.settings.edit',
                 component: SettingForm
+            },
+            {
+                path: 'bookings',
+                name: 'app.bookings',
+                component: Bookings
+            },
+            {
+                path: 'bookings/:id',
+                name: 'app.bookings.edit',
+                component: BookingForm
+            },
+            {
+                path: 'bookings/:id',
+                name: 'app.bookings.edit',
+                component: BookingForm
             },
 
         ],

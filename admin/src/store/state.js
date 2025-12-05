@@ -1,6 +1,6 @@
 const store = {
     user: {
-        token: sessionStorage.getItem("TOKEN"),
+        token: localStorage.getItem("TOKEN"),
         data: {},
     },
     products: {
@@ -74,6 +74,15 @@ const store = {
     settings: {
         data: null,
         loading: true,
+    },
+    bookings: {
+        data: [],
+        loading: true,
+        from: null,
+        to: null,
+        total: null,
+        per_page: 20,
+        links: []
     },
 };
 

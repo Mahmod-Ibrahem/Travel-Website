@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace Modules\Booking\Transformers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -22,8 +22,7 @@ class BookingListResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'date' => $this->date,
-            'totalPrice' => $this->total_price,
-            'tourTitle' => $this->tour->title,
+            'total_price' => $this->total_price,
             'country' => $this->country,
             'adult' => $this->adult,
             'children' => $this->children

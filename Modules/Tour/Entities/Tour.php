@@ -4,6 +4,7 @@ namespace Modules\Tour\Entities;
 
 use App\Models\TourImage;
 use App\Models\TourTranslation;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +16,7 @@ use Spatie\Translatable\HasTranslations;
 
 class Tour extends Model
 {
-    use HasFactory, HasTranslations;
+    use HasFactory, HasTranslations, Sluggable;
 
     protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty', 'slug', 'title', 'description', 'duration', 'places'];
     public $translatable = ['slug', 'title', 'description', 'duration', 'places'];
@@ -58,5 +59,15 @@ class Tour extends Model
     public function scopeWithTranslations(Builder $query): Builder
     {
         return $query->with(['category']);
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true,
+            ]
+        ];
     }
 }
